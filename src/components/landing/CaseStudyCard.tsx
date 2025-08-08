@@ -19,13 +19,13 @@ export function CaseStudyCard({ caseStudy }: CaseStudyCardProps) {
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
         <Card className="h-full overflow-hidden bg-slate-800/50 border-slate-700/50 backdrop-blur-sm transition-all duration-300 group-hover:border-primary/50">
-          <div className="overflow-hidden">
+          <div className="overflow-hidden aspect-[4/3] relative">
             <Image
               src={caseStudy.imageUrl}
               alt={caseStudy.imageAlt}
-              width={600}
-              height={400}
-              className="w-full h-auto object-cover aspect-[4/3] transition-transform duration-300 group-hover:scale-110"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-300 group-hover:scale-110"
               data-ai-hint={caseStudy.dataAiHint ?? 'case study image'}
             />
           </div>

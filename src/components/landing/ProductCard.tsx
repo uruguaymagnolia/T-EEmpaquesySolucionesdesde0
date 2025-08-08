@@ -29,13 +29,13 @@ export function ProductCard({ product }: ProductCardProps) {
     >
       <Link href={`/products/${product.slug}`} className="block h-full group">
         <Card className="h-full overflow-hidden bg-slate-800/50 border-slate-700/50 flex flex-col">
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden aspect-[4/3]">
             <Image
               src={product.imageUrl}
               alt={product.imageAlt}
-              width={400}
-              height={300}
-              className="w-full h-auto object-cover aspect-[4/3] transition-transform duration-300 group-hover:scale-110"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-300 group-hover:scale-110"
               data-ai-hint={product.dataAiHint ?? 'product image'}
             />
             <Badge
