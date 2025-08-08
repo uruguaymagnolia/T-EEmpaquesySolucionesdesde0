@@ -29,7 +29,7 @@ const testimonials = [
   },
   {
     quote:
-      'Necesitábamos una soluci\u00f3n de empaque resistente y a la vez económica para nuestros componentes electrónicos. T&E entregó un diseño perfecto que redujo nuestros costos en un 20%.',
+      'Necesitábamos una solución de empaque resistente y a la vez económica para nuestros componentes electrónicos. T&E entregó un diseño perfecto que redujo nuestros costos en un 20%.',
     name: 'Laura Jiménez',
     company: 'Jefa de Compras, TechGadgets',
     rating: 4,
@@ -50,8 +50,9 @@ const testimonials = [
   },
 ];
 
-const DotButton = ({ selected, onClick }: {selected: boolean, onClick: () => void}) => (
+const DotButton = ({ selected, onClick, index }: {selected: boolean, onClick: () => void, index: number}) => (
   <button
+    aria-label={`Ir al testimonio ${index + 1}`}
     className={cn(
       'h-3 w-3 rounded-full mx-1 transition-all duration-300',
       selected ? 'bg-primary scale-125' : 'bg-slate-700'
@@ -165,6 +166,7 @@ const TestimonialsSection: React.FC = () => {
             {scrollSnaps.map((_, index) => (
               <DotButton
                 key={index}
+                index={index}
                 selected={index === selectedIndex}
                 onClick={() => scrollTo(index)}
               />
