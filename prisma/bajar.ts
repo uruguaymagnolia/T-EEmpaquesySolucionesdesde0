@@ -13,7 +13,7 @@ async function main() {
     console.log(`Directorio creado: ${outputDir}`);
   }
 
-  const modelNames = ['product', 'caseStudy']; 
+  const modelNames = ['product', 'caseStudy', 'Message']; 
 
   for (const modelName of modelNames) {
     try {

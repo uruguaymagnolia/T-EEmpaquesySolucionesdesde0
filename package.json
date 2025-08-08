@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "postinstall": "prisma generate",
+    "postinstall": "prisma generate --no-engine",
     "seed": "prisma db seed",
     "db:export": "tsx prisma/bajar.ts"
   },
