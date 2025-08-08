@@ -7,17 +7,14 @@ import { HeroSection } from '@/components/landing/HeroSection';
 import { ServicesSection } from '@/components/landing/ServicesSection';
 import { ScrollReveal } from '@/components/animations/scroll-animations';
 import ProductCarouselSection from '@/components/sections/product-carousel-section';
-import TestimonialsSection from '@/components/sections/testimonials-section';
 import { StatsSection } from '@/components/sections/stats-section';
-import FAQSection from '@/components/sections/faq-section';
-import ContactFormSection from '@/components/sections/contact-form-section';
 import type { Product, CaseStudy, Solution } from '@prisma/client';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const MapSection = dynamic(
-  () => import('@/components/landing/map-section').then(mod => mod.MapSection),
+  () => import('@/components/landing/map-section').then((mod) => mod.MapSection),
   {
-    ssr: false, // El mapa es un componente de solo cliente, no necesita renderizarse en el servidor.
+    ssr: false,
     loading: () => (
       <div className="container mx-auto px-4 py-16 text-center">
         <Skeleton className="h-[500px] w-full max-w-7xl mx-auto rounded-lg" />
@@ -26,6 +23,38 @@ const MapSection = dynamic(
   }
 );
 
+const TestimonialsSection = dynamic(
+  () => import('@/components/sections/testimonials-section'),
+  {
+    loading: () => (
+      <div className="container mx-auto px-4 py-16">
+        <Skeleton className="h-[400px] w-full rounded-lg" />
+      </div>
+    ),
+  }
+);
+
+const FAQSection = dynamic(
+  () => import('@/components/sections/faq-section'),
+  {
+    loading: () => (
+      <div className="container mx-auto px-4 py-16">
+        <Skeleton className="h-[500px] w-full rounded-lg" />
+      </div>
+    ),
+  }
+);
+
+const ContactFormSection = dynamic(
+  () => import('@/components/sections/contact-form-section'),
+  {
+    loading: () => (
+      <div className="container mx-auto px-4 py-16">
+        <Skeleton className="h-[600px] w-full rounded-lg" />
+      </div>
+    ),
+  }
+);
 
 type ClientSectionsWrapperProps = {
   products: Product[];
