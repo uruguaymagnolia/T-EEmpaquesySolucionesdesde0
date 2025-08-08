@@ -32,17 +32,18 @@ export default async function ProjectDetailsPage({
   return (
     <div className="bg-slate-900 text-white">
       <header className="relative h-[40vh] min-h-[300px] w-full">
-        <Image
-          src={caseStudy.imageUrl}
-          alt={caseStudy.imageAlt}
-          layout="fill"
-          objectFit="cover"
-          className="opacity-40"
-          priority
-        />
+        <div className="absolute inset-0">
+          <Image
+            src={caseStudy.imageUrl}
+            alt={caseStudy.imageAlt}
+            fill
+            className="object-cover opacity-40"
+            priority
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/70 to-transparent" />
-        <div className="container mx-auto flex h-full items-end p-4">
-          <div className="relative z-10 max-w-4xl pb-8">
+        <div className="relative z-10 container mx-auto flex h-full items-end p-4">
+          <div className="max-w-4xl pb-8">
             <Badge
               variant="default"
               className="mb-4 bg-primary/80 backdrop-blur-sm"
