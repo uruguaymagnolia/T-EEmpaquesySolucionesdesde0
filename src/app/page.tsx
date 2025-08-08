@@ -1,9 +1,9 @@
-import AIContentSuggester from "@/components/ai-content-suggester";
+import { HeroSection } from "@/components/landing/HeroSection";
 
 export default function HomePage() {
   return (
     <div>
-      <AIContentSuggester />
+      <HeroSection />
     </div>
   );
 }
