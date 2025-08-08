@@ -1,18 +1,31 @@
-
 'use client';
-
-import { ProjectCard } from '@/components/landing/ProjectCard';
-import { projects } from '@/lib/mock-projects';
+import { CaseStudyCard } from '@/components/landing/CaseStudyCard';
 import {
   ScrollReveal,
   ScrollStaggerContainer,
   ScrollStaggerItem,
 } from '@/components/animations/scroll-animations';
 import { motion } from 'framer-motion';
+import { getCaseStudies } from './actions';
+import { useEffect, useState } from 'react';
+import type { CaseStudy } from '@prisma/client';
 
 export default function ProjectsPage() {
+  const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCaseStudies = async () => {
+      setLoading(true);
+      const studies = await getCaseStudies();
+      setCaseStudies(studies);
+      setLoading(false);
+    };
+    fetchCaseStudies();
+  }, []);
+
   return (
-    <div className="bg-slate-900">
+    <div className="bg-slate-950">
       <header className="bg-gradient-to-r from-[#1a2435] to-[#0e413b] text-white py-16 md:py-24">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -30,13 +43,25 @@ export default function ProjectsPage() {
 
       <main className="container mx-auto px-4 py-16 md:py-24">
         <ScrollReveal>
-          <ScrollStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <ScrollStaggerItem key={project.id}>
-                <ProjectCard project={project} />
-              </ScrollStaggerItem>
-            ))}
-          </ScrollStaggerContainer>
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="bg-slate-800/50 rounded-lg p-4 animate-pulse">
+                  <div className="bg-slate-700/50 h-48 w-full rounded-md mb-4"></div>
+                  <div className="bg-slate-700/50 h-6 w-3/4 rounded-md mb-2"></div>
+                  <div className="bg-slate-700/50 h-4 w-full rounded-md"></div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <ScrollStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {caseStudies.map((study) => (
+                <ScrollStaggerItem key={study.id}>
+                  <CaseStudyCard caseStudy={study} />
+                </ScrollStaggerItem>
+              ))}
+            </ScrollStaggerContainer>
+          )}
         </ScrollReveal>
       </main>
     </div>
