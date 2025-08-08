@@ -5,6 +5,9 @@ import {
   ScrollStaggerContainer,
   ScrollStaggerItem,
 } from '../animations/scroll-animations';
+import Link from 'next/link';
+import { Button } from '../ui/button';
+import { ArrowRight } from 'lucide-react';
 
 export function ServicesSection({ id }: { id?: string }) {
   return (
@@ -14,26 +17,43 @@ export function ServicesSection({ id }: { id?: string }) {
           Nuestros Servicios de Empaque
         </h2>
         <p className="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-12">
-          Ofrecemos una amplia gama de soluciones de empaque y embalaje diseñadas para satisfacer las necesidades específicas de su negocio.
+          Ofrecemos una amplia gama de soluciones de empaque y embalaje
+          diseñadas para satisfacer las necesidades específicas de su negocio.
         </p>
         <ScrollStaggerContainer
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
-          staggerChildren={0.15}
+          staggerChildren={0.1}
         >
           {solutions.map((solution, index) => {
             const Icon = solution.icon;
             return (
-              <ScrollStaggerItem key={index}>
+              <ScrollStaggerItem key={index} className="h-full">
                 <motion.div
                   whileHover={{ scale: 1.03, y: -5 }}
                   transition={{ type: 'spring', stiffness: 300 }}
-                  className="text-center p-6 border border-slate-700/50 rounded-lg shadow-sm h-full bg-slate-900"
+                  className="text-left p-6 border border-slate-700/50 rounded-lg shadow-sm h-full bg-slate-900 flex flex-col group"
                 >
-                  <Icon className="h-12 w-12 text-[#9ada34] mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2 text-white">
-                    {solution.title}
-                  </h3>
-                  <p className="text-gray-300">{solution.description}</p>
+                  <div className="flex-shrink-0">
+                    <Icon className="h-12 w-12 text-[#9ada34] mb-4" />
+                    <h3 className="text-xl font-semibold mb-2 text-white">
+                      {solution.title}
+                    </h3>
+                    <p className="text-gray-300 text-sm">
+                      {solution.description}
+                    </p>
+                  </div>
+                  <div className="mt-auto pt-4">
+                    <Button
+                      asChild
+                      variant="link"
+                      className="text-primary p-0 h-auto opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <Link href="/soluciones">
+                        Saber más
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </div>
                 </motion.div>
               </ScrollStaggerItem>
             );
