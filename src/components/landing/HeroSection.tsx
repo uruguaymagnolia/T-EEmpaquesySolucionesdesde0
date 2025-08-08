@@ -50,41 +50,38 @@ export function HeroSection() {
         <div/>
       </FloatingElement>
 
-      <StaggerContainer
+      <div
         className="container mx-auto px-4 text-center relative z-10"
-        staggerChildren={0.2}
       >
-        <StaggerItem
-          as="h1"
+        <motion.h1
           className="text-4xl md:text-6xl font-bold mb-4"
-          variants={{
-            hidden: { opacity: 0, y: -50 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.8, type: 'spring', bounce: 0.2 } },
-          }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
           Soluciones de empaque{' '}
           <motion.span
             className="text-primary inline-block"
             initial={{ opacity: 0, y: -20, filter: 'blur(5px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ delay: 0.6, duration: 0.5, type: 'spring' }}
+            transition={{ delay: 0.4, duration: 0.5, type: 'spring' }}
             style={{ textShadow: '0 0 15px hsla(var(--primary), 0.5)' }}
           >
             personalizadas
           </motion.span>
-        </StaggerItem>
-        <StaggerItem
-          as="p"
+        </motion.h1>
+        
+        <motion.p
           className="max-w-3xl mx-auto mb-8 text-lg text-gray-300"
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2 }},
-          }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
         >
           Proveemos productos y soluciones de empaque personalizadas para
           artículos escolares, papelería, accesorios eléctricos, cosméticos,
           didácticos, mercería y más.
-        </StaggerItem>
+        </motion.p>
+        
         <StaggerContainer
           as="div"
           className="flex justify-center items-center flex-col sm:flex-row gap-4 mb-8"
@@ -133,7 +130,7 @@ export function HeroSection() {
               <p className="text-sm text-gray-400 ml-2">Calificado 4.9/5 por más de 500 clientes</p>
             </StaggerItem>
         </StaggerContainer>
-      </StaggerContainer>
+      </div>
     </section>
   );
 }
