@@ -170,7 +170,7 @@ export const ParallaxText = ({
   const y = useTransform(scrollYProgress, [0, 1], ['0%', `${-100 * speed}%`]);
 
   return (
-    <div ref={ref} className={cn('overflow-hidden', className)}>
+    <div ref={ref} className={cn('overflow-hidden', className)} style={{ position: 'relative' }}>
       <motion.div style={{ y }}>{children}</motion.div>
     </div>
   );
