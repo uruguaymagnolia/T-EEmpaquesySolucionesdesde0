@@ -1,5 +1,5 @@
 import type {Config} from 'tailwindcss';
-const colors = require('tailwindcss/colors')
+const { fontFamily } = require("tailwindcss/defaultTheme")
 
 export default {
   darkMode: ['class'],
@@ -18,8 +18,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'],
+        sans: ["var(--font-inter)", ...fontFamily.sans],
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -55,16 +54,9 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-        sidebar: {
-          DEFAULT: 'hsl(var(--sidebar-background))',
-          foreground: 'hsl(var(--sidebar-foreground))',
-          primary: 'hsl(var(--sidebar-primary))',
-          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-          accent: 'hsl(var(--sidebar-accent))',
-          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-          border: 'hsl(var(--sidebar-border))',
-          ring: 'hsl(var(--sidebar-ring))',
-        },
+        'background-light': 'hsl(var(--background-light))',
+        'background-dark': 'hsl(var(--background-dark))',
+        'background-alt': 'hsl(var(--background-alt))',
       },
       borderRadius: {
         lg: 'var(--radius)',
