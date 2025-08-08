@@ -4,15 +4,12 @@ import type { CaseStudy } from '@prisma/client';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle } from 'lucide-react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { getCaseStudyBySlug, getCaseStudies } from '../actions';
+import { CheckCircle, ArrowLeft } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { getCaseStudyBySlug } from '../actions';
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 type ProjectDetailsPageProps = {
   params: {
@@ -98,6 +95,14 @@ export default function ProjectDetailsPage({ params }: ProjectDetailsPageProps) 
       </header>
 
       <main className="container mx-auto max-w-6xl p-4 py-16">
+        <div className="mb-8">
+            <Link href="/proyectos">
+                <Button variant="outline">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Volver a Proyectos
+                </Button>
+            </Link>
+        </div>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           <motion.div
             initial={{ opacity: 0, x: -20 }}

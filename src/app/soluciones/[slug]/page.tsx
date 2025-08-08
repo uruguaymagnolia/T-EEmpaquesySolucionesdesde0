@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { CheckCircle, ArrowRight, type LucideIcon } from 'lucide-react';
+import { CheckCircle, ArrowLeft, type LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -127,6 +127,15 @@ export default function SolutionDetailsPage({
       </header>
 
       <main className="container mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div className="mb-8">
+            <Link href="/soluciones">
+                <Button variant="outline">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Volver a Soluciones
+                </Button>
+            </Link>
+        </div>
+
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           <div className="space-y-8 lg:col-span-2">
             <ScrollReveal>

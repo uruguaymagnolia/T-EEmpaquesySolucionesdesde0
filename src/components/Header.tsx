@@ -37,7 +37,7 @@ export function Header() {
 
   const navLinks: { href: string; label: string; icon: LucideIcon }[] = [
     { href: '/', label: 'Inicio', icon: Home },
-    { href: '/#soluciones', label: 'Soluciones', icon: Package },
+    { href: '/soluciones', label: 'Soluciones', icon: Package },
     { href: '/products', label: 'Productos', icon: ShoppingBag },
     { href: '/proyectos', label: 'Proyectos', icon: Briefcase },
     {

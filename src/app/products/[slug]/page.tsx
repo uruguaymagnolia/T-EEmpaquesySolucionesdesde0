@@ -7,9 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import {
-  Card,
-} from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { ProductCard } from '@/components/landing/ProductCard';
 import {
   Carousel,
@@ -19,6 +17,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { getProductBySlug, getRelatedProducts } from '../actions';
+import { ArrowLeft } from 'lucide-react';
 
 type ProductDetailsPageProps = {
   params: {
@@ -72,6 +71,15 @@ export default function ProductDetailsPage({
       className="bg-slate-900 text-white"
     >
       <div className="container mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div className="mb-8">
+          <Link href="/products">
+            <Button variant="outline">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Volver a todos los productos
+            </Button>
+          </Link>
+        </div>
+
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
