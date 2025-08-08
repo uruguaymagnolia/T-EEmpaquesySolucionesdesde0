@@ -1,8 +1,16 @@
+'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
 
 export function Footer() {
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="bg-[#1a2435] text-white">
       <div className="container mx-auto px-4 py-12">
@@ -141,7 +149,7 @@ export function Footer() {
 
         <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
           <p>
-            &copy; {new Date().getFullYear()} T & E Empaques y Soluciones. Todos
+            &copy; {currentYear} T & E Empaques y Soluciones. Todos
             los derechos reservados.
           </p>
         </div>
