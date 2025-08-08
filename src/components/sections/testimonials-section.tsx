@@ -145,7 +145,7 @@ const TestimonialsSection: React.FC = () => {
                           ))}
                         </div>
                         <blockquote className="mt-4 text-lg text-gray-300">
-                          "{testimonial.quote}"
+                          &quot;{testimonial.quote}&quot;
                         </blockquote>
                         <div className="mt-6">
                           <p className="font-bold text-white">

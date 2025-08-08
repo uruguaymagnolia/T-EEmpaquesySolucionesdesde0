@@ -10,7 +10,7 @@ import {
 import { Check } from 'lucide-react';
 import type { Solution } from '@prisma/client';
 
-const icons = {
+const icons: { [key: string]: LucideIcon } = {
   Gift: lucideIcons.Gift,
   Sparkles: lucideIcons.Sparkles,
   PackageCheck: lucideIcons.PackageCheck,
@@ -22,7 +22,7 @@ const icons = {
 };
 
 function getIcon(name: string): LucideIcon {
-  return (icons as any)[name] || icons.Component;
+  return icons[name] || icons.Component;
 }
 
 export function SolucionesContent({ solutions }: { solutions: Solution[] }) {

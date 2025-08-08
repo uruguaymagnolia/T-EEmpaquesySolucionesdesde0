@@ -11,7 +11,7 @@ export function MotionWrapper({
 }: {
   children: React.ReactNode;
   className?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) {
   const defaultVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -59,7 +59,6 @@ export const StaggerContainer = ({
   const MotionComponent = motion(Component);
 
   return (
-    // @ts-ignore
     <MotionComponent
       variants={variants}
       initial="hidden"
@@ -77,7 +76,7 @@ type StaggerItemProps = {
   children: ReactNode;
   className?: string;
   as?: ElementType;
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 // An item for staggered animations
@@ -95,7 +94,6 @@ export const StaggerItem = ({
   const MotionComponent = motion(Component);
 
   return (
-    // @ts-ignore
     <MotionComponent
       variants={variants.variants || defaultVariants}
       className={className}

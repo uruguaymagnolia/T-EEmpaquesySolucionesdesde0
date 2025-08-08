@@ -18,7 +18,7 @@ export function ScrollReveal({
 }: {
   children: React.ReactNode;
   className?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
@@ -71,7 +71,7 @@ export const ScrollStaggerContainer = ({
   className?: string;
   staggerChildren?: number;
   delayChildren?: number;
-  [key: string]: any;
+  [key: string]: unknown;
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
@@ -107,7 +107,7 @@ export const ScrollStaggerItem = ({
 }: {
   children: React.ReactNode;
   className?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) => {
   const defaultVariants: Variants = {
     hidden: { opacity: 0, y: 20 },

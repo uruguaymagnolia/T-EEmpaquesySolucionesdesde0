@@ -8,6 +8,8 @@ import { ProductCard } from './ProductCard';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export function ProductsContent({ products }: { products: Product[] }) {
+  const [activeCategory, setActiveCategory] = useState('Todos');
+
   if (!products || products.length === 0) {
     return (
       <div className="bg-slate-900">
@@ -24,8 +26,6 @@ export function ProductsContent({ products }: { products: Product[] }) {
     'Todos',
     ...Array.from(new Set(products.map((p) => p.category))),
   ];
-
-  const [activeCategory, setActiveCategory] = useState('Todos');
 
   const filteredProducts =
     activeCategory === 'Todos'

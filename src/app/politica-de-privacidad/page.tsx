@@ -155,8 +155,8 @@ export default function PoliticaDePrivacidadPage() {
             <p>
               Nos reservamos el derecho de realizar cambios a esta Política de
               Privacidad en cualquier momento y por cualquier motivo. Le
-              alertaremos sobre cualquier cambio actualizando la fecha de "Última
-              actualización" de esta Política de Privacidad. Se le anima a
+              alertaremos sobre cualquier cambio actualizando la fecha de &quot;Última
+              actualización&quot; de esta Política de Privacidad. Se le anima a
               revisar periódicamente esta Política de Privacidad para mantenerse
               informado de las actualizaciones.
             </p>

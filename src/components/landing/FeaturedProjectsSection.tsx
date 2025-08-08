@@ -3,7 +3,6 @@
 import { CaseStudyCard } from './CaseStudyCard';
 import {
   ScrollStaggerContainer,
-  ScrollStaggerItem,
 } from '../animations/scroll-animations';
 import type { CaseStudy } from '@prisma/client';
 import { AnimatedButton } from './AnimatedButton';

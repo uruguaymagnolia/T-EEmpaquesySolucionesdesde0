@@ -1,8 +1,6 @@
 'use server';
 
 import { notFound } from 'next/navigation';
-import prisma from '@/lib/prisma';
-import type { Product } from '@prisma/client';
 import { ProductDetailsClientPage } from './client-page';
 import { getProductBySlug, getRelatedProducts } from '../actions';
 

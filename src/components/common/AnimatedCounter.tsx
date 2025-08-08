@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import { useInView, useMotionValue, useSpring } from 'framer-motion';
-import { motion } from 'framer-motion';
 
 type AnimatedCounterProps = {
   value: number;
