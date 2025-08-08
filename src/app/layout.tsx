@@ -5,6 +5,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/footer';
 import { ScrollProgress } from '@/components/animations/scroll-animations';
 import { CustomParticles } from '@/components/background/custom-particles';
+import { BackToTopButton } from '@/components/common/BackToTopButton';
 
 export const metadata: Metadata = {
   title: 'T & E Empaques y Soluciones',
@@ -35,6 +36,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <Toaster />
+        <BackToTopButton />
       </body>
     </html>
   );
