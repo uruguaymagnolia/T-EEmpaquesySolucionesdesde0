@@ -10,16 +10,18 @@ import {
 import React, { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 
+type ScrollRevealProps = {
+  children: React.ReactNode;
+  className?: string;
+  variants?: Variants;
+};
+
 // A component to reveal content as it scrolls into view
 export function ScrollReveal({
   children,
   className,
-  ...variants
-}: {
-  children: React.ReactNode;
-  className?: string;
-  [key: string]: unknown;
-}) {
+  variants,
+}: ScrollRevealProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -170,7 +172,11 @@ export const ParallaxText = ({
   const y = useTransform(scrollYProgress, [0, 1], ['0%', `${-100 * speed}%`]);
 
   return (
-    <div ref={ref} className={cn('overflow-hidden', className)} style={{ position: 'relative' }}>
+    <div
+      ref={ref}
+      className={cn('overflow-hidden', className)}
+      style={{ position: 'relative' }}
+    >
       <motion.div style={{ y }}>{children}</motion.div>
     </div>
   );
