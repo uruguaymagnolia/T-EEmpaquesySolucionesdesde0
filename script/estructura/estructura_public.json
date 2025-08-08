@@ -1,0 +1,298 @@
+{
+  "name": "public",
+  "type": "directory",
+  "children": [
+    {
+      "name": "Logo_TyE.svg",
+      "type": "file"
+    },
+    {
+      "name": "iconos",
+      "type": "directory",
+      "children": [
+        {
+          "name": "anadir-bolsa-de-compras.svg",
+          "type": "file"
+        },
+        {
+          "name": "bolsa-de-maquillaje.svg",
+          "type": "file"
+        },
+        {
+          "name": "botella-de-agua.svg",
+          "type": "file"
+        },
+        {
+          "name": "caja-abierta.svg",
+          "type": "file"
+        },
+        {
+          "name": "instagram.svg",
+          "type": "file"
+        },
+        {
+          "name": "lapiz-labial.svg",
+          "type": "file"
+        },
+        {
+          "name": "lapiz-regla.svg",
+          "type": "file"
+        },
+        {
+          "name": "marca.svg",
+          "type": "file"
+        },
+        {
+          "name": "visa.svg",
+          "type": "file"
+        },
+        {
+          "name": "whatsapp.svg",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "imagenes",
+      "type": "directory",
+      "children": [
+        {
+          "name": "casos",
+          "type": "directory",
+          "children": [
+            {
+              "name": "blister.jpg",
+              "type": "file"
+            },
+            {
+              "name": "blister2.jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "productos",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Armado de Cajas.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Armado de Cajas2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Armado de Cajas3.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Armado de Cajas4.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Armado de Cajas5.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Armado de Cajas6.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Armado de Cajas7.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Armado de Cajas8.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Armado de Promociones.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Armado de Promociones2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Blister.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Blister2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Cunas Contenedoras.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Cunas Contenedoras2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Cunas Contenedoras3.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Cunas Contenedoras4.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Cunas Contenedoras5.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Cunas Contenedoras6.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Skin Pack.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Skin Pack2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Skin Pack3.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Skin Pack4.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Soportes para Perfumes.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Soportes para Perfumes2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Soportes para Perfumes3.jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "proyectos",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Cunas.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Cunas2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Cunas3.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Cunas4.jpg",
+              "type": "file"
+            },
+            {
+              "name": "blister.jpg",
+              "type": "file"
+            },
+            {
+              "name": "blister2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "cajas.jpg",
+              "type": "file"
+            },
+            {
+              "name": "cajas2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "cajas3.jpg",
+              "type": "file"
+            },
+            {
+              "name": "cajas4.jpg",
+              "type": "file"
+            },
+            {
+              "name": "escolar.jpg",
+              "type": "file"
+            },
+            {
+              "name": "proyecto.jpg",
+              "type": "file"
+            },
+            {
+              "name": "proyecto1.jpg",
+              "type": "file"
+            },
+            {
+              "name": "skinpack.jpg",
+              "type": "file"
+            },
+            {
+              "name": "soportes.jpg",
+              "type": "file"
+            },
+            {
+              "name": "soportes2.jpg",
+              "type": "file"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "placeholder.svg",
+      "type": "file"
+    },
+    {
+      "name": "productos",
+      "type": "directory",
+      "children": [
+        {
+          "name": "Armado de Cajas.jpg",
+          "type": "file"
+        },
+        {
+          "name": "Armado de Promociones.jpg",
+          "type": "file"
+        },
+        {
+          "name": "Blister.jpg",
+          "type": "file"
+        },
+        {
+          "name": "Cunas Contenedoras.jpg",
+          "type": "file"
+        },
+        {
+          "name": "Skin Pack.jpg",
+          "type": "file"
+        },
+        {
+          "name": "Soportes para Perfumes.jpg",
+          "type": "file"
+        },
+        {
+          "name": "Soportes para Perfumes2.jpg",
+          "type": "file"
+        },
+        {
+          "name": "Soportes para Perfumes3.jfif",
+          "type": "file"
+        },
+        {
+          "name": "Termo Contraíble.jpg",
+          "type": "file"
+        }
+      ]
+    }
+  ]
+}
