@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import prisma from '@/lib/prisma';
+import type { Product } from '@prisma/client';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
@@ -9,11 +9,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
   Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
 } from '@/components/ui/card';
-import type { Product } from '@prisma/client';
 import { ProductCard } from '@/components/landing/ProductCard';
 import {
   Carousel,
@@ -22,38 +18,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { getProductBySlug, getRelatedProducts } from '../actions';
 
 type ProductDetailsPageProps = {
   params: {
     slug: string;
   };
 };
-
-async function getProductBySlug(slug: string) {
-  const product = await prisma.product.findUnique({
-    where: {
-      slug: slug,
-    },
-  });
-
-  if (!product) {
-    return null;
-  }
-  return product;
-}
-
-async function getRelatedProducts(category: string, currentId: string) {
-  const products = await prisma.product.findMany({
-    where: {
-      category: category,
-      id: {
-        not: currentId,
-      },
-    },
-    take: 5,
-  });
-  return products;
-}
 
 export default function ProductDetailsPage({
   params,
