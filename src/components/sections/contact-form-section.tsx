@@ -4,7 +4,8 @@ import React from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { motion } from 'framer-motion';
 
 import { Button } from '@/components/ui/button';
@@ -65,7 +66,7 @@ function SubmitButton() {
 
 const ContactFormSection: React.FC = () => {
   const { toast } = useToast();
-  const [state, formAction] = useFormState(createMessage, initialState);
+  const [state, formAction] = useActionState(createMessage, initialState);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -120,7 +121,15 @@ const ContactFormSection: React.FC = () => {
               className="rounded-xl border border-slate-700/50 bg-slate-800/50 p-6 sm:p-8 backdrop-blur-sm"
             >
               <Form {...form}>
-                <form action={formAction} className="space-y-6">
+                <form
+                  action={(formData) => {
+                    const valid = form.trigger();
+                    if (valid) {
+                      formAction(formData);
+                    }
+                  }}
+                  className="space-y-6"
+                >
                   <ScrollStaggerItem>
                     <FormField
                       control={form.control}
