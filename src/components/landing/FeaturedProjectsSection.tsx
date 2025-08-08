@@ -1,16 +1,24 @@
-'use client';
+'use server';
 
 import Link from 'next/link';
-import { caseStudies } from '@/lib/mock-case-studies';
 import { CaseStudyCard } from './CaseStudyCard';
 import { Button } from '@/components/ui/button';
 import {
   ScrollStaggerContainer,
   ScrollStaggerItem,
 } from '../animations/scroll-animations';
-import { motion } from 'framer-motion';
+import prisma from '@/lib/prisma';
+import type { CaseStudy } from '@prisma/client';
+import { AnimatedButton } from './AnimatedButton';
 
-export function FeaturedProjectsSection({ id }: { id?: string }) {
+export async function FeaturedProjectsSection({ id }: { id?: string }) {
+  const caseStudies: CaseStudy[] = await prisma.caseStudy.findMany({
+    take: 3,
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+
   return (
     <section id={id} className="py-16 md:py-24 bg-slate-900">
       <div className="container mx-auto px-4">
@@ -18,26 +26,18 @@ export function FeaturedProjectsSection({ id }: { id?: string }) {
           Casos de Éxito
         </h2>
         <p className="text-lg text-gray-300 text-center max-w-2xl mx-auto mb-12">
-          Estamos orgullosos del impacto que hemos generado para nuestros clientes.
+          Estamos orgullosos del impacto que hemos generado para nuestros
+          clientes.
         </p>
         <ScrollStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {caseStudies.slice(0, 3).map((study) => (
+          {caseStudies.map((study) => (
             <ScrollStaggerItem key={study.id}>
               <CaseStudyCard caseStudy={study} />
             </ScrollStaggerItem>
           ))}
         </ScrollStaggerContainer>
         <div className="text-center">
-          <Link href="/proyectos">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-              >
-                Ver todos los proyectos
-              </Button>
-            </motion.div>
-          </Link>
+          <AnimatedButton />
         </div>
       </div>
     </section>
