@@ -1,23 +1,10 @@
-'use client';
-import { useEffect, useState } from 'react';
-import type { Product } from '@prisma/client';
-import Image from 'next/image';
+'use server';
+
 import { notFound } from 'next/navigation';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { Card } from '@/components/ui/card';
-import { ProductCard } from '@/components/landing/ProductCard';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
+import prisma from '@/lib/prisma';
+import type { Product } from '@prisma/client';
+import { ProductDetailsClientPage } from './client-page';
 import { getProductBySlug, getRelatedProducts } from '../actions';
-import { ArrowLeft } from 'lucide-react';
 
 type ProductDetailsPageProps = {
   params: {
@@ -25,142 +12,24 @@ type ProductDetailsPageProps = {
   };
 };
 
-export default function ProductDetailsPage({
+export default async function ProductDetailsPage({
   params,
 }: ProductDetailsPageProps) {
-  const [product, setProduct] = useState<Product | null>(null);
-  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      setIsLoading(true);
-      const fetchedProduct = await getProductBySlug(params.slug);
-      if (fetchedProduct) {
-        setProduct(fetchedProduct);
-        const fetchedRelatedProducts = await getRelatedProducts(
-          fetchedProduct.category,
-          fetchedProduct.id
-        );
-        setRelatedProducts(fetchedRelatedProducts);
-      } else {
-        notFound();
-      }
-      setIsLoading(false);
-    }
-    fetchData();
-  }, [params.slug]);
-
-  if (isLoading) {
-    return (
-      <div className="flex h-screen items-center justify-center bg-slate-900">
-        <p className="text-white">Cargando...</p>
-      </div>
-    );
-  }
+  const product = await getProductBySlug(params.slug);
 
   if (!product) {
-    return notFound();
+    notFound();
   }
 
+  const relatedProducts = await getRelatedProducts(
+    product.category,
+    product.id
+  );
+
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="bg-slate-900 text-white"
-    >
-      <div className="container mx-auto max-w-6xl px-4 py-16 md:py-24">
-        <div className="mb-8">
-          <Link href="/products">
-            <Button variant="outline">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Volver a todos los productos
-            </Button>
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative"
-          >
-            <Card className="overflow-hidden border-slate-700/50 bg-slate-800/50">
-              <Image
-                src={product.imageUrl}
-                alt={product.imageAlt}
-                width={800}
-                height={600}
-                className="h-auto w-full object-cover"
-                data-ai-hint={product.dataAiHint ?? 'product image'}
-              />
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-col"
-          >
-            <Badge
-              variant="default"
-              className="mb-4 w-fit bg-primary/80 backdrop-blur-sm"
-            >
-              {product.category}
-            </Badge>
-            <h1 className="mb-4 text-4xl font-bold md:text-5xl">
-              {product.name}
-            </h1>
-            <p className="mb-6 text-lg text-gray-300">
-              {product.description}
-            </p>
-
-            <div className="mt-auto">
-              <Link href="/contacto">
-                <Button
-                  size="lg"
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-                >
-                  Solicitar Cotización
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-
-        {relatedProducts.length > 0 && (
-          <div className="mt-24">
-            <h2 className="mb-8 text-center text-3xl font-bold">
-              Productos Relacionados
-            </h2>
-            <Carousel
-              opts={{
-                align: 'start',
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent>
-                {relatedProducts.map((relatedProduct) => (
-                  <CarouselItem
-                    key={relatedProduct.id}
-                    className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-                  >
-                    <div className="p-2">
-                      <ProductCard product={relatedProduct} />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2 hidden sm:flex" />
-              <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 hidden sm:flex" />
-            </Carousel>
-          </div>
-        )}
-      </div>
-    </motion.div>
+    <ProductDetailsClientPage
+      product={product}
+      relatedProducts={relatedProducts}
+    />
   );
 }
