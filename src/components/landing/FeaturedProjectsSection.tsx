@@ -1,8 +1,13 @@
+'use client';
 
 import Link from 'next/link';
 import { caseStudies } from '@/lib/mock-case-studies';
 import { CaseStudyCard } from './CaseStudyCard';
 import { Button } from '@/components/ui/button';
+import {
+  ScrollStaggerContainer,
+  ScrollStaggerItem,
+} from '../animations/scroll-animations';
 
 export function FeaturedProjectsSection({ id }: { id?: string }) {
   return (
@@ -14,11 +19,13 @@ export function FeaturedProjectsSection({ id }: { id?: string }) {
         <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12">
           Estamos orgullosos del impacto que hemos generado para nuestros clientes.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <ScrollStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {caseStudies.slice(0, 3).map((study) => (
-            <CaseStudyCard key={study.id} caseStudy={study} />
+            <ScrollStaggerItem key={study.id}>
+              <CaseStudyCard caseStudy={study} />
+            </ScrollStaggerItem>
           ))}
-        </div>
+        </ScrollStaggerContainer>
         <div className="text-center">
           <Link href="/proyectos">
             <Button variant="outline">Ver todos los proyectos</Button>
