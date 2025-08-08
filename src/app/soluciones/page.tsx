@@ -1,3 +1,5 @@
+'use client';
+
 import { ServicesSection } from '@/components/landing/ServicesSection';
 import { motion } from 'framer-motion';
 
