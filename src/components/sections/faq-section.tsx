@@ -59,7 +59,7 @@ const FAQSection: React.FC = () => {
           </div>
 
           <ScrollStaggerContainer
-            className="mx-auto mt-12 max-w-3xl space-y-4"
+            className="mx-auto mt-12 max-w-3xl space-y-3"
             staggerChildren={0.1}
           >
             <Accordion type="single" collapsible className="w-full">
@@ -71,12 +71,12 @@ const FAQSection: React.FC = () => {
                   >
                     <AccordionItem
                       value={`item-${index}`}
-                      className="rounded-xl border border-slate-700/50 bg-slate-800/50 px-6 backdrop-blur-sm"
+                      className="overflow-hidden rounded-lg border border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900"
                     >
-                      <AccordionTrigger className="py-4 text-left text-lg font-semibold text-white hover:no-underline">
+                      <AccordionTrigger className="p-5 text-left font-semibold text-white hover:no-underline">
                         {faq.question}
                       </AccordionTrigger>
-                      <AccordionContent className="pb-6 text-base text-gray-300">
+                      <AccordionContent className="px-5 pb-5 text-base text-gray-400">
                         {faq.answer}
                       </AccordionContent>
                     </AccordionItem>
