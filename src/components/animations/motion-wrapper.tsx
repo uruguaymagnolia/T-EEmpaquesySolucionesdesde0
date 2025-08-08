@@ -3,16 +3,18 @@
 import { motion, type Variants } from 'framer-motion';
 import type { ElementType, ReactNode } from 'react';
 
+type MotionWrapperProps = {
+  children: React.ReactNode;
+  className?: string;
+  variants?: Variants;
+};
+
 // A wrapper that applies a simple fade-in or slide-in animation
 export function MotionWrapper({
   children,
   className,
-  ...variants
-}: {
-  children: React.ReactNode;
-  className?: string;
-  [key: string]: unknown;
-}) {
+  variants,
+}: MotionWrapperProps) {
   const defaultVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -71,12 +73,11 @@ export const StaggerContainer = ({
   );
 };
 
-
 type StaggerItemProps = {
   children: ReactNode;
   className?: string;
   as?: ElementType;
-  [key: string]: unknown;
+  variants?: Variants;
 };
 
 // An item for staggered animations
@@ -84,9 +85,9 @@ export const StaggerItem = ({
   children,
   className,
   as: Component = 'div',
-  ...variants
+  variants,
 }: StaggerItemProps) => {
-  const defaultVariants = {
+  const defaultVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
@@ -95,7 +96,7 @@ export const StaggerItem = ({
 
   return (
     <MotionComponent
-      variants={variants.variants || defaultVariants}
+      variants={variants || defaultVariants}
       className={className}
     >
       {children}
