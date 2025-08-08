@@ -1,6 +1,5 @@
 'use server';
 
-import { ServicesSection } from '@/components/landing/ServicesSection';
 import prisma from '@/lib/prisma';
 import type { Solution } from '@prisma/client';
 import { SolucionesPageContent } from './content';
