@@ -1,13 +1,15 @@
 'use client';
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollReveal } from '@/components/animations/scroll-animations';
 import type { Product } from '@prisma/client';
+import { cn } from '@/lib/utils';
 
 type ProductCarouselSectionProps = {
   products: Product[];
@@ -16,10 +18,10 @@ type ProductCarouselSectionProps = {
 const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
   products,
 }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    align: 'start',
-  });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true }),
+  ]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -27,6 +29,28 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
 
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const scrollTo = useCallback(
+    (index: number) => {
+      if (emblaApi) emblaApi.scrollTo(index);
+    },
+    [emblaApi]
+  );
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    };
+
+    emblaApi.on('select', onSelect);
+    onSelect(); // Set initial index
+
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
   }, [emblaApi]);
 
   if (!products || products.length === 0) {
@@ -38,7 +62,7 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
       <section className="bg-slate-900 py-20 sm:py-24">
         <div className="container mx-auto px-4">
           <h2 className="text-center text-3xl font-bold text-white sm:text-4xl md:text-5xl">
-            Nuestros Productos Destacados
+            Nuestros Productos
           </h2>
           <div className="relative mt-12">
             <div className="overflow-hidden" ref={emblaRef}>
@@ -54,7 +78,8 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
                           src={product.imageUrl}
                           alt={product.imageAlt}
                           fill
-                          objectFit="cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          style={{ objectFit: 'cover' }}
                           className="transition-transform duration-300 group-hover:scale-110"
                           data-ai-hint={product.dataAiHint ?? 'product image'}
                         />
@@ -74,8 +99,8 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
             </div>
             <div className="absolute top-1/2 hidden -translate-y-1/2 items-center justify-between md:flex w-full">
               <motion.div
-                initial={{ x: 20 }}
-                animate={{ x: 0 }}
+                initial={{ x: 20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
                 className="absolute -left-4"
               >
@@ -89,8 +114,8 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
                 </Button>
               </motion.div>
               <motion.div
-                initial={{ x: -20 }}
-                animate={{ x: 0 }}
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
                 className="absolute -right-4"
               >
@@ -104,6 +129,21 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
                 </Button>
               </motion.div>
             </div>
+            <div className="mt-6 flex justify-center gap-2">
+              {products.map((_, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => scrollTo(index)}
+                  className={cn(
+                    'h-2 w-8 rounded-full transition-colors duration-300',
+                    index === selectedIndex ? 'bg-green-400' : 'bg-slate-700'
+                  )}
+                  aria-label={`Ir a la diapositiva ${index + 1}`}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -112,3 +152,5 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
 };
 
 export default ProductCarouselSection;
+
+    

@@ -25,9 +25,7 @@ export default async function HomePage() {
       <ScrollReveal>
         <ServicesSection id="soluciones" />
       </ScrollReveal>
-      <ScrollReveal>
-        <ProductCarouselSection products={products} />
-      </ScrollReveal>
+      <ProductCarouselSection products={products} />
       <ScrollReveal>
         <CtaSection />
       </ScrollReveal>
@@ -49,3 +47,5 @@ export default async function HomePage() {
     </div>
   );
 }
+
+    
