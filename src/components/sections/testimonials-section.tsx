@@ -117,7 +117,7 @@ const TestimonialsSection: React.FC = () => {
                   key={index} 
                   className="min-w-0 flex-shrink-0 flex-grow-0 basis-full md:basis-1/2 lg:basis-1/3 px-4"
                 >
-                  {motion.create().div
+                  <motion.div
                     animate={{ 
                       scale: index === selectedIndex ? 1 : 0.85,
                       opacity: index === selectedIndex ? 1 : 0.5,
@@ -156,7 +156,7 @@ const TestimonialsSection: React.FC = () => {
                           </p>
                         </div>
                       </CardContent>
-                    </Card>}
+                    </Card>
                   </motion.div>
                 </div>
               ))}
