@@ -1,0 +1,193 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { CheckCircle, ArrowRight } from 'lucide-react';
+import { solutions, type Solution } from '@/lib/mock-solutions';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import {
+  ScrollReveal,
+  ScrollStaggerContainer,
+  ScrollStaggerItem,
+} from '@/components/animations/scroll-animations';
+
+function getSolutionBySlug(slug: string): Solution | undefined {
+  return solutions.find((s) => s.slug === slug);
+}
+
+function getRelatedSolutions(currentSlug: string): Solution[] {
+  return solutions.filter((s) => s.slug !== currentSlug).slice(0, 3);
+}
+
+type SolutionDetailsPageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export default function SolutionDetailsPage({
+  params,
+}: SolutionDetailsPageProps) {
+  const [solution, setSolution] = useState<Solution | null>(null);
+  const [relatedSolutions, setRelatedSolutions] = useState<Solution[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchedSolution = getSolutionBySlug(params.slug);
+    if (fetchedSolution) {
+      setSolution(fetchedSolution);
+      setRelatedSolutions(getRelatedSolutions(params.slug));
+    } else {
+      notFound();
+    }
+    setIsLoading(false);
+  }, [params.slug]);
+
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-slate-900">
+        <p className="text-white">Cargando...</p>
+      </div>
+    );
+  }
+
+  if (!solution) {
+    return notFound();
+  }
+
+  const Icon = solution.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="bg-slate-900 text-gray-300"
+    >
+      {/* Header */}
+      <header className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 py-20 md:py-28">
+        <ScrollStaggerContainer className="container mx-auto px-4 text-center">
+          <ScrollStaggerItem>
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{
+                type: 'spring',
+                stiffness: 260,
+                damping: 20,
+                delay: 0.2,
+              }}
+              className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-500/10"
+            >
+              <Icon className="h-10 w-10 text-green-400" />
+            </motion.div>
+          </ScrollStaggerItem>
+          <ScrollStaggerItem>
+            <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+              {solution.title}
+            </h1>
+          </ScrollStaggerItem>
+          <ScrollStaggerItem>
+            <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-400">
+              {solution.description}
+            </p>
+          </ScrollStaggerItem>
+        </ScrollStaggerContainer>
+      </header>
+
+      {/* Main Content */}
+      <main className="container mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
+          {/* Left Column */}
+          <div className="space-y-8 lg:col-span-2">
+            <ScrollReveal>
+              <h2 className="text-3xl font-bold text-white">
+                Descripción Detallada
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed">
+                {solution.detailedDescription}
+              </p>
+            </ScrollReveal>
+          </div>
+
+          {/* Right Column (Sticky) */}
+          <div className="lg:col-span-1">
+            <ScrollReveal className="sticky top-24">
+              <Card className="border-slate-700/50 bg-slate-800/50">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-white">
+                    Beneficios Clave
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ul className="space-y-3">
+                    {solution.keyFeatures.map((feature) => (
+                      <li key={feature} className="flex items-start gap-3">
+                        <CheckCircle className="mt-1 h-5 w-5 flex-shrink-0 text-green-400" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href="/contacto" className="block pt-4">
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button
+                        size="lg"
+                        className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                      >
+                        Solicitar Cotización
+                      </Button>
+                    </motion.div>
+                  </Link>
+                </CardContent>
+              </Card>
+            </ScrollReveal>
+          </div>
+        </div>
+
+        {/* Related Solutions */}
+        {relatedSolutions.length > 0 && (
+          <ScrollReveal className="mt-24">
+            <h2 className="mb-8 text-center text-3xl font-bold text-white">
+              Otras Soluciones
+            </h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {relatedSolutions.map((related) => {
+                const RelatedIcon = related.icon;
+                return (
+                  <motion.div
+                    key={related.slug}
+                    whileHover={{ y: -5, scale: 1.02 }}
+                  >
+                    <Link href={`/soluciones/${related.slug}`}>
+                      <Card className="group flex h-full flex-col border-slate-700/50 bg-slate-800/50 transition-colors hover:border-primary/50">
+                        <CardHeader className="flex-row items-center gap-4">
+                          <RelatedIcon className="h-8 w-8 text-primary" />
+                          <CardTitle className="text-xl text-white transition-colors group-hover:text-primary">
+                            {related.title}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex-grow">
+                          <p>{related.description}</p>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </ScrollReveal>
+        )}
+      </main>
+    </motion.div>
+  );
+}

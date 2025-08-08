@@ -1,5 +1,6 @@
 import type { LucideIcon } from 'lucide-react';
 import { Gift, Sparkles, PackageCheck, Shrink, Flame, PackagePlus, Square } from 'lucide-react';
+import { slugify } from '@/lib/utils';
 
 export type Solution = {
   title: string;
@@ -7,9 +8,10 @@ export type Solution = {
   icon: LucideIcon;
   detailedDescription: string;
   keyFeatures: string[];
+  slug: string;
 };
 
-export const solutions: Solution[] = [
+const solutionEntries: Omit<Solution, 'slug'>[] = [
   {
     title: "Cunas Contenedoras a Medida",
     description: "Diseño y fabricación de cunas para estuches de obsequio, asegurando una presentación y protección impecables.",
@@ -60,3 +62,9 @@ export const solutions: Solution[] = [
     keyFeatures: ['Acabado manual de alta calidad', 'Ventanas de acetato claras y resistentes', 'Mejora la experiencia en el punto de venta', 'Asegura la integridad estructural del empaque'],
   },
 ];
+
+
+export const solutions: Solution[] = solutionEntries.map(s => ({
+  ...s,
+  slug: slugify(s.title),
+}));

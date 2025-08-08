@@ -48,7 +48,7 @@ export function ServicesSection({ id }: { id?: string }) {
                       variant="link"
                       className="text-primary p-0 h-auto opacity-0 group-hover:opacity-100 transition-opacity"
                     >
-                      <Link href="/soluciones">
+                      <Link href={`/soluciones/${solution.slug}`}>
                         Saber más
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
