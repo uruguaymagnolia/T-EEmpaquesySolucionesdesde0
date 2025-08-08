@@ -8,13 +8,14 @@ export function Footer() {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
+    // This effect runs only on the client, after hydration
     setCurrentYear(new Date().getFullYear());
   }, []);
 
   return (
     <footer className="bg-[#1a2435] text-white">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Columna 1: Logo y Redes Sociales */}
           <div>
             <Logo />

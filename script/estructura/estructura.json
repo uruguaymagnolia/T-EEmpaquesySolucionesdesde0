@@ -35,6 +35,16 @@
           "type": "file"
         },
         {
+          "name": "contacto",
+          "type": "directory",
+          "children": [
+            {
+              "name": "page.tsx",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": "favicon.ico",
           "type": "file"
         },
@@ -49,6 +59,16 @@
         {
           "name": "page.tsx",
           "type": "file"
+        },
+        {
+          "name": "soluciones",
+          "type": "directory",
+          "children": [
+            {
+              "name": "page.tsx",
+              "type": "file"
+            }
+          ]
         }
       ]
     },
@@ -57,12 +77,54 @@
       "type": "directory",
       "children": [
         {
+          "name": "Header.tsx",
+          "type": "file"
+        },
+        {
           "name": "ai-content-suggester.tsx",
           "type": "file"
         },
         {
           "name": "footer.tsx",
           "type": "file"
+        },
+        {
+          "name": "landing",
+          "type": "directory",
+          "children": [
+            {
+              "name": "CaseStudyCard.tsx",
+              "type": "file"
+            },
+            {
+              "name": "ContactForm.tsx",
+              "type": "file"
+            },
+            {
+              "name": "CtaSection.tsx",
+              "type": "file"
+            },
+            {
+              "name": "FeaturedProjectsSection.tsx",
+              "type": "file"
+            },
+            {
+              "name": "HeroSection.tsx",
+              "type": "file"
+            },
+            {
+              "name": "ServicesSection.tsx",
+              "type": "file"
+            },
+            {
+              "name": "SolucionesContent.tsx",
+              "type": "file"
+            },
+            {
+              "name": "TestimonialsSection.tsx",
+              "type": "file"
+            }
+          ]
         },
         {
           "name": "logo.tsx",
@@ -234,6 +296,14 @@
       "name": "lib",
       "type": "directory",
       "children": [
+        {
+          "name": "mock-case-studies.ts",
+          "type": "file"
+        },
+        {
+          "name": "mock-solutions.ts",
+          "type": "file"
+        },
         {
           "name": "prisma.ts",
           "type": "file"
