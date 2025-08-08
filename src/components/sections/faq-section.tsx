@@ -51,7 +51,7 @@ const FAQSection: React.FC = () => {
             <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
               Preguntas Frecuentes
             </h2>
-            <p className="mt-4 text-lg text-gray-400">
+            <p className="mt-4 text-lg text-gray-300">
               Aquí encontrará respuestas a las dudas más comunes sobre nuestros
               servicios y productos. Si no encuentra lo que busca, no dude en
               contactarnos.

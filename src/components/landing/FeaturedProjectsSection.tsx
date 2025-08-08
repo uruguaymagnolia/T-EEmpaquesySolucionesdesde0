@@ -1,4 +1,4 @@
-'use server';
+'use client';
 
 import Link from 'next/link';
 import { CaseStudyCard } from './CaseStudyCard';
@@ -7,18 +7,16 @@ import {
   ScrollStaggerContainer,
   ScrollStaggerItem,
 } from '../animations/scroll-animations';
-import prisma from '@/lib/prisma';
 import type { CaseStudy } from '@prisma/client';
 import { AnimatedButton } from './AnimatedButton';
 
-export async function FeaturedProjectsSection({ id }: { id?: string }) {
-  const caseStudies: CaseStudy[] = await prisma.caseStudy.findMany({
-    take: 3,
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
-
+export default function FeaturedProjectsSection({
+  id,
+  caseStudies,
+}: {
+  id?: string;
+  caseStudies: CaseStudy[];
+}) {
   return (
     <section id={id} className="py-16 md:py-24 bg-slate-900">
       <div className="container mx-auto px-4">
