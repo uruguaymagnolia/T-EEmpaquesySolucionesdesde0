@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useCallback } from 'react'
-import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api'
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'
+import { AdvancedMarker } from '@vis.gl/react-google-maps';
 import { ScrollReveal } from '@/components/animations/scroll-animations'
 import { companyData } from '@/lib/data'
 
@@ -17,10 +18,13 @@ const center = {
   lng: companyData.location.lng
 }
 
+const libraries: ('marker')[] = ['marker'];
+
 export function MapSection() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
+    libraries,
   })
 
   const onLoad = useCallback(function callback(map: google.maps.Map) {
@@ -60,8 +64,9 @@ export function MapSection() {
                 mapTypeControl: false,
                 fullscreenControl: false,
               }}
+              mapId="t-and-e-map"
             >
-              <MarkerF position={center} />
+              <AdvancedMarker position={center} />
             </GoogleMap>
           ) : (
             <div className="flex items-center justify-center h-[500px] text-gray-400">
