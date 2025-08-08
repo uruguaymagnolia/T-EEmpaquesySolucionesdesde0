@@ -58,3 +58,69 @@ export function ScrollProgress({
     />
   );
 }
+
+export const ScrollStaggerContainer = ({
+    children,
+    className,
+    staggerChildren = 0.1,
+    delayChildren = 0,
+    ...props
+  }: {
+    children: React.ReactNode;
+    className?: string;
+    staggerChildren?: number;
+    delayChildren?: number;
+    [key: string]: any;
+  }) => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.1 });
+  
+    const variants: Variants = {
+      hidden: {},
+      visible: {
+        transition: {
+          staggerChildren,
+          delayChildren,
+        },
+      },
+    };
+  
+    return (
+      <motion.div
+        ref={ref}
+        variants={variants}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+        className={className}
+        {...props}
+      >
+        {children}
+      </motion.div>
+    );
+  };
+  
+  export const ScrollStaggerItem = ({
+    children,
+    className,
+    ...props
+  }: {
+    children: React.ReactNode;
+    className?: string;
+    [key: string]: any;
+  
+  }) => {
+    const defaultVariants: Variants = {
+      hidden: { opacity: 0, y: 20 },
+      visible: { opacity: 1, y: 0 },
+    };
+  
+    return (
+      <motion.div
+        variants={defaultVariants}
+        className={className}
+        {...props}
+      >
+        {children}
+      </motion.div>
+    );
+  };
