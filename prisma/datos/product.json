@@ -1,98 +1,50 @@
 [
   {
-    "id": "cme2xyf1u00009fncucmh3xzg",
-    "name": "Blister para Útiles Escolares",
-    "slug": "blister-para-utiles-escolares",
-    "description": "Empaque transparente y resistente, ideal para exhibir y proteger sets de lápices, bolígrafos y otros artículos de papelería.",
-    "imageUrl": "/productos/Blister.jpg",
-    "imageAlt": "Empaque tipo blister transparente conteniendo útiles escolares como reglas y lápices.",
-    "dataAiHint": "blister packaging",
-    "category": "Papelería",
-    "createdAt": "2025-08-08T14:48:48.305Z",
-    "updatedAt": "2025-08-08T14:48:48.305Z"
+    "name": "Cunas Contenedoras a Medida",
+    "category": "Soluciones a Medida",
+    "description": "Diseño y fabricación de cunas internas para estuches y cajas, asegurando una presentación impecable y la máxima protección para productos de cualquier forma y tamaño.",
+    "imageUrl": "/imagenes/productos/Cunas Contenedoras.jpg",
+    "imageAlt": "Cuna contenedora de plástico negro hecha a medida para un producto de cosmética.",
+    "dataAiHint": "custom thermoformed tray"
   },
   {
-    "id": "cme2xyf1u00019fnck4dgmajo",
-    "name": "Cunas Contenedoras para Regalos",
-    "slug": "cunas-contenedoras-para-regalos",
-    "description": "Soporte interior termoformado a medida que brinda una presentación elegante y máxima protección para frascos y estuches de cosméticos.",
-    "imageUrl": "/productos/Cunas Contenedoras.jpg",
-    "imageAlt": "Cuna contenedora termoformada de color negro para un estuche de regalo de cosméticos.",
-    "dataAiHint": "cosmetic packaging",
-    "category": "Cosméticos",
-    "createdAt": "2025-08-08T14:48:48.305Z",
-    "updatedAt": "2025-08-08T14:48:48.305Z"
+    "name": "Empaques tipo Blister",
+    "category": "Empaques Estándar",
+    "description": "Soluciones de empaque tipo blister que ofrecen una excelente visibilidad del producto y seguridad contra manipulaciones, ideales para el retail.",
+    "imageUrl": "/imagenes/productos/Blister.jpg",
+    "imageAlt": "Empaque tipo blister transparente para útiles escolares.",
+    "dataAiHint": "blister pack packaging"
   },
   {
-    "id": "cme2xyf1u00029fncm8n1mchk",
-    "name": "Skin Pack para Accesorios",
-    "slug": "skin-pack-para-accesorios",
-    "description": "Empaque al vacío que fija los productos a una base de cartón, perfecto para componentes eléctricos, herramientas y más.",
-    "imageUrl": "/productos/Skin Pack.jpg",
-    "imageAlt": "Empaque skin pack asegurando un candado y llaves a un cartón de respaldo.",
-    "dataAiHint": "electronic packaging",
-    "category": "Ferretería",
-    "createdAt": "2025-08-08T14:48:48.305Z",
-    "updatedAt": "2025-08-08T14:48:48.305Z"
-  },
-  {
-    "id": "cme2xyf1u00039fnca1l6tn1s",
     "name": "Armado de Cajas con Ventana",
-    "slug": "armado-de-cajas-con-ventana",
-    "description": "Cajas de cartón con ventanas transparentes de acetato, ideales para juguetes, sets de regalo y productos didácticos.",
-    "imageUrl": "/productos/Armado de Cajas.jpg",
-    "imageAlt": "Caja de cartón con una ventana de acetato que muestra el producto en su interior.",
-    "dataAiHint": "box window",
-    "category": "Juguetería",
-    "createdAt": "2025-08-08T14:48:48.305Z",
-    "updatedAt": "2025-08-08T14:48:48.305Z"
+    "category": "Soluciones a Medida",
+    "description": "Cajas de cartón de alta calidad con ventanas de acetato transparente que permiten exhibir el producto de forma atractiva y segura.",
+    "imageUrl": "/imagenes/productos/Armado de Cajas.jpg",
+    "imageAlt": "Caja de cartón con ventana de acetato mostrando el producto en su interior.",
+    "dataAiHint": "cardboard box acetate window"
   },
   {
-    "id": "cme2xyf1u00049fnc1wze41f9",
-    "name": "Armado de Promociones",
-    "slug": "armado-de-promociones",
-    "description": "Agrupación de múltiples productos con una película termo contraíble para crear packs promocionales y ofertas especiales.",
-    "imageUrl": "/productos/Armado de Promociones.jpg",
-    "imageAlt": "Pack promocional de dos productos envueltos en plástico termo contraíble.",
-    "dataAiHint": "shrink wrap",
-    "category": "Promociones",
-    "createdAt": "2025-08-08T14:48:48.305Z",
-    "updatedAt": "2025-08-08T14:48:48.305Z"
+    "name": "Embalaje Skin Pack",
+    "category": "Empaques Estándar",
+    "description": "Sistema de empaque al vacío que fija los productos a una base de cartón, proporcionando una presentación clara y protección total.",
+    "imageUrl": "/imagenes/productos/Skin Pack.jpg",
+    "imageAlt": "Varios productos de ferretería en un empaque skin pack.",
+    "dataAiHint": "skin pack hardware"
   },
   {
-    "id": "cme2xyf1u00059fncpptn4ixn",
-    "name": "Soportes para Perfumes",
-    "slug": "soportes-para-perfumes",
-    "description": "Soluciones de empaque a medida para perfumería, facilitando la organización, protección y una venta atractiva.",
-    "imageUrl": "/productos/Soportes para Perfumes.jpg",
-    "imageAlt": "Soporte de plástico transparente diseñado a medida para un frasco de perfume.",
-    "dataAiHint": "perfume packaging",
-    "category": "Cosméticos",
-    "createdAt": "2025-08-08T14:48:48.305Z",
-    "updatedAt": "2025-08-08T14:48:48.305Z"
+    "name": "Armado de Promociones y Packs",
+    "category": "Servicios de Maquila",
+    "description": "Servicio de armado y empaquetado de promociones, ofertas especiales y kits de productos con embalaje termo contraíble.",
+    "imageUrl": "/imagenes/productos/Armado de Promociones.jpg",
+    "imageAlt": "Dos productos agrupados con una película de plástico termo contraíble.",
+    "dataAiHint": "promotional shrink wrap"
   },
   {
-    "id": "cme2xyf1u00069fnc1q38c2fj",
-    "name": "Soportes de Exhibición",
-    "slug": "soportes-de-exhibicion",
-    "description": "Diseños de soportes para realzar la presentación de tus productos en el punto de venta.",
-    "imageUrl": "/productos/Soportes para Perfumes2.jpg",
-    "imageAlt": "Soportes de exhibición de plástico transparente para varios productos cosméticos.",
-    "dataAiHint": "product display",
-    "category": "Retail",
-    "createdAt": "2025-08-08T14:48:48.305Z",
-    "updatedAt": "2025-08-08T14:48:48.305Z"
-  },
-  {
-    "id": "cme2xyf1u00079fnc5sef6lk6",
-    "name": "Empaques para Cosmética",
-    "slug": "empaques-para-cosmetica",
-    "description": "Soluciones personalizadas que combinan protección y una estética premium para productos de belleza.",
-    "imageUrl": "/productos/Soportes para Perfumes3.jfif",
-    "imageAlt": "Exhibidor de cosméticos con múltiples soportes para diferentes productos de belleza.",
-    "dataAiHint": "cosmetic display",
-    "category": "Cosméticos",
-    "createdAt": "2025-08-08T14:48:48.305Z",
-    "updatedAt": "2025-08-08T14:48:48.305Z"
+    "name": "Soportes de Exhibición para Retail",
+    "category": "Soluciones a Medida",
+    "description": "Diseño y producción de soportes y exhibidores a medida para el punto de venta, diseñados para realzar la presentación de sus productos.",
+    "imageUrl": "/imagenes/productos/Soportes para Perfumes2.jpg",
+    "imageAlt": "Soportes de plástico transparente para exhibir productos cosméticos.",
+    "dataAiHint": "retail product display"
   }
 ]
