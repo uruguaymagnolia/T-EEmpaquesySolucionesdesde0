@@ -1,22 +1,14 @@
-import type { SVGProps } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export function Logo(props: SVGProps<SVGSVGElement>) {
+export function Logo() {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-      <path d="M2 17l10 5 10-5"></path>
-      <path d="M2 12l10 5 10-5"></path>
-    </svg>
+    <Link href="/" className="flex items-center gap-3 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+    <Image src="/Logo_TyE.svg" alt="T & E Tecnología y Empaque Logo" width={120} height={40} className="h-12 w-auto" />
+    <div className='flex flex-col'>
+        <h1 className="text-base sm:text-xl font-bold text-primary leading-tight">Tecnología y Empaque</h1>
+        <p className="text-xs sm:text-sm text-muted-foreground leading-tight">Soluciones de empaque a su medida</p>
+    </div>
+  </Link>
   );
 }
