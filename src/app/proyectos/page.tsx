@@ -1,4 +1,5 @@
 'use client';
+import type { CaseStudy } from '@prisma/client';
 import { CaseStudyCard } from '@/components/landing/CaseStudyCard';
 import {
   ScrollReveal,
@@ -8,22 +9,8 @@ import {
 import { motion } from 'framer-motion';
 import { getCaseStudies } from './actions';
 import { useEffect, useState } from 'react';
-import type { CaseStudy } from '@prisma/client';
 
-export default function ProjectsPage() {
-  const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchCaseStudies = async () => {
-      setLoading(true);
-      const studies = await getCaseStudies();
-      setCaseStudies(studies);
-      setLoading(false);
-    };
-    fetchCaseStudies();
-  }, []);
-
+function ProjectsPageContent({ caseStudies }: { caseStudies: CaseStudy[] }) {
   return (
     <div className="bg-slate-950">
       <header className="bg-gradient-to-r from-[#1a2435] to-[#0e413b] text-white py-16 md:py-24">
@@ -43,17 +30,7 @@ export default function ProjectsPage() {
 
       <main className="container mx-auto px-4 py-16 md:py-24">
         <ScrollReveal>
-          {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="bg-slate-800/50 rounded-lg p-4 animate-pulse">
-                  <div className="bg-slate-700/50 h-48 w-full rounded-md mb-4"></div>
-                  <div className="bg-slate-700/50 h-6 w-3/4 rounded-md mb-2"></div>
-                  <div className="bg-slate-700/50 h-4 w-full rounded-md"></div>
-                </div>
-              ))}
-            </div>
-          ) : (
+          {caseStudies.length > 0 ? (
             <ScrollStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {caseStudies.map((study) => (
                 <ScrollStaggerItem key={study.id}>
@@ -61,9 +38,36 @@ export default function ProjectsPage() {
                 </ScrollStaggerItem>
               ))}
             </ScrollStaggerContainer>
+          ) : (
+            <div className="text-center text-gray-400">
+              No hay proyectos para mostrar en este momento.
+            </div>
           )}
         </ScrollReveal>
       </main>
     </div>
   );
+}
+
+export default function ProjectsPage() {
+    const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchCaseStudies = async () => {
+            const studies = await getCaseStudies();
+            setCaseStudies(studies);
+            setLoading(false);
+        };
+        fetchCaseStudies();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex h-screen items-center justify-center bg-slate-950">
+                <div className="h-16 w-16 animate-spin rounded-full border-4 border-dashed border-primary"></div>
+            </div>
+        );
+    }
+  return <ProjectsPageContent caseStudies={caseStudies} />;
 }

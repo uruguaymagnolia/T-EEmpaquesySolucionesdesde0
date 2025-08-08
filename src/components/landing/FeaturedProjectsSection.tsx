@@ -1,8 +1,6 @@
 'use client';
 
-import Link from 'next/link';
 import { CaseStudyCard } from './CaseStudyCard';
-import { Button } from '@/components/ui/button';
 import {
   ScrollStaggerContainer,
   ScrollStaggerItem,
@@ -20,13 +18,15 @@ export default function FeaturedProjectsSection({
   return (
     <section id={id} className="py-16 md:py-24 bg-slate-900">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">
-          Casos de Éxito
-        </h2>
-        <p className="text-lg text-gray-300 text-center max-w-2xl mx-auto mb-12">
-          Estamos orgullosos del impacto que hemos generado para nuestros
-          clientes.
-        </p>
+        <div className="mx-auto max-w-3xl text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            Casos de Éxito
+          </h2>
+          <p className="text-lg text-gray-300 mt-4">
+            Estamos orgullosos del impacto que hemos generado para nuestros
+            clientes.
+          </p>
+        </div>
         <ScrollStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {caseStudies.map((study) => (
             <ScrollStaggerItem key={study.id}>
@@ -34,8 +34,8 @@ export default function FeaturedProjectsSection({
             </ScrollStaggerItem>
           ))}
         </ScrollStaggerContainer>
-        <div className="text-center">
-          <AnimatedButton />
+        <div className="text-center mt-16">
+          <AnimatedButton href="/proyectos" text="Ver todos los proyectos" />
         </div>
       </div>
     </section>
