@@ -7,7 +7,7 @@ import {
   type Variants,
   useTransform,
 } from 'framer-motion';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 
 // A component to reveal content as it scrolls into view
@@ -128,6 +128,12 @@ export const FloatingElement = ({
   children: React.ReactNode;
   className?: string;
 }) => {
+  const [duration, setDuration] = useState(20);
+
+  useEffect(() => {
+    setDuration(Math.random() * 5 + 15);
+  }, []);
+
   return (
     <motion.div
       animate={{
@@ -135,7 +141,7 @@ export const FloatingElement = ({
         rotate: [0, 5, 0],
       }}
       transition={{
-        duration: Math.random() * 5 + 15, // Slower, more random duration
+        duration: duration,
         ease: 'easeInOut',
         repeat: Infinity,
         repeatType: 'mirror',
