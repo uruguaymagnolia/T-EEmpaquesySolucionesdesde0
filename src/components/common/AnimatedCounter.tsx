@@ -29,7 +29,7 @@ export function AnimatedCounter({ value, className }: AnimatedCounterProps) {
       springValue.on('change', (latest) => {
         if (ref.current) {
           ref.current.textContent = Intl.NumberFormat('en-US').format(
-            latest.toFixed(0)
+            Math.round(latest)
           );
         }
       }),
