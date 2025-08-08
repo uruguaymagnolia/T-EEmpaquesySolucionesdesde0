@@ -65,6 +65,7 @@ const socialLinks = [
 const MotionLink = motion(Link);
 
 export function Footer() {
+  const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${companyData.location.lat},${companyData.location.lng}`;
   return (
     <ScrollReveal>
       <footer className="bg-slate-950 text-white border-t border-slate-700/50">
@@ -143,7 +144,14 @@ export function Footer() {
               <ul className="space-y-3 text-gray-300 text-sm">
                 <li className="flex items-start gap-3">
                   <MapPin size={16} className="mt-0.5 shrink-0 text-gray-400" />
-                  <span>{companyData.address}</span>
+                   <a
+                    href={googleMapsLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    {companyData.address}
+                  </a>
                 </li>
                 <li className="flex items-start gap-3">
                   <Mail size={16} className="mt-0.5 shrink-0 text-gray-400" />
