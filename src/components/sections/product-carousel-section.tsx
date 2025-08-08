@@ -72,7 +72,11 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
                     className="relative min-w-0 flex-shrink-0 flex-grow-0 basis-full pl-4 md:basis-1/2 lg:basis-1/3"
                     key={index}
                   >
-                    <div className="overflow-hidden rounded-lg border border-slate-700/50 bg-slate-800/50 p-4 backdrop-blur-sm h-full flex flex-col">
+                    <motion.div
+                      whileHover={{ y: -5 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
+                      className="overflow-hidden rounded-lg border border-slate-700/50 bg-slate-800/50 p-4 backdrop-blur-sm h-full flex flex-col group"
+                    >
                       <div className="relative mb-4 h-56 w-full overflow-hidden rounded">
                         <Image
                           src={product.imageUrl}
@@ -92,7 +96,7 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
                           {product.description}
                         </p>
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
                 ))}
               </div>
@@ -131,7 +135,7 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
             </div>
             <div className="mt-6 flex justify-center gap-2">
               {products.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
                   onClick={() => scrollTo(index)}
                   className={cn(
@@ -139,6 +143,7 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
                     index === selectedIndex ? 'bg-green-400' : 'bg-slate-700'
                   )}
                   aria-label={`Ir a la diapositiva ${index + 1}`}
+                  whileHover={{ scale: 1.2 }}
                 />
               ))}
             </div>

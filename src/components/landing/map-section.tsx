@@ -8,6 +8,7 @@ import {
 } from '@vis.gl/react-google-maps';
 import { ScrollReveal } from '@/components/animations/scroll-animations';
 import { companyData } from '@/lib/data';
+import { motion } from 'framer-motion';
 
 const containerStyle = {
   width: '100%',
@@ -49,7 +50,14 @@ export function MapSection() {
       </ScrollReveal>
 
       <ScrollReveal>
-        <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-4 md:p-8 border border-slate-700/50 overflow-hidden">
+        <motion.div
+          whileHover={{
+            boxShadow: '0 0 25px rgba(16, 185, 129, 0.2)',
+            y: -5,
+          }}
+          transition={{ type: 'spring', stiffness: 300 }}
+          className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-4 md:p-8 border border-slate-700/50 overflow-hidden"
+        >
           <APIProvider apiKey={apiKey}>
             <Map
               style={containerStyle}
@@ -62,7 +70,7 @@ export function MapSection() {
               <AdvancedMarker position={position} />
             </Map>
           </APIProvider>
-        </div>
+        </motion.div>
       </ScrollReveal>
     </section>
   );

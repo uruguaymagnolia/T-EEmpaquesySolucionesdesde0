@@ -17,7 +17,7 @@ export function ServicesSection({ id }: { id?: string }) {
           Ofrecemos una amplia gama de soluciones de empaque y embalaje diseñadas para satisfacer las necesidades específicas de su negocio.
         </p>
         <ScrollStaggerContainer
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
           staggerChildren={0.15}
         >
           {solutions.map((solution, index) => {
