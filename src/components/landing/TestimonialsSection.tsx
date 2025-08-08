@@ -42,9 +42,9 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
+    <section className="py-16 md:py-24 bg-zinc-950">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
           Lo que dicen nuestros clientes
         </h2>
         <ScrollStaggerContainer>
@@ -60,16 +60,16 @@ export function TestimonialsSection() {
                 <ScrollStaggerItem key={index}>
                   <CarouselItem className="md:basis-1/2 lg:basis-1/3">
                     <div className="p-1 h-full">
-                      <Card className="h-full flex flex-col justify-between">
+                      <Card className="h-full flex flex-col justify-between bg-slate-900">
                         <CardContent className="p-6 flex-grow">
-                          <blockquote className="text-lg italic text-gray-700 border-l-4 border-[#9ada34] pl-4">
+                          <blockquote className="text-lg italic text-gray-300 border-l-4 border-[#9ada34] pl-4">
                             {testimonial.quote}
                           </blockquote>
                           <div className="mt-4">
-                            <p className="font-semibold text-gray-800">
+                            <p className="font-semibold text-white">
                               {testimonial.name}
                             </p>
-                            <p className="text-sm text-gray-500">
+                            <p className="text-sm text-gray-400">
                               {testimonial.company}
                             </p>
                           </div>
@@ -78,7 +78,7 @@ export function TestimonialsSection() {
                     </div>
                   </CarouselItem>
                 </ScrollStaggerItem>
-              ))}
+              ))}\
             </CarouselContent>
             <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 hidden sm:flex" />
             <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 hidden sm:flex" />

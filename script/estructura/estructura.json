@@ -61,6 +61,16 @@
           "type": "file"
         },
         {
+          "name": "products",
+          "type": "directory",
+          "children": [
+            {
+              "name": "page.tsx",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": "soluciones",
           "type": "directory",
           "children": [
@@ -83,6 +93,40 @@
         {
           "name": "ai-content-suggester.tsx",
           "type": "file"
+        },
+        {
+          "name": "animations",
+          "type": "directory",
+          "children": [
+            {
+              "name": "motion-wrapper.tsx",
+              "type": "file"
+            },
+            {
+              "name": "scroll-animations.tsx",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "background",
+          "type": "directory",
+          "children": [
+            {
+              "name": "custom-particles.tsx",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "common",
+          "type": "directory",
+          "children": [
+            {
+              "name": "BackToTopButton.tsx",
+              "type": "file"
+            }
+          ]
         },
         {
           "name": "footer.tsx",
@@ -110,6 +154,14 @@
             },
             {
               "name": "HeroSection.tsx",
+              "type": "file"
+            },
+            {
+              "name": "ProductCard.tsx",
+              "type": "file"
+            },
+            {
+              "name": "ProductsContent.tsx",
               "type": "file"
             },
             {
@@ -298,6 +350,10 @@
       "children": [
         {
           "name": "mock-case-studies.ts",
+          "type": "file"
+        },
+        {
+          "name": "mock-products.ts",
           "type": "file"
         },
         {

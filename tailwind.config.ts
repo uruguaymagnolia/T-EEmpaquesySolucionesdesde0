@@ -17,6 +17,7 @@ export default {
       },
       colors: {
         slate: colors.slate,
+        zinc: colors.zinc,
         green: colors.green,
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
