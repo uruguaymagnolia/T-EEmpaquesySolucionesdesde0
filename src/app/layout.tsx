@@ -3,6 +3,8 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/footer';
+import { ScrollProgress } from '@/components/animations/scroll-animations';
+import { CustomParticles } from '@/components/background/custom-particles';
 
 export const metadata: Metadata = {
   title: 'T & E Empaques y Soluciones',
@@ -25,7 +27,9 @@ export default function RootLayout({
         ></link>
       </head>
       <body className="font-body antialiased">
-        <div className="flex flex-col min-h-screen">
+        <ScrollProgress />
+        <CustomParticles />
+        <div className="flex flex-col min-h-screen relative z-10">
           <Header />
           <main className="flex-grow">{children}</main>
           <Footer />

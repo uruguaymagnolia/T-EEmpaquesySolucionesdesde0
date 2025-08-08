@@ -1,4 +1,5 @@
 import type {Config} from 'tailwindcss';
+const colors = require('tailwindcss/colors')
 
 export default {
   darkMode: ['class'],
@@ -15,6 +16,8 @@ export default {
         code: ['monospace'],
       },
       colors: {
+        slate: colors.slate,
+        green: colors.green,
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
