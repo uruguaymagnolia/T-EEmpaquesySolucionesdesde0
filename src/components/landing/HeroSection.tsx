@@ -24,7 +24,7 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.5, type: 'spring' }}
-            className="text-[#9ada34] inline-block"
+            className="text-primary inline-block"
           >
             personalizadas para su negocio
           </motion.span>
@@ -48,7 +48,7 @@ export function HeroSection() {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   variant="default"
-                  className="bg-[#9ada34] text-[#1a2435] hover:bg-opacity-90 hover:bg-[#9ada34]"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90"
                 >
                   Solicitar cotización
                 </Button>
@@ -60,7 +60,7 @@ export function HeroSection() {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-[#1a2435]"
+                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
                 >
                   Ver nuestros productos
                 </Button>
