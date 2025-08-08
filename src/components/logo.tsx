@@ -15,7 +15,7 @@ export function Logo() {
           alt="T & E Tecnología y Empaque Logo"
           width={120}
           height={40}
-          className="h-10 w-auto sm:h-12"
+          className="h-10 sm:h-12 w-auto"
         />
         <div className="hidden sm:flex flex-col">
           <h1 className="text-base sm:text-xl font-bold text-primary leading-tight">
