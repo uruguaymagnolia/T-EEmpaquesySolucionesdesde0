@@ -122,8 +122,8 @@ const ContactFormSection: React.FC = () => {
             >
               <Form {...form}>
                 <form
-                  action={(formData) => {
-                    const valid = form.trigger();
+                  action={async (formData) => {
+                    const valid = await form.trigger();
                     if (valid) {
                       formAction(formData);
                     }
