@@ -47,7 +47,7 @@ export function Header() {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="md:hidden bg-[#1a2435] absolute w-full left-0 top-16">
+        <div className="md:hidden bg-[#1a2435] absolute w-full left-0 top-16 shadow-lg">
           <nav>
             <ul className="flex flex-col items-center space-y-4 py-4">
               {navLinks.map((link) => (
