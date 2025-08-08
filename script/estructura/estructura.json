@@ -31,6 +31,16 @@
       "type": "directory",
       "children": [
         {
+          "name": "actions",
+          "type": "directory",
+          "children": [
+            {
+              "name": "contact.ts",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": "actions.ts",
           "type": "file"
         },
@@ -61,7 +71,7 @@
           "type": "file"
         },
         {
-          "name": "products",
+          "name": "politica-de-privacidad",
           "type": "directory",
           "children": [
             {
@@ -71,7 +81,85 @@
           ]
         },
         {
+          "name": "preguntas-frecuentes",
+          "type": "directory",
+          "children": [
+            {
+              "name": "page.tsx",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "products",
+          "type": "directory",
+          "children": [
+            {
+              "name": "[slug]",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "page.tsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "actions.ts",
+              "type": "file"
+            },
+            {
+              "name": "page.tsx",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "proyectos",
+          "type": "directory",
+          "children": [
+            {
+              "name": "[slug]",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "page.tsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "actions.ts",
+              "type": "file"
+            },
+            {
+              "name": "page.tsx",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": "soluciones",
+          "type": "directory",
+          "children": [
+            {
+              "name": "[slug]",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "page.tsx",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "page.tsx",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "terminos-de-servicio",
           "type": "directory",
           "children": [
             {
@@ -123,7 +211,15 @@
           "type": "directory",
           "children": [
             {
+              "name": "AnimatedCounter.tsx",
+              "type": "file"
+            },
+            {
               "name": "BackToTopButton.tsx",
+              "type": "file"
+            },
+            {
+              "name": "ClientSectionsWrapper.tsx",
               "type": "file"
             }
           ]
@@ -136,6 +232,10 @@
           "name": "landing",
           "type": "directory",
           "children": [
+            {
+              "name": "AnimatedButton.tsx",
+              "type": "file"
+            },
             {
               "name": "CaseStudyCard.tsx",
               "type": "file"
@@ -165,6 +265,10 @@
               "type": "file"
             },
             {
+              "name": "ProjectCard.tsx",
+              "type": "file"
+            },
+            {
               "name": "ServicesSection.tsx",
               "type": "file"
             },
@@ -175,12 +279,42 @@
             {
               "name": "TestimonialsSection.tsx",
               "type": "file"
+            },
+            {
+              "name": "map-section.tsx",
+              "type": "file"
             }
           ]
         },
         {
           "name": "logo.tsx",
           "type": "file"
+        },
+        {
+          "name": "sections",
+          "type": "directory",
+          "children": [
+            {
+              "name": "contact-form-section.tsx",
+              "type": "file"
+            },
+            {
+              "name": "faq-section.tsx",
+              "type": "file"
+            },
+            {
+              "name": "product-carousel-section.tsx",
+              "type": "file"
+            },
+            {
+              "name": "stats-section.tsx",
+              "type": "file"
+            },
+            {
+              "name": "testimonials-section.tsx",
+              "type": "file"
+            }
+          ]
         },
         {
           "name": "ui",
@@ -349,11 +483,19 @@
       "type": "directory",
       "children": [
         {
+          "name": "data.ts",
+          "type": "file"
+        },
+        {
           "name": "mock-case-studies.ts",
           "type": "file"
         },
         {
           "name": "mock-products.ts",
+          "type": "file"
+        },
+        {
+          "name": "mock-projects.ts",
           "type": "file"
         },
         {
