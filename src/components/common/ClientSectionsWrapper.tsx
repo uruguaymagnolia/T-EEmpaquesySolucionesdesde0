@@ -11,22 +11,24 @@ import TestimonialsSection from '@/components/sections/testimonials-section';
 import { StatsSection } from '@/components/sections/stats-section';
 import FAQSection from '@/components/sections/faq-section';
 import ContactFormSection from '@/components/sections/contact-form-section';
-import type { Product, CaseStudy } from '@prisma/client';
+import type { Product, CaseStudy, Solution } from '@prisma/client';
 
 type ClientSectionsWrapperProps = {
   products: Product[];
   caseStudies: CaseStudy[];
+  solutions: Solution[];
 };
 
 export default function ClientSectionsWrapper({
   products,
   caseStudies,
+  solutions,
 }: ClientSectionsWrapperProps) {
   return (
     <>
       <HeroSection />
       <ScrollReveal>
-        <ServicesSection id="soluciones" />
+        <ServicesSection id="soluciones" solutions={solutions} />
       </ScrollReveal>
       <ProductCarouselSection products={products} />
       <ScrollReveal>

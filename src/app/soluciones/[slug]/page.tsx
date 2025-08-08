@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { CheckCircle, ArrowRight } from 'lucide-react';
-import { solutions, type Solution } from '@/lib/mock-solutions';
+import { CheckCircle, ArrowRight, type LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -15,16 +14,40 @@ import {
 } from '@/components/ui/card';
 import {
   ScrollReveal,
-  ScrollStaggerContainer,
-  ScrollStaggerItem,
 } from '@/components/animations/scroll-animations';
+import type { Solution } from '@prisma/client';
+import * as lucideIcons from 'lucide-react';
 
-function getSolutionBySlug(slug: string): Solution | undefined {
-  return solutions.find((s) => s.slug === slug);
+const icons = {
+  Gift: lucideIcons.Gift,
+  Sparkles: lucideIcons.Sparkles,
+  PackageCheck: lucideIcons.PackageCheck,
+  Shrink: lucideIcons.Shrink,
+  Flame: lucideIcons.Flame,
+  PackagePlus: lucideIcons.PackagePlus,
+  Square: lucideIcons.Square,
+  Component: lucideIcons.Component,
+};
+
+function getIcon(name: string): LucideIcon {
+  return (icons as any)[name] || icons.Component;
 }
 
-function getRelatedSolutions(currentSlug: string): Solution[] {
-  return solutions.filter((s) => s.slug !== currentSlug).slice(0, 3);
+// NOTE: These server actions would ideally be in their own file.
+// We are keeping them here for simplicity.
+async function getSolutionBySlug(slug: string): Promise<Solution | null> {
+  const { default: prisma } = await import('@/lib/prisma');
+  return prisma.solution.findUnique({ where: { slug } });
+}
+
+async function getRelatedSolutions(
+  currentSlug: string
+): Promise<Solution[]> {
+  const { default: prisma } = await import('@/lib/prisma');
+  return prisma.solution.findMany({
+    where: { NOT: { slug: currentSlug } },
+    take: 3,
+  });
 }
 
 type SolutionDetailsPageProps = {
@@ -41,14 +64,22 @@ export default function SolutionDetailsPage({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchedSolution = getSolutionBySlug(params.slug);
-    if (fetchedSolution) {
-      setSolution(fetchedSolution);
-      setRelatedSolutions(getRelatedSolutions(params.slug));
-    } else {
-      notFound();
+    async function fetchData() {
+      setIsLoading(true);
+      const [fetchedSolution, fetchedRelated] = await Promise.all([
+        getSolutionBySlug(params.slug),
+        getRelatedSolutions(params.slug),
+      ]);
+
+      if (fetchedSolution) {
+        setSolution(fetchedSolution);
+        setRelatedSolutions(fetchedRelated);
+      } else {
+        notFound();
+      }
+      setIsLoading(false);
     }
-    setIsLoading(false);
+    fetchData();
   }, [params.slug]);
 
   if (isLoading) {
@@ -63,7 +94,7 @@ export default function SolutionDetailsPage({
     return notFound();
   }
 
-  const Icon = solution.icon;
+  const Icon = getIcon(solution.icon);
 
   return (
     <motion.div
@@ -71,10 +102,8 @@ export default function SolutionDetailsPage({
       animate={{ opacity: 1 }}
       className="bg-slate-900 text-gray-300"
     >
-      {/* Header */}
       <header className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 py-20 md:py-28">
-        <ScrollStaggerContainer className="container mx-auto px-4 text-center">
-          <ScrollStaggerItem>
+         <div className="container mx-auto px-4 text-center">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -88,24 +117,17 @@ export default function SolutionDetailsPage({
             >
               <Icon className="h-10 w-10 text-green-400" />
             </motion.div>
-          </ScrollStaggerItem>
-          <ScrollStaggerItem>
             <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">
               {solution.title}
             </h1>
-          </ScrollStaggerItem>
-          <ScrollStaggerItem>
             <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-400">
               {solution.description}
             </p>
-          </ScrollStaggerItem>
-        </ScrollStaggerContainer>
+        </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto max-w-6xl px-4 py-16 md:py-24">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
-          {/* Left Column */}
           <div className="space-y-8 lg:col-span-2">
             <ScrollReveal>
               <h2 className="text-3xl font-bold text-white">
@@ -117,7 +139,6 @@ export default function SolutionDetailsPage({
             </ScrollReveal>
           </div>
 
-          {/* Right Column (Sticky) */}
           <div className="lg:col-span-1">
             <ScrollReveal className="sticky top-24">
               <Card className="border-slate-700/50 bg-slate-800/50">
@@ -154,7 +175,6 @@ export default function SolutionDetailsPage({
           </div>
         </div>
 
-        {/* Related Solutions */}
         {relatedSolutions.length > 0 && (
           <ScrollReveal className="mt-24">
             <h2 className="mb-8 text-center text-3xl font-bold text-white">
@@ -162,7 +182,7 @@ export default function SolutionDetailsPage({
             </h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {relatedSolutions.map((related) => {
-                const RelatedIcon = related.icon;
+                const RelatedIcon = getIcon(related.icon);
                 return (
                   <motion.div
                     key={related.slug}

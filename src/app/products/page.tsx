@@ -10,7 +10,7 @@ export default async function ProductsPage() {
   });
 
   return (
-    <div>
+    <div className="bg-slate-900">
       <header className="bg-gradient-to-r from-[#1a2435] to-[#0e413b] text-white py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold">

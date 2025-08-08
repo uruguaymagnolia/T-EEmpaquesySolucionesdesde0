@@ -1,5 +1,5 @@
 import prisma from '@/lib/prisma';
-import type { Product, CaseStudy } from '@prisma/client';
+import type { Product, CaseStudy, Solution } from '@prisma/client';
 import ClientSectionsWrapper from '@/components/common/ClientSectionsWrapper';
 
 export default async function HomePage() {
@@ -17,9 +17,20 @@ export default async function HomePage() {
     },
   });
 
+  const solutions: Solution[] = await prisma.solution.findMany({
+    take: 8,
+    orderBy: {
+      createdAt: 'asc',
+    },
+  });
+
   return (
     <div>
-      <ClientSectionsWrapper products={products} caseStudies={caseStudies} />
+      <ClientSectionsWrapper
+        products={products}
+        caseStudies={caseStudies}
+        solutions={solutions}
+      />
     </div>
   );
 }

@@ -1,4 +1,3 @@
-'use client';
 import type { CaseStudy } from '@prisma/client';
 import { CaseStudyCard } from '@/components/landing/CaseStudyCard';
 import {
@@ -7,10 +6,15 @@ import {
   ScrollStaggerItem,
 } from '@/components/animations/scroll-animations';
 import { motion } from 'framer-motion';
-import { getCaseStudies } from './actions';
-import { useEffect, useState } from 'react';
+import prisma from '@/lib/prisma';
 
-function ProjectsPageContent({ caseStudies }: { caseStudies: CaseStudy[] }) {
+export default async function ProjectsPage() {
+  const caseStudies: CaseStudy[] = await prisma.caseStudy.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+
   return (
     <div className="bg-slate-950">
       <header className="bg-gradient-to-r from-[#1a2435] to-[#0e413b] text-white py-16 md:py-24">
@@ -47,27 +51,4 @@ function ProjectsPageContent({ caseStudies }: { caseStudies: CaseStudy[] }) {
       </main>
     </div>
   );
-}
-
-export default function ProjectsPage() {
-    const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchCaseStudies = async () => {
-            const studies = await getCaseStudies();
-            setCaseStudies(studies);
-            setLoading(false);
-        };
-        fetchCaseStudies();
-    }, []);
-
-    if (loading) {
-        return (
-            <div className="flex h-screen items-center justify-center bg-slate-950">
-                <div className="h-16 w-16 animate-spin rounded-full border-4 border-dashed border-primary"></div>
-            </div>
-        );
-    }
-  return <ProjectsPageContent caseStudies={caseStudies} />;
 }

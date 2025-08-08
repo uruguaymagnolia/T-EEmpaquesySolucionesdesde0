@@ -1,9 +1,15 @@
-'use client';
-
 import { ServicesSection } from '@/components/landing/ServicesSection';
+import prisma from '@/lib/prisma';
+import type { Solution } from '@prisma/client';
 import { motion } from 'framer-motion';
 
-export default function SolucionesPage() {
+export default async function SolucionesPage() {
+  const solutions: Solution[] = await prisma.solution.findMany({
+    orderBy: {
+      createdAt: 'asc',
+    },
+  });
+
   return (
     <div className="bg-slate-950">
       <header className="bg-gradient-to-r from-[#1a2435] to-[#0e413b] text-white py-16 md:py-24">
@@ -21,7 +27,7 @@ export default function SolucionesPage() {
         </motion.div>
       </header>
       <main>
-        <ServicesSection />
+        <ServicesSection solutions={solutions} />
       </main>
     </div>
   );

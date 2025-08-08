@@ -1,5 +1,4 @@
 'use client';
-import { solutions } from '@/lib/mock-solutions';
 import { motion } from 'framer-motion';
 import {
   ScrollStaggerContainer,
@@ -7,9 +6,32 @@ import {
 } from '../animations/scroll-animations';
 import Link from 'next/link';
 import { Button } from '../ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, type LucideIcon } from 'lucide-react';
+import type { Solution } from '@prisma/client';
+import * as lucideIcons from 'lucide-react';
 
-export function ServicesSection({ id }: { id?: string }) {
+const icons = {
+  Gift: lucideIcons.Gift,
+  Sparkles: lucideIcons.Sparkles,
+  PackageCheck: lucideIcons.PackageCheck,
+  Shrink: lucideIcons.Shrink,
+  Flame: lucideIcons.Flame,
+  PackagePlus: lucideIcons.PackagePlus,
+  Square: lucideIcons.Square,
+  Component: lucideIcons.Component,
+};
+
+function getIcon(name: string): LucideIcon {
+  return (icons as any)[name] || icons.Component;
+}
+
+export function ServicesSection({
+  id,
+  solutions,
+}: {
+  id?: string;
+  solutions: Solution[];
+}) {
   return (
     <section id={id} className="py-16 md:py-24 bg-slate-950">
       <div className="container mx-auto px-4">
@@ -25,7 +47,7 @@ export function ServicesSection({ id }: { id?: string }) {
           staggerChildren={0.1}
         >
           {solutions.map((solution, index) => {
-            const Icon = solution.icon;
+            const Icon = getIcon(solution.icon);
             return (
               <ScrollStaggerItem key={index} className="h-full">
                 <motion.div
