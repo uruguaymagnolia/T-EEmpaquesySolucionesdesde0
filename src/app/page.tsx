@@ -2,10 +2,10 @@ import { CtaSection } from '@/components/landing/CtaSection';
 import { FeaturedProjectsSection } from '@/components/landing/FeaturedProjectsSection';
 import { HeroSection } from '@/components/landing/HeroSection';
 import { ServicesSection } from '@/components/landing/ServicesSection';
-import { TestimonialsSection } from '@/components/landing/TestimonialsSection';
 import { ScrollReveal } from '@/components/animations/scroll-animations';
 import { MapSection } from '@/components/landing/map-section';
 import ProductCarouselSection from '@/components/sections/product-carousel-section';
+import TestimonialsSection from '@/components/sections/testimonials-section';
 
 export default function HomePage() {
   return (
