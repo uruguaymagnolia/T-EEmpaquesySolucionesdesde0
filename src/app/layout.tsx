@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { SidebarProvider } from '@/components/ui/sidebar';
 import { Toaster } from '@/components/ui/toaster';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
   title: 'T & E Empaques y Soluciones',
@@ -24,9 +25,11 @@ export default function RootLayout({
         ></link>
       </head>
       <body className="font-body antialiased">
-        <SidebarProvider>
-          {children}
-        </SidebarProvider>
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </div>
         <Toaster />
       </body>
     </html>
