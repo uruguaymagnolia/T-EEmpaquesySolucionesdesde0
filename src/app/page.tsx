@@ -8,8 +8,17 @@ import ProductCarouselSection from '@/components/sections/product-carousel-secti
 import TestimonialsSection from '@/components/sections/testimonials-section';
 import { StatsSection } from '@/components/sections/stats-section';
 import FAQSection from '@/components/sections/faq-section';
+import prisma from '@/lib/prisma';
+import type { Product } from '@prisma/client';
 
-export default function HomePage() {
+export default async function HomePage() {
+  const products: Product[] = await prisma.product.findMany({
+    take: 10,
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+
   return (
     <div>
       <HeroSection />
@@ -17,7 +26,7 @@ export default function HomePage() {
         <ServicesSection id="soluciones" />
       </ScrollReveal>
       <ScrollReveal>
-        <ProductCarouselSection />
+        <ProductCarouselSection products={products} />
       </ScrollReveal>
       <ScrollReveal>
         <CtaSection />

@@ -7,45 +7,15 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollReveal } from '@/components/animations/scroll-animations';
+import type { Product } from '@prisma/client';
 
-const products = [
-  {
-    title: 'Proyecto Alpha',
-    description:
-      'Una solución de empaque innovadora para la industria de bebidas.',
-    image: '/placeholder.svg',
-    imageAlt: 'Imagen del Proyecto Alpha',
-  },
-  {
-    title: 'Iniciativa Beta',
-    description:
-      'Diseño de empaque sostenible utilizando materiales 100% reciclados.',
-    image: '/placeholder.svg',
-    imageAlt: 'Imagen de la Iniciativa Beta',
-  },
-  {
-    title: 'Concepto Gamma',
-    description: 'Empaque de lujo para una nueva línea de productos cosméticos.',
-    image: '/placeholder.svg',
-    imageAlt: 'Imagen del Concepto Gamma',
-  },
-  {
-    title: 'Desarrollo Delta',
-    description:
-      'Optimización de la logística de empaque para reducir la huella de carbono.',
-    image: '/placeholder.svg',
-    imageAlt: 'Imagen del Desarrollo Delta',
-  },
-  {
-    title: 'Plataforma Epsilon',
-    description:
-      'Una nueva tecnología de empaque inteligente con seguimiento integrado.',
-    image: '/placeholder.svg',
-    imageAlt: 'Imagen de la Plataforma Epsilon',
-  },
-];
+type ProductCarouselSectionProps = {
+  products: Product[];
+};
 
-const ProductCarouselSection: React.FC = () => {
+const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
+  products,
+}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: 'start',
@@ -59,12 +29,16 @@ const ProductCarouselSection: React.FC = () => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
+  if (!products || products.length === 0) {
+    return null;
+  }
+
   return (
     <ScrollReveal>
       <section className="bg-slate-900 py-20 sm:py-24">
         <div className="container mx-auto px-4">
           <h2 className="text-center text-3xl font-bold text-white sm:text-4xl md:text-5xl">
-            Nuestros Proyectos Destacados
+            Nuestros Productos Destacados
           </h2>
           <div className="relative mt-12">
             <div className="overflow-hidden" ref={emblaRef}>
@@ -74,23 +48,25 @@ const ProductCarouselSection: React.FC = () => {
                     className="relative min-w-0 flex-shrink-0 flex-grow-0 basis-full pl-4 md:basis-1/2 lg:basis-1/3"
                     key={index}
                   >
-                    <div className="overflow-hidden rounded-lg border border-slate-700/50 bg-slate-800/50 p-4 backdrop-blur-sm">
+                    <div className="overflow-hidden rounded-lg border border-slate-700/50 bg-slate-800/50 p-4 backdrop-blur-sm h-full flex flex-col">
                       <div className="relative mb-4 h-56 w-full overflow-hidden rounded">
                         <Image
-                          src={product.image}
+                          src={product.imageUrl}
                           alt={product.imageAlt}
-                          layout="fill"
+                          fill
                           objectFit="cover"
                           className="transition-transform duration-300 group-hover:scale-110"
-                          data-ai-hint="product image"
+                          data-ai-hint={product.dataAiHint ?? 'product image'}
                         />
                       </div>
-                      <h3 className="text-xl font-bold text-white">
-                        {product.title}
-                      </h3>
-                      <p className="mt-2 text-gray-300">
-                        {product.description}
-                      </p>
+                      <div className="flex flex-col flex-grow">
+                        <h3 className="text-xl font-bold text-white">
+                          {product.name}
+                        </h3>
+                        <p className="mt-2 text-gray-300 flex-grow">
+                          {product.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 ))}
