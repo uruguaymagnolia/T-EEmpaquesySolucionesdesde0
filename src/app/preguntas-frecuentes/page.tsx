@@ -1,4 +1,6 @@
 
+'use client';
+
 import FAQSection from '@/components/sections/faq-section';
 import { motion } from 'framer-motion';
 

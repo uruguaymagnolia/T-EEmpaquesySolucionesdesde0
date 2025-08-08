@@ -1,4 +1,6 @@
 
+'use client';
+
 import { ProjectCard } from '@/components/landing/ProjectCard';
 import { projects } from '@/lib/mock-projects';
 import {

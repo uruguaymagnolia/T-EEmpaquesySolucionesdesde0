@@ -1,4 +1,3 @@
-
 'use client';
 
 import { ScrollReveal } from '@/components/animations/scroll-animations';
