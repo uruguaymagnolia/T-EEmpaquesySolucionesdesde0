@@ -1,3 +1,4 @@
+
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -38,7 +39,7 @@ export function Header() {
     { href: '/', label: 'Inicio', icon: Home },
     { href: '/#soluciones', label: 'Soluciones', icon: Package },
     { href: '/products', label: 'Productos', icon: ShoppingBag },
-    { href: '/#proyectos', label: 'Proyectos', icon: Briefcase },
+    { href: '/proyectos', label: 'Proyectos', icon: Briefcase },
     {
       href: '/preguntas-frecuentes',
       label: 'Preguntas Frecuentes',
