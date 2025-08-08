@@ -7,7 +7,7 @@ import {
 } from '../animations/scroll-animations';
 import type { CaseStudy } from '@prisma/client';
 import { AnimatedButton } from './AnimatedButton';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 
 export default function FeaturedProjectsSection({
   id,
@@ -16,7 +16,7 @@ export default function FeaturedProjectsSection({
   id?: string;
   caseStudies: CaseStudy[];
 }) {
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: (i: number) => ({
       opacity: 0,
       x: i % 3 === 0 ? -50 : i % 3 === 2 ? 50 : 0,
