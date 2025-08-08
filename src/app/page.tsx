@@ -7,6 +7,7 @@ import { MapSection } from '@/components/landing/map-section';
 import ProductCarouselSection from '@/components/sections/product-carousel-section';
 import TestimonialsSection from '@/components/sections/testimonials-section';
 import { StatsSection } from '@/components/sections/stats-section';
+import FAQSection from '@/components/sections/faq-section';
 
 export default function HomePage() {
   return (
@@ -29,6 +30,9 @@ export default function HomePage() {
       </ScrollReveal>
       <ScrollReveal>
         <TestimonialsSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <FAQSection />
       </ScrollReveal>
       <ScrollReveal>
         <MapSection />
