@@ -1,7 +1,20 @@
 'use client';
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
-import { Facebook, Instagram, Linkedin } from 'lucide-react';
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Home,
+  Package,
+  ShoppingBag,
+  Briefcase,
+  Mail,
+  Shield,
+  FileText,
+  MapPin,
+  Phone,
+} from 'lucide-react';
 
 export function Footer() {
   return (
@@ -47,41 +60,46 @@ export function Footer() {
               <li>
                 <Link
                   href="/"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
                 >
-                  Inicio
+                  <Home size={16} />
+                  <span>Inicio</span>
                 </Link>
               </li>
               <li>
                 <Link
                   href="/soluciones"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
                 >
-                  Soluciones
+                  <Package size={16} />
+                  <span>Soluciones</span>
                 </Link>
               </li>
               <li>
                 <Link
                   href="/products"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
                 >
-                  Productos
+                  <ShoppingBag size={16} />
+                  <span>Productos</span>
                 </Link>
               </li>
               <li>
                 <Link
                   href="/proyectos"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
                 >
-                  Proyectos
+                  <Briefcase size={16} />
+                  <span>Proyectos</span>
                 </Link>
               </li>
               <li>
                 <Link
                   href="/contacto"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
                 >
-                  Contacto
+                  <Mail size={16} />
+                  <span>Contacto</span>
                 </Link>
               </li>
             </ul>
@@ -94,17 +112,19 @@ export function Footer() {
               <li>
                 <Link
                   href="/politica-de-privacidad"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
                 >
-                  Política de Privacidad
+                  <Shield size={16} />
+                  <span>Política de Privacidad</span>
                 </Link>
               </li>
               <li>
                 <Link
                   href="/terminos-de-servicio"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
                 >
-                  Términos de Servicio
+                  <FileText size={16} />
+                  <span>Términos de Servicio</span>
                 </Link>
               </li>
             </ul>
@@ -113,13 +133,13 @@ export function Footer() {
           {/* Columna 4: Contacto */}
           <div>
             <h3 className="font-semibold text-lg mb-4">Ponerse en contacto</h3>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li className="flex items-start">
-                <span className="font-semibold mr-2">Dir:</span>
+            <ul className="space-y-3 text-gray-400 text-sm">
+              <li className="flex items-start gap-2">
+                <MapPin size={16} className="mt-0.5 shrink-0" />
                 <span>Calle Ficticia 123, Ciudad, País</span>
               </li>
-              <li className="flex items-start">
-                <span className="font-semibold mr-2">Email:</span>
+              <li className="flex items-start gap-2">
+                <Mail size={16} className="mt-0.5 shrink-0" />
                 <a
                   href="mailto:contacto@tempaques.com"
                   className="hover:text-white transition-colors"
@@ -127,8 +147,8 @@ export function Footer() {
                   contacto@tempaques.com
                 </a>
               </li>
-              <li className="flex items-start">
-                <span className="font-semibold mr-2">Tel:</span>
+              <li className="flex items-start gap-2">
+                <Phone size={16} className="mt-0.5 shrink-0" />
                 <a
                   href="tel:+123456789"
                   className="hover:text-white transition-colors"
