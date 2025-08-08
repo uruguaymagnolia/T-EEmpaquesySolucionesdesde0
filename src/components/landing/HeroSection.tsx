@@ -53,12 +53,7 @@ export function HeroSection() {
       <div
         className="container mx-auto px-4 text-center relative z-10"
       >
-        <motion.h1
-          className="text-4xl md:text-6xl font-bold mb-4"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+        <h1 className="text-4xl md:text-6xl font-bold mb-4">
           Soluciones de empaque{' '}
           <motion.span
             className="text-primary inline-block"
@@ -69,18 +64,13 @@ export function HeroSection() {
           >
             personalizadas
           </motion.span>
-        </motion.h1>
+        </h1>
         
-        <motion.p
-          className="max-w-3xl mx-auto mb-8 text-lg text-gray-300"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
+        <p className="max-w-3xl mx-auto mb-8 text-lg text-gray-300">
           Proveemos productos y soluciones de empaque personalizadas para
           artículos escolares, papelería, accesorios eléctricos, cosméticos,
           didácticos, mercería y más.
-        </motion.p>
+        </p>
         
         <StaggerContainer
           as="div"
