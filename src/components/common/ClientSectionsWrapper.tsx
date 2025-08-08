@@ -83,18 +83,11 @@ export default function ClientSectionsWrapper({
       <ScrollReveal>
         <FeaturedProjectsSection id="proyectos" caseStudies={caseStudies} />
       </ScrollReveal>
-      <ScrollReveal>
-        <TestimonialsSection />
-      </ScrollReveal>
-      <ScrollReveal>
-        <FAQSection />
-      </ScrollReveal>
-      <ScrollReveal>
-        <ContactFormSection />
-      </ScrollReveal>
-      <ScrollReveal>
-        <MapSection />
-      </ScrollReveal>
+      
+      <TestimonialsSection />
+      <FAQSection />
+      <ContactFormSection />
+      <MapSection />
     </>
   );
 }
