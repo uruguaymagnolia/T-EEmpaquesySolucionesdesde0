@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Cunas Contenedoras a Medida",
+    "category": "Soluciones a Medida",
+    "description": "Diseño y fabricación de cunas internas para estuches y cajas, asegurando una presentación impecable y la máxima protección para productos de cualquier forma y tamaño.",
+    "imageUrl": "/imagenes/productos/Cunas Contenedoras.jpg",
+    "imageAlt": "Cuna contenedora de plástico negro hecha a medida para un producto de cosmética.",
+    "dataAiHint": "custom thermoformed tray"
+  },
+  {
+    "name": "Empaques tipo Blister",
+    "category": "Empaques Estándar",
+    "description": "Soluciones de empaque tipo blister que ofrecen una excelente visibilidad del producto y seguridad contra manipulaciones, ideales para el retail.",
+    "imageUrl": "/imagenes/productos/Blister.jpg",
+    "imageAlt": "Empaque tipo blister transparente para útiles escolares.",
+    "dataAiHint": "blister pack packaging"
+  },
+  {
+    "name": "Armado de Cajas con Ventana",
+    "category": "Soluciones a Medida",
+    "description": "Cajas de cartón de alta calidad con ventanas de acetato transparente que permiten exhibir el producto de forma atractiva y segura.",
+    "imageUrl": "/imagenes/productos/Armado de Cajas.jpg",
+    "imageAlt": "Caja de cartón con ventana de acetato mostrando el producto en su interior.",
+    "dataAiHint": "cardboard box acetate window"
+  },
+  {
+    "name": "Embalaje Skin Pack",
+    "category": "Empaques Estándar",
+    "description": "Sistema de empaque al vacío que fija los productos a una base de cartón, proporcionando una presentación clara y protección total.",
+    "imageUrl": "/imagenes/productos/Skin Pack.jpg",
+    "imageAlt": "Varios productos de ferretería en un empaque skin pack.",
+    "dataAiHint": "skin pack hardware"
+  },
+  {
+    "name": "Armado de Promociones y Packs",
+    "category": "Servicios de Maquila",
+    "description": "Servicio de armado y empaquetado de promociones, ofertas especiales y kits de productos con embalaje termo contraíble.",
+    "imageUrl": "/imagenes/productos/Armado de Promociones.jpg",
+    "imageAlt": "Dos productos agrupados con una película de plástico termo contraíble.",
+    "dataAiHint": "promotional shrink wrap"
+  },
+  {
+    "name": "Soportes de Exhibición para Retail",
+    "category": "Soluciones a Medida",
+    "description": "Diseño y producción de soportes y exhibidores a medida para el punto de venta, diseñados para realzar la presentación de sus productos.",
+    "imageUrl": "/imagenes/productos/Soportes para Perfumes2.jpg",
+    "imageAlt": "Soportes de plástico transparente para exhibir productos cosméticos.",
+    "dataAiHint": "retail product display"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Packaging para Juguetes Didácticos",
+    "shortDescription": "Diseño de cajas con ventanas de acetato para una nueva línea de juguetes educativos, mejorando la visibilidad en tienda.",
+    "imageUrl": "/imagenes/proyectos/cajas2.jpg",
+    "imageAlt": "Caja colorida para un juguete educativo",
+    "category": "Juguetería",
+    "problem": "Un cliente necesitaba un empaque que no solo protegiera sus nuevos juguetes educativos, sino que también permitiera a los padres ver la calidad y el contenido sin abrir la caja, un factor clave en la decisión de compra.",
+    "solution": "Diseñamos una serie de cajas de cartón estructuralmente sólidas con ventanas de acetato de alta transparencia. Se utilizaron colores vibrantes y gráficos atractivos para captar la atención de los niños y los padres en el punto de venta. El diseño interior aseguró que el producto se mantuviera en su lugar.",
+    "results": "Se registró un aumento del 25% en las ventas durante el primer trimestre. Las devoluciones por empaques dañados se redujeron en un 15%. Hubo una mejora significativa en la percepción de la marca, que ahora se asocia con calidad y transparencia."
+  },
+  {
+    "title": "Empaque Premium para Cosméticos de Lujo",
+    "shortDescription": "Desarrollo de cunas termoformadas a medida y cajas rígidas para una línea de perfumes de alta gama.",
+    "imageUrl": "/imagenes/proyectos/Cunas2.jpg",
+    "imageAlt": "Cuna termoformada negra para un frasco de perfume de lujo",
+    "category": "Cosméticos",
+    "problem": "Una marca de perfumes de lujo enfrentaba problemas con su empaque anterior, que no reflejaba la calidad premium del producto y no protegía adecuadamente los frascos de vidrio durante el envío, resultando en roturas.",
+    "solution": "Creamos cunas internas termoformadas con un acabado aterciopelado que sujetan cada frasco firmemente. Estas cunas se colocaron dentro de una caja rígida con un cierre magnético, elevando la experiencia de unboxing y garantizando la máxima protección.",
+    "results": "Las roturas durante el transporte se eliminaron por completo. La percepción de la marca mejoró drásticamente, lo que llevó a un aumento del 40% en la tasa de recompra y una mayor presencia en tiendas departamentales de lujo."
+  },
+  {
+    "title": "Solución de Blister para Artículos Escolares",
+    "shortDescription": "Optimización del empaque para una línea de útiles escolares, mejorando la visibilidad y reduciendo el hurto en tiendas.",
+    "imageUrl": "/imagenes/proyectos/escolar.jpg",
+    "imageAlt": "Set de reglas y compás en un empaque blister",
+    "category": "Papelería",
+    "problem": "Una empresa de artículos escolares necesitaba un empaque que permitiera a los clientes ver claramente los productos, los protegiera del desgaste en la tienda y dificultara el robo de piezas pequeñas.",
+    "solution": "Se diseñó un empaque tipo blister a medida utilizando PET reciclado, con un cartón de respaldo impreso en alta calidad que resalta las características del producto. El sellado resistente aseguró todos los componentes, disuadiendo el hurto.",
+    "results": "Se logró una reducción del 60% en las pérdidas por hurto. Las ventas aumentaron un 20% gracias a la presentación más atractiva y profesional en el punto de venta."
+  }
+]

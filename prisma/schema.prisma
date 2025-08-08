@@ -11,7 +11,7 @@ generator client {
 datasource db {
   provider     = "postgresql"
   url          = env("DATABASE_URL")
-    directUrl = env("POSTGRES_URL")
+  directUrl = env("POSTGRES_URL")
   relationMode = "prisma"
 }
 
@@ -19,7 +19,7 @@ model Product {
   id          String   @id @default(cuid())
   name        String   @unique
   slug        String   @unique
-  description String
+  description String   @db.Text
   imageUrl    String
   imageAlt    String
   dataAiHint  String?
@@ -37,9 +37,9 @@ model CaseStudy {
   imageAlt         String
   dataAiHint       String?
   category         String
-  problem          String
-  solution         String
-  results          String
+  problem          String   @db.Text
+  solution         String   @db.Text
+  results          String   @db.Text
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
@@ -50,4 +50,16 @@ model Message {
   email     String
   message   String
   createdAt DateTime @default(now())
+}
+
+model Solution {
+  id                  String   @id @default(cuid())
+  title               String   @unique
+  slug                String   @unique
+  description         String
+  detailedDescription String   @db.Text
+  icon                String
+  keyFeatures         String[]
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
 }

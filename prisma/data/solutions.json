@@ -1,0 +1,86 @@
+[
+  {
+    "title": "Cunas Contenedoras a Medida",
+    "description": "Diseño y fabricación de cunas para estuches de obsequio, asegurando una presentación y protecci\u00f3n impecables.",
+    "detailedDescription": "Creamos soportes internos termoformados que se ajustan perfectamente a la forma de sus productos. Esto no solo brinda una presentaci\u00f3n elegante, sino que tambi\u00e9n ofrece la m\u00e1xima protecci\u00f3n durante el transporte, minimizando el riesgo de da\u00f1os y mejorando la experiencia de unboxing para el cliente final.",
+    "icon": "Gift",
+    "keyFeatures": [
+      "Dise\u00f1o 3D preciso",
+      "Materiales de alta calidad",
+      "Acabados personalizables",
+      "Protecci\u00f3n superior"
+    ]
+  },
+  {
+    "title": "Soportes para Cosméticos",
+    "description": "Creamos soportes a medida para cajas de perfumes y cosméticos, realzando el valor y la est\u00e9tica de su producto.",
+    "detailedDescription": "Realzamos la presentaci\u00f3n de sus cosméticos con soportes diseñados a medida. Estos soportes no solo organizan y exhiben el producto de forma atractiva, sino que tambi\u00e9n comunican lujo y calidad, elementos clave en la industria de la belleza para captar la atenci\u00f3n del consumidor.",
+    "icon": "Sparkles",
+    "keyFeatures": [
+      "Dise\u00f1o elegante y funcional",
+      "Mejora la exhibici\u00f3n en tienda",
+      "Amplia gama de materiales",
+      "Refuerza la identidad de marca"
+    ]
+  },
+  {
+    "title": "Empaques Blister",
+    "description": "Desarrollamos empaques tipo blister para una excelente visibilidad y seguridad del producto en el punto de venta.",
+    "detailedDescription": "El empaque tipo blister es ideal para una amplia gama de productos, desde art\u00edculos de ferreter\u00eda hasta productos farmac\u00e9uticos. Ofrece una barrera protectora contra la humedad y el polvo, al mismo tiempo que permite una visibilidad clara del producto, lo que aumenta la confianza del consumidor y facilita la decisi\u00f3n de compra.",
+    "icon": "PackageCheck",
+    "keyFeatures": [
+      "Alta visibilidad del producto",
+      "Protecci\u00f3n contra manipulaci\u00f3n",
+      "Adaptable a cualquier forma",
+      "Optimizado para colgar en exhibidores"
+    ]
+  },
+  {
+    "title": "Embalaje Skin Pack",
+    "description": "Empaque al vac\u00edo que se adhiere a su producto, ofreciendo una presentaci\u00f3n atractiva y altamente segura.",
+    "detailedDescription": "El sistema Skin Pack utiliza una película plástica que se sella al vacío sobre una base de cart\u00f3n, creando un empaque seguro y visualmente impactante. Es una soluci\u00f3n perfecta para productos con formas irregulares o para kits que contienen múltiples piezas, ya que mantiene todo en su lugar y lo protege eficazmente.",
+    "icon": "Shrink",
+    "keyFeatures": [
+      "Fijaci\u00f3n segura de productos",
+      "Presentaci\u00f3n limpia y profesional",
+      "Ideal para kits y multipacks",
+      "Reduce el uso de material de empaque"
+    ]
+  },
+  {
+    "title": "Empaque Termo Contraíble",
+    "description": "Soluciones de embalaje con película termo contraíble para agrupar, proteger y promocionar sus productos.",
+    "detailedDescription": "Utilizamos película termo contraíble de alta calidad para agrupar productos, crear packs promocionales o simplemente a\u00f1adir una capa extra de protecci\u00f3n y brillo. Este método es versátil, econ\u00f3mico y eficiente, adapt\u00e1ndose a una gran variedad de formas y tama\u00f1os de productos para un acabado profesional.",
+    "icon": "Flame",
+    "keyFeatures": [
+      "Agrupaci\u00f3n de productos para ofertas",
+      "Protecci\u00f3n contra polvo y rayaduras",
+      "Acabado brillante y profesional",
+      "Aplicaci\u00f3n r\u00e1pida y eficiente"
+    ]
+  },
+  {
+    "title": "Armado de Promociones y Kits",
+    "description": "Servicio de empaquetado de kits y ofertas especiales para sus campa\u00f1as de marketing y ventas estacionales.",
+    "detailedDescription": "Nos encargamos del proceso completo de armado de sus promociones, desde la recepci\u00f3n de los productos hasta el empaquetado final. Nuestro servicio de maquila le permite escalar su producci\u00f3n r\u00e1pidamente para campa\u00f1as estacionales, lanzamientos o ofertas especiales, asegurando una entrega a tiempo y con la m\u00e1xima calidad.",
+    "icon": "PackagePlus",
+    "keyFeatures": [
+      "Gesti\u00f3n log\u00edstica completa",
+      "Flexibilidad y escalabilidad",
+      "Control de calidad riguroso",
+      "Optimizaci\u00f3n de tiempos y costos"
+    ]
+  },
+  {
+    "title": "Armado de Cajas y Ventanas",
+    "description": "Servicio de armado de cajas y colocaci\u00f3n de ventanas de acetato para una presentaci\u00f3n de producto superior.",
+    "detailedDescription": "Un empaque bien armado es clave para la percepci\u00f3n de calidad. Ofrecemos el servicio de armado de cajas de cart\u00f3n y la colocaci\u00f3n precisa de ventanas de acetato. Esto permite a los consumidores ver el producto interior, combinando la protecci\u00f3n del cart\u00f3n con la visibilidad del pl\u00e1stico, ideal para juguetes, regalos y electr\u00f3nicos.",
+    "icon": "Square",
+    "keyFeatures": [
+      "Acabado manual de alta calidad",
+      "Ventanas de acetato claras y resistentes",
+      "Mejora la experiencia en el punto de venta",
+      "Asegura la integridad estructural del empaque"
+    ]
+  }
+]
