@@ -10,6 +10,7 @@ import { StatsSection } from '@/components/sections/stats-section';
 import FAQSection from '@/components/sections/faq-section';
 import prisma from '@/lib/prisma';
 import type { Product } from '@prisma/client';
+import ContactFormSection from '@/components/sections/contact-form-section';
 
 export default async function HomePage() {
   const products: Product[] = await prisma.product.findMany({
@@ -42,10 +43,11 @@ export default async function HomePage() {
         <FAQSection />
       </ScrollReveal>
       <ScrollReveal>
+        <ContactFormSection />
+      </ScrollReveal>
+      <ScrollReveal>
         <MapSection />
       </ScrollReveal>
     </div>
   );
 }
-
-    
