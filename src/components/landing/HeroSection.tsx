@@ -3,12 +3,20 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { StaggerContainer, StaggerItem } from '../animations/motion-wrapper';
+import { FloatingElement } from '../animations/scroll-animations';
 
 export function HeroSection() {
   return (
-    <section className="bg-gradient-to-r from-[#1a2435] to-[#0e413b] text-white py-20 md:py-32 overflow-hidden">
+    <section className="relative bg-gradient-to-r from-[#1a2435] to-[#0e413b] text-white py-20 md:py-32 overflow-hidden">
+      <FloatingElement className="absolute top-20 -left-20 w-64 h-64 bg-primary/10 rounded-full opacity-50 blur-3xl" >
+        <div/>
+      </FloatingElement>
+      <FloatingElement className="absolute bottom-10 -right-20 w-72 h-72 bg-slate-500/10 rounded-full opacity-50 blur-3xl">
+        <div/>
+      </FloatingElement>
+
       <StaggerContainer
-        className="container mx-auto px-4 text-center"
+        className="container mx-auto px-4 text-center relative z-10"
         staggerChildren={0.2}
       >
         <StaggerItem

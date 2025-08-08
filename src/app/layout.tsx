@@ -26,7 +26,7 @@ export default function RootLayout({
           rel="stylesheet"
         ></link>
       </head>
-      <body className="font-body antialiased">
+      <body className="font-body antialiased relative overflow-x-hidden">
         <ScrollProgress />
         <CustomParticles />
         <div className="flex flex-col min-h-screen relative z-10">

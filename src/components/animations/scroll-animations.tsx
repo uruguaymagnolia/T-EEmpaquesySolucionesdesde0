@@ -5,6 +5,7 @@ import {
   useInView,
   useScroll,
   type Variants,
+  useTransform,
 } from 'framer-motion';
 import React, { useRef } from 'react';
 import { cn } from '@/lib/utils';
@@ -24,7 +25,11 @@ export function ScrollReveal({
 
   const defaultVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: 'easeOut' },
+    },
   };
 
   return (
@@ -41,11 +46,7 @@ export function ScrollReveal({
 }
 
 // A component to display a scroll progress bar
-export function ScrollProgress({
-  className,
-}: {
-  className?: string;
-}) {
+export function ScrollProgress({ className }: { className?: string }) {
   const { scrollYProgress } = useScroll();
 
   return (
@@ -60,67 +61,111 @@ export function ScrollProgress({
 }
 
 export const ScrollStaggerContainer = ({
-    children,
-    className,
-    staggerChildren = 0.1,
-    delayChildren = 0,
-    ...props
-  }: {
-    children: React.ReactNode;
-    className?: string;
-    staggerChildren?: number;
-    delayChildren?: number;
-    [key: string]: any;
-  }) => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, amount: 0.1 });
-  
-    const variants: Variants = {
-      hidden: {},
-      visible: {
-        transition: {
-          staggerChildren,
-          delayChildren,
-        },
+  children,
+  className,
+  staggerChildren = 0.1,
+  delayChildren = 0,
+  ...props
+}: {
+  children: React.ReactNode;
+  className?: string;
+  staggerChildren?: number;
+  delayChildren?: number;
+  [key: string]: any;
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  const variants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren,
+        delayChildren,
       },
-    };
-  
-    return (
-      <motion.div
-        ref={ref}
-        variants={variants}
-        initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
-        className={className}
-        {...props}
-      >
-        {children}
-      </motion.div>
-    );
+    },
   };
-  
-  export const ScrollStaggerItem = ({
-    children,
-    className,
-    ...props
-  }: {
-    children: React.ReactNode;
-    className?: string;
-    [key: string]: any;
-  
-  }) => {
-    const defaultVariants: Variants = {
-      hidden: { opacity: 0, y: 20 },
-      visible: { opacity: 1, y: 0 },
-    };
-  
-    return (
-      <motion.div
-        variants={defaultVariants}
-        className={className}
-        {...props}
-      >
-        {children}
-      </motion.div>
-    );
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={variants}
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      className={className}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export const ScrollStaggerItem = ({
+  children,
+  className,
+  ...props
+}: {
+  children: React.ReactNode;
+  className?: string;
+  [key: string]: any;
+}) => {
+  const defaultVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
   };
+
+  return (
+    <motion.div variants={defaultVariants} className={className} {...props}>
+      {children}
+    </motion.div>
+  );
+};
+
+export const FloatingElement = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <motion.div
+      animate={{
+        y: ['-5%', '5%', '-5%'],
+        rotate: [0, 5, 0],
+      }}
+      transition={{
+        duration: Math.random() * 5 + 15, // Slower, more random duration
+        ease: 'easeInOut',
+        repeat: Infinity,
+        repeatType: 'mirror',
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export const ParallaxText = ({
+  children,
+  className,
+  speed = 0.5,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  speed?: number;
+}) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', `${-100 * speed}%`]);
+
+  return (
+    <div ref={ref} className={cn('overflow-hidden', className)}>
+      <motion.div style={{ y }}>{children}</motion.div>
+    </div>
+  );
+};
