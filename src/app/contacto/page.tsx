@@ -1,4 +1,5 @@
 import { ContactForm } from '@/components/landing/ContactForm';
+import { companyData } from '@/lib/data';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function ContactoPage() {
@@ -30,25 +31,25 @@ export default function ContactoPage() {
                   <div className="flex items-center space-x-3">
                     <Mail className="w-5 h-5 text-primary" />
                     <a
-                      href="mailto:contacto@tempaques.com"
+                      href={`mailto:${companyData.email}`}
                       className="text-gray-800 hover:text-primary transition"
                     >
-                      contacto@tempaques.com
+                      {companyData.email}
                     </a>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Phone className="w-5 h-5 text-primary" />
                     <a
-                      href="tel:+123456789"
+                      href={companyData.phone.href}
                       className="text-gray-800 hover:text-primary transition"
                     >
-                      +1 (234) 567-89
+                      {companyData.phone.number}
                     </a>
                   </div>
                   <div className="flex items-center space-x-3">
                     <MapPin className="w-5 h-5 text-primary" />
                     <p className="text-gray-800">
-                      Calle Ficticia 123, Ciudad, País
+                      {companyData.address}
                     </p>
                   </div>
                 </div>

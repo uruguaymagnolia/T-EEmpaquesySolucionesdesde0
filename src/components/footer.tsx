@@ -16,6 +16,7 @@ import {
   Phone,
 } from 'lucide-react';
 import { ScrollReveal } from './animations/scroll-animations';
+import { companyData } from '@/lib/data';
 
 export function Footer() {
   return (
@@ -32,21 +33,21 @@ export function Footer() {
               </p>
               <div className="flex space-x-4 mt-4">
                 <Link
-                  href="#"
+                  href={companyData.socials.facebook}
                   aria-label="Facebook"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <Facebook size={20} />
                 </Link>
                 <Link
-                  href="#"
+                  href={companyData.socials.linkedin}
                   aria-label="LinkedIn"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <Linkedin size={20} />
                 </Link>
                 <Link
-                  href="#"
+                  href={companyData.socials.instagram}
                   aria-label="Instagram"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
@@ -138,24 +139,24 @@ export function Footer() {
               <ul className="space-y-3 text-gray-400 text-sm">
                 <li className="flex items-start gap-2">
                   <MapPin size={16} className="mt-0.5 shrink-0" />
-                  <span>Calle Ficticia 123, Ciudad, País</span>
+                  <span>{companyData.address}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Mail size={16} className="mt-0.5 shrink-0" />
                   <a
-                    href="mailto:contacto@tempaques.com"
+                    href={`mailto:${companyData.email}`}
                     className="hover:text-white transition-colors"
                   >
-                    contacto@tempaques.com
+                    {companyData.email}
                   </a>
                 </li>
                 <li className="flex items-start gap-2">
                   <Phone size={16} className="mt-0.5 shrink-0" />
                   <a
-                    href="tel:+123456789"
+                    href={companyData.phone.href}
                     className="hover:text-white transition-colors"
                   >
-                    +1 (234) 567-89
+                    {companyData.phone.number}
                   </a>
                 </li>
               </ul>

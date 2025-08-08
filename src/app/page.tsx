@@ -4,6 +4,7 @@ import { HeroSection } from '@/components/landing/HeroSection';
 import { ServicesSection } from '@/components/landing/ServicesSection';
 import { TestimonialsSection } from '@/components/landing/TestimonialsSection';
 import { ScrollReveal } from '@/components/animations/scroll-animations';
+import { MapSection } from '@/components/landing/map-section';
 
 export default function HomePage() {
   return (
@@ -20,6 +21,9 @@ export default function HomePage() {
       </ScrollReveal>
       <ScrollReveal>
         <TestimonialsSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <MapSection />
       </ScrollReveal>
     </div>
   );
