@@ -14,7 +14,7 @@ import {
   HelpCircle,
   Mail,
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import {
   StaggerContainer,
   StaggerItem,
@@ -48,7 +48,7 @@ export function Header() {
     { href: '/contacto', label: 'Contacto', icon: Mail },
   ];
 
-  const mobileMenuVariants = {
+  const mobileMenuVariants: Variants = {
     open: {
       x: 0,
       transition: { type: 'spring', stiffness: 300, damping: 30 },
@@ -59,7 +59,7 @@ export function Header() {
     },
   };
 
-  const overlayVariants = {
+  const overlayVariants: Variants = {
     open: { opacity: 1, pointerEvents: 'auto' as const },
     closed: { opacity: 0, pointerEvents: 'none' as const },
   };

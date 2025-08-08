@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, type Variants } from 'framer-motion';
+import type { ElementType, ReactNode } from 'react';
 
 // A wrapper that applies a simple fade-in or slide-in animation
 export function MotionWrapper({
@@ -29,18 +30,22 @@ export function MotionWrapper({
   );
 }
 
+type StaggerContainerProps = {
+  children: ReactNode;
+  className?: string;
+  staggerChildren?: number;
+  delayChildren?: number;
+  as?: ElementType;
+};
+
 // A container for staggered animations
 export const StaggerContainer = ({
   children,
   className,
   staggerChildren = 0.1,
   delayChildren = 0,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  staggerChildren?: number;
-  delayChildren?: number;
-}) => {
+  as: Component = 'div',
+}: StaggerContainerProps) => {
   const variants: Variants = {
     hidden: {},
     visible: {
@@ -50,8 +55,12 @@ export const StaggerContainer = ({
       },
     },
   };
+
+  const MotionComponent = motion(Component);
+
   return (
-    <motion.div
+    // @ts-ignore
+    <MotionComponent
       variants={variants}
       initial="hidden"
       whileInView="visible"
@@ -59,27 +68,39 @@ export const StaggerContainer = ({
       className={className}
     >
       {children}
-    </motion.div>
+    </MotionComponent>
   );
+};
+
+
+type StaggerItemProps = {
+  children: ReactNode;
+  className?: string;
+  as?: ElementType;
+  [key: string]: any;
 };
 
 // An item for staggered animations
 export const StaggerItem = ({
   children,
   className,
+  as: Component = 'div',
   ...variants
-}: {
-  children: React.ReactNode;
-  className?: string;
-  [key: string]: any;
-}) => {
+}: StaggerItemProps) => {
   const defaultVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
+
+  const MotionComponent = motion(Component);
+
   return (
-    <motion.div variants={variants || defaultVariants} className={className}>
+    // @ts-ignore
+    <MotionComponent
+      variants={variants.variants || defaultVariants}
+      className={className}
+    >
       {children}
-    </motion.div>
+    </MotionComponent>
   );
 };
