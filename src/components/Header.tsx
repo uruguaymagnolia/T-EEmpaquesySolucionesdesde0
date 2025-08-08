@@ -74,22 +74,26 @@ export function Header() {
             className="flex items-center space-x-6"
             staggerChildren={0.1}
           >
-            {navLinks.map((link) => (
-              <StaggerItem as="li" key={link.href}>
-                <Link
-                  href={link.href}
-                  className="relative text-gray-300 hover:text-white transition-colors py-2"
-                >
-                  {link.label}
-                  <motion.div
-                    className="absolute bottom-0 left-0 h-[2px] bg-primary"
-                    initial={{ width: 0 }}
-                    whileHover={{ width: '100%' }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </Link>
-              </StaggerItem>
-            ))}
+            {navLinks.map((link) => {
+               const Icon = link.icon;
+               return (
+                <StaggerItem as="li" key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="relative text-gray-300 hover:text-white transition-colors py-2 flex items-center gap-2"
+                  >
+                    <Icon className="size-4" />
+                    <span>{link.label}</span>
+                    <motion.div
+                      className="absolute bottom-0 left-0 h-[2px] bg-primary"
+                      initial={{ width: 0 }}
+                      whileHover={{ width: '100%' }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </Link>
+                </StaggerItem>
+               )
+            })}
           </StaggerContainer>
         </nav>
         <div className="md:hidden">
@@ -134,7 +138,7 @@ export function Header() {
             >
               <nav className="h-full flex flex-col">
                 <div className="flex justify-between items-center p-4 border-b border-slate-700">
-                    <Logo/>
+                    <Logo />
                     <Button
                         variant="ghost"
                         size="icon"
