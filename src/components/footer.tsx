@@ -15,155 +15,163 @@ import {
   MapPin,
   Phone,
 } from 'lucide-react';
-import { ScrollReveal } from './animations/scroll-animations';
 import { companyData } from '@/lib/data';
+import {
+  ScrollReveal,
+  ScrollStaggerContainer,
+  ScrollStaggerItem,
+} from './animations/scroll-animations';
+import { motion } from 'framer-motion';
+
+const footerLinks = [
+  { href: '/', label: 'Inicio', icon: Home },
+  { href: '/soluciones', label: 'Soluciones', icon: Package },
+  { href: '/products', label: 'Productos', icon: ShoppingBag },
+  { href: '/proyectos', label: 'Proyectos', icon: Briefcase },
+  { href: '/contacto', label: 'Contacto', icon: Mail },
+];
+
+const legalLinks = [
+  {
+    href: '/politica-de-privacidad',
+    label: 'Política de Privacidad',
+    icon: Shield,
+  },
+  {
+    href: '/terminos-de-servicio',
+    label: 'Términos de Servicio',
+    icon: FileText,
+  },
+];
+
+const socialLinks = [
+  {
+    href: companyData.socials.facebook,
+    label: 'Facebook',
+    icon: Facebook,
+  },
+  {
+    href: companyData.socials.linkedin,
+    label: 'LinkedIn',
+    icon: Linkedin,
+  },
+  {
+    href: companyData.socials.instagram,
+    label: 'Instagram',
+    icon: Instagram,
+  },
+];
+
+const MotionLink = motion(Link);
 
 export function Footer() {
   return (
     <ScrollReveal>
-      <footer className="bg-[#1a2435] text-white">
+      <footer className="bg-slate-950 text-white border-t border-slate-700/50">
         <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <ScrollStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Columna 1: Logo y Redes Sociales */}
-            <div>
+            <ScrollStaggerItem className="space-y-4">
               <Logo />
-              <p className="mt-4 text-gray-400 text-sm">
+              <p className="text-gray-400 text-sm">
                 Soluciones de empaque innovadoras y personalizadas para potenciar
                 su marca y proteger su producto.
               </p>
-              <div className="flex space-x-4 mt-4">
-                <Link
-                  href={companyData.socials.facebook}
-                  aria-label="Facebook"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <Facebook size={20} />
-                </Link>
-                <Link
-                  href={companyData.socials.linkedin}
-                  aria-label="LinkedIn"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <Linkedin size={20} />
-                </Link>
-                <Link
-                  href={companyData.socials.instagram}
-                  aria-label="Instagram"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <Instagram size={20} />
-                </Link>
+              <div className="flex space-x-4">
+                {socialLinks.map((social) => (
+                  <MotionLink
+                    key={social.label}
+                    href={social.href}
+                    aria-label={social.label}
+                    className="text-gray-400 hover:text-primary transition-colors"
+                    whileHover={{ scale: 1.2, rotate: -10 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <social.icon size={20} />
+                  </MotionLink>
+                ))}
               </div>
-            </div>
+            </ScrollStaggerItem>
 
             {/* Columna 2: Navegación */}
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Navegación</h3>
+            <ScrollStaggerItem>
+              <h3 className="font-semibold text-white text-lg mb-4">
+                Navegación
+              </h3>
               <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/"
-                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-                  >
-                    <Home size={16} />
-                    <span>Inicio</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/soluciones"
-                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-                  >
-                    <Package size={16} />
-                    <span>Soluciones</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/products"
-                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-                  >
-                    <ShoppingBag size={16} />
-                    <span>Productos</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/proyectos"
-                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-                  >
-                    <Briefcase size={16} />
-                    <span>Proyectos</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contacto"
-                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-                  >
-                    <Mail size={16} />
-                    <span>Contacto</span>
-                  </Link>
-                </li>
+                {footerLinks.map((link) => (
+                  <li key={link.href}>
+                    <MotionLink
+                      href={link.href}
+                      className="flex items-center gap-2 text-gray-300 hover:text-primary transition-colors"
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <link.icon size={16} />
+                      <span>{link.label}</span>
+                    </MotionLink>
+                  </li>
+                ))}
               </ul>
-            </div>
+            </ScrollStaggerItem>
 
             {/* Columna 3: Legal */}
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Legal</h3>
+            <ScrollStaggerItem>
+              <h3 className="font-semibold text-white text-lg mb-4">Legal</h3>
               <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/politica-de-privacidad"
-                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-                  >
-                    <Shield size={16} />
-                    <span>Política de Privacidad</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/terminos-de-servicio"
-                    className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-                  >
-                    <FileText size={16} />
-                    <span>Términos de Servicio</span>
-                  </Link>
-                </li>
+                {legalLinks.map((link) => (
+                  <li key={link.href}>
+                    <MotionLink
+                      href={link.href}
+                      className="flex items-center gap-2 text-gray-300 hover:text-primary transition-colors"
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <link.icon size={16} />
+                      <span>{link.label}</span>
+                    </MotionLink>
+                  </li>
+                ))}
               </ul>
-            </div>
+            </ScrollStaggerItem>
 
             {/* Columna 4: Contacto */}
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Ponerse en contacto</h3>
-              <ul className="space-y-3 text-gray-400 text-sm">
-                <li className="flex items-start gap-2">
-                  <MapPin size={16} className="mt-0.5 shrink-0" />
+            <ScrollStaggerItem>
+              <h3 className="font-semibold text-white text-lg mb-4">
+                Ponerse en contacto
+              </h3>
+              <ul className="space-y-3 text-gray-300 text-sm">
+                <li className="flex items-start gap-3">
+                  <MapPin size={16} className="mt-0.5 shrink-0 text-gray-400" />
                   <span>{companyData.address}</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 shrink-0" />
-                  <a
+                <li className="flex items-start gap-3">
+                  <Mail size={16} className="mt-0.5 shrink-0 text-gray-400" />
+                  <MotionLink
                     href={`mailto:${companyData.email}`}
-                    className="hover:text-white transition-colors"
+                    className="hover:text-primary transition-colors"
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     {companyData.email}
-                  </a>
+                  </MotionLink>
                 </li>
-                <li className="flex items-start gap-2">
-                  <Phone size={16} className="mt-0.5 shrink-0" />
-                  <a
+                <li className="flex items-start gap-3">
+                  <Phone size={16} className="mt-0.5 shrink-0 text-gray-400" />
+                  <MotionLink
                     href={companyData.phone.href}
-                    className="hover:text-white transition-colors"
+                    className="hover:text-primary transition-colors"
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     {companyData.phone.number}
-                  </a>
+                  </MotionLink>
                 </li>
               </ul>
-            </div>
-          </div>
+            </ScrollStaggerItem>
+          </ScrollStaggerContainer>
 
-          <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
+          <div className="border-t border-slate-700 mt-8 pt-6 text-center text-sm text-gray-500">
             <p suppressHydrationWarning>
               &copy; {new Date().getFullYear()} T & E Empaques y Soluciones.
               Todos los derechos reservados.
