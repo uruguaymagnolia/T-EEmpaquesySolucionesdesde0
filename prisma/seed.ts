@@ -1,60 +1,93 @@
-import prisma from '../src/lib/prisma';
-import { products } from '../src/lib/mock-products';
-import { caseStudies } from '../src/lib/mock-case-studies';
+
+import { PrismaClient } from '@prisma/client';
+import fs from 'fs';
+import path from 'path';
+
+const prisma = new PrismaClient();
+
+// Tipos para los datos de los archivos JSON
+type ProductData = {
+  name: string;
+  category: string;
+  description: string;
+  imageUrl: string;
+  imageAlt: string;
+  dataAiHint?: string;
+};
+
+type CaseStudyData = {
+  title: string;
+  shortDescription: string;
+  imageUrl: string;
+  imageAlt: string;
+  category: string;
+  problem: string;
+  solution: string;
+  results: string;
+  dataAiHint?: string;
+};
+
 
 function slugify(text: string): string {
-    return text
-        .toString()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase()
-        .trim()
-        .replace(/\s+/g, '-')
-        .replace(/[^\w-]+/g, '')
-        .replace(/--+/g, '-');
+  return text
+    .toString()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-');
 }
 
 async function main() {
-    console.log(`Start seeding ...`);
+  console.log(`Start seeding ...`);
 
-    // Clear existing data
-    await prisma.product.deleteMany();
-    console.log('Deleted records in product table');
+  // Cargar datos desde los archivos JSON
+  const products: ProductData[] = JSON.parse(
+    fs.readFileSync(path.join(__dirname, 'data', 'products.json'), 'utf-8')
+  );
+  const caseStudies: CaseStudyData[] = JSON.parse(
+    fs.readFileSync(path.join(__dirname, 'data', 'caseStudies.json'), 'utf-8')
+  );
 
-    await prisma.caseStudy.deleteMany();
-    console.log('Deleted records in case study table');
+  // Limpiar datos existentes
+  await prisma.product.deleteMany();
+  console.log('Deleted records in product table');
 
-    // Seed Products
-    const productsToCreate = products.map(({ id, name, ...productData }) => ({
-        ...productData,
-        name,
-        slug: slugify(name),
-    }));
-    await prisma.product.createMany({
-        data: productsToCreate,
-    });
-    console.log(`Seeded ${products.length} products`);
+  await prisma.caseStudy.deleteMany();
+  console.log('Deleted records in case study table');
 
-    // Seed Case Studies
-    const caseStudiesToCreate = caseStudies.map(({ id, title, ...caseStudyData }) => ({
-        ...caseStudyData,
-        title,
-        slug: slugify(title),
-    }));
+  // Seed Products
+  const productsToCreate = products.map((productData) => ({
+    ...productData,
+    slug: slugify(productData.name),
+  }));
 
-    await prisma.caseStudy.createMany({
-        data: caseStudiesToCreate,
-    });
-    console.log(`Seeded ${caseStudies.length} case studies`);
+  await prisma.product.createMany({
+    data: productsToCreate,
+  });
+  console.log(`Seeded ${products.length} products`);
 
-    console.log(`Seeding finished.`);
+  // Seed Case Studies
+  const caseStudiesToCreate = caseStudies.map((caseStudyData) => ({
+    ...caseStudyData,
+    slug: slugify(caseStudyData.title),
+  }));
+
+  await prisma.caseStudy.createMany({
+    data: caseStudiesToCreate,
+  });
+  console.log(`Seeded ${caseStudies.length} case studies`);
+
+  console.log(`Seeding finished.`);
 }
 
 main()
-    .catch((e) => {
-        console.error(e);
-        process.exit(1);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
-    });
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
