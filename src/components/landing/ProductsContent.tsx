@@ -8,6 +8,18 @@ import { ProductCard } from './ProductCard';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export function ProductsContent({ products }: { products: Product[] }) {
+  if (!products || products.length === 0) {
+    return (
+      <div className="bg-slate-900">
+        <div className="container mx-auto px-4 py-16 md:py-24">
+          <p className="text-center text-gray-400">
+            No hay productos para mostrar.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   const categories = [
     'Todos',
     ...Array.from(new Set(products.map((p) => p.category))),
