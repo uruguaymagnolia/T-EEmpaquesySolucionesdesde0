@@ -32,14 +32,15 @@ function getIcon(name: string): LucideIcon {
 type SolutionClientPageProps = {
   solution: Solution;
   relatedSolutions: Solution[];
-  Icon: LucideIcon;
 };
 
 export function SolutionClientPage({
   solution,
   relatedSolutions,
-  Icon,
 }: SolutionClientPageProps) {
+    
+  const Icon = getIcon(solution.icon);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
