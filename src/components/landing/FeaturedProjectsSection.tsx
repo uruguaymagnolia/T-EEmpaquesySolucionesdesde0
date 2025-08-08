@@ -8,6 +8,7 @@ import {
   ScrollStaggerContainer,
   ScrollStaggerItem,
 } from '../animations/scroll-animations';
+import { motion } from 'framer-motion';
 
 export function FeaturedProjectsSection({ id }: { id?: string }) {
   return (
@@ -28,7 +29,14 @@ export function FeaturedProjectsSection({ id }: { id?: string }) {
         </ScrollStaggerContainer>
         <div className="text-center">
           <Link href="/proyectos">
-            <Button variant="outline">Ver todos los proyectos</Button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                variant="outline"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              >
+                Ver todos los proyectos
+              </Button>
+            </motion.div>
           </Link>
         </div>
       </div>
