@@ -235,6 +235,10 @@
       "type": "directory",
       "children": [
         {
+          "name": "prisma.ts",
+          "type": "file"
+        },
+        {
           "name": "utils.ts",
           "type": "file"
         }

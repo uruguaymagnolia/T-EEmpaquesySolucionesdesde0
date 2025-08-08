@@ -281,6 +281,11 @@
       "type": "directory",
       "children": [
         {
+          "name": "prisma.ts",
+          "type": "file",
+          "content": "import { PrismaClient } from '@prisma/client'\nimport { withAccelerate } from '@prisma/extension-accelerate'\n\nconst prismaClientSingleton = () => {\n  return new PrismaClient().$extends(withAccelerate())\n}\n\ndeclare const globalThis: {\n  prismaGlobal: ReturnType<typeof prismaClientSingleton>\n} & typeof global\n\nconst prisma = globalThis.prismaGlobal ?? prismaClientSingleton()\n\nexport default prisma\n\nif (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma"
+        },
+        {
           "name": "utils.ts",
           "type": "file",
           "content": "import { clsx, type ClassValue } from \"clsx\"\nimport { twMerge } from \"tailwind-merge\"\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n"
