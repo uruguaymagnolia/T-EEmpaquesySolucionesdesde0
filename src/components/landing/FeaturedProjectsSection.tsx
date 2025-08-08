@@ -4,9 +4,9 @@ import { caseStudies } from '@/lib/mock-case-studies';
 import { CaseStudyCard } from './CaseStudyCard';
 import { Button } from '@/components/ui/button';
 
-export function FeaturedProjectsSection() {
+export function FeaturedProjectsSection({ id }: { id?: string }) {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section id={id} className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">
           Casos de Éxito

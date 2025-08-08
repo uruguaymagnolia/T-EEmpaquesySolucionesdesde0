@@ -10,15 +10,15 @@ export function Header() {
 
   const navLinks = [
     { href: '/', label: 'Inicio' },
-    { href: '/soluciones', label: 'Soluciones' },
+    { href: '/#soluciones', label: 'Soluciones' },
     { href: '/products', label: 'Productos' },
-    { href: '/proyectos', label: 'Proyectos' },
+    { href: '/#proyectos', label: 'Proyectos' },
     { href: '/preguntas-frecuentes', label: 'Preguntas Frecuentes' },
     { href: '/contacto', label: 'Contacto' },
   ];
 
   return (
-    <header className="bg-[#1a2435] text-white sticky top-0 z-50">
+    <header className="bg-[#1a2435] text-white sticky top-0 z-50 shadow-md">
       <div className="container mx-auto px-4 flex justify-between items-center h-16">
         <Logo />
         <nav className="hidden md:flex">
@@ -27,7 +27,7 @@ export function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="hover:text-gray-300 transition-colors"
+                  className="hover:text-primary transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -54,7 +54,7 @@ export function Header() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="hover:text-gray-300 transition-colors text-lg"
+                    className="hover:text-primary transition-colors text-lg"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.label}

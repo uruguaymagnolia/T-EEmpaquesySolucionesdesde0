@@ -8,9 +8,9 @@ export default function HomePage() {
   return (
     <div>
       <HeroSection />
-      <ServicesSection />
+      <ServicesSection id="soluciones" />
       <CtaSection />
-      <FeaturedProjectsSection />
+      <FeaturedProjectsSection id="proyectos" />
       <TestimonialsSection />
     </div>
   );
