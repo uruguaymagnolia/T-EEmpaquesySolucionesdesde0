@@ -3,23 +3,33 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import {
+  Menu,
+  X,
+  Home,
+  Package,
+  ShoppingBag,
+  Briefcase,
+  HelpCircle,
+  Mail,
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   StaggerContainer,
   StaggerItem,
 } from '@/components/animations/motion-wrapper';
+import type { LucideIcon } from 'lucide-react';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navLinks = [
-    { href: '/', label: 'Inicio' },
-    { href: '/#soluciones', label: 'Soluciones' },
-    { href: '/products', label: 'Productos' },
-    { href: '/#proyectos', label: 'Proyectos' },
-    { href: '/preguntas-frecuentes', label: 'Preguntas Frecuentes' },
-    { href: '/contacto', label: 'Contacto' },
+  const navLinks: { href: string; label: string; icon: LucideIcon }[] = [
+    { href: '/', label: 'Inicio', icon: Home },
+    { href: '/#soluciones', label: 'Soluciones', icon: Package },
+    { href: '/products', label: 'Productos', icon: ShoppingBag },
+    { href: '/#proyectos', label: 'Proyectos', icon: Briefcase },
+    { href: '/preguntas-frecuentes', label: 'Preguntas Frecuentes', icon: HelpCircle },
+    { href: '/contacto', label: 'Contacto', icon: Mail },
   ];
 
   const mobileMenuVariants = {
@@ -88,17 +98,21 @@ export function Header() {
                 staggerChildren={0.07}
                 delayChildren={0.2}
               >
-                {navLinks.map((link) => (
-                  <StaggerItem as="li" key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="hover:text-primary transition-colors text-lg"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
-                  </StaggerItem>
-                ))}
+                {navLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <StaggerItem as="li" key={link.href} className="w-full px-4">
+                      <Link
+                        href={link.href}
+                        className="flex items-center justify-center gap-3 w-full text-center py-2 text-lg text-gray-300 hover:text-primary hover:bg-slate-700/50 rounded-md transition-colors"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <Icon className="size-5" />
+                        <span>{link.label}</span>
+                      </Link>
+                    </StaggerItem>
+                  );
+                })}
               </StaggerContainer>
             </nav>
           </motion.div>
