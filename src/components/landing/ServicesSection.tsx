@@ -11,14 +11,13 @@ export function ServicesSection({ id }: { id?: string }) {
     <section id={id} className="py-16 md:py-24 bg-slate-950">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">
-          Nuestros Servicios
+          Nuestros Servicios de Empaque
         </h2>
-        <p className="text-lg text-gray-300 text-center max-w-2xl mx-auto mb-12">
-          Ofrecemos un abanico de servicios para llevar su empaque al siguiente
-          nivel.
+        <p className="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-12">
+          Ofrecemos una amplia gama de soluciones de empaque y embalaje diseñadas para satisfacer las necesidades específicas de su negocio.
         </p>
         <ScrollStaggerContainer
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
           staggerChildren={0.15}
         >
           {solutions.map((solution, index) => {

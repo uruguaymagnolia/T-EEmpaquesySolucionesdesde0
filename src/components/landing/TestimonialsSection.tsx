@@ -78,7 +78,7 @@ export function TestimonialsSection() {
                     </div>
                   </CarouselItem>
                 </ScrollStaggerItem>
-              ))}\
+              ))}
             </CarouselContent>
             <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 hidden sm:flex" />
             <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 hidden sm:flex" />

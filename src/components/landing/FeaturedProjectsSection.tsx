@@ -25,7 +25,7 @@ export function FeaturedProjectsSection({ id }: { id?: string }) {
             <ScrollStaggerItem key={study.id}>
               <CaseStudyCard caseStudy={study} />
             </ScrollStaggerItem>
-          ))}\
+          ))}
         </ScrollStaggerContainer>
         <div className="text-center">
           <Link href="/proyectos">
