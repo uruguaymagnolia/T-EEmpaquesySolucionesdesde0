@@ -5,14 +5,18 @@ import {
   APIProvider,
   Map,
   AdvancedMarker,
+  Pin,
 } from '@vis.gl/react-google-maps';
 import { ScrollReveal } from '@/components/animations/scroll-animations';
 import { companyData } from '@/lib/data';
 import { motion } from 'framer-motion';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Logo } from '../logo';
+import { Mail, MapPin, Phone } from 'lucide-react';
 
 const containerStyle = {
   width: '100%',
-  height: '500px',
+  height: '100%',
   borderRadius: '1rem',
   border: '1px solid rgba(71, 85, 105, 0.5)',
 };
@@ -41,7 +45,7 @@ export function MapSection() {
       <ScrollReveal>
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Encuéntranos en el <span className="text-green-400">Mapa</span>
+            Encuéntranos en el <span className="text-primary">Mapa</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Visita nuestras instalaciones o contáctanos directamente.
@@ -56,7 +60,7 @@ export function MapSection() {
             y: -5,
           }}
           transition={{ type: 'spring', stiffness: 300 }}
-          className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-4 md:p-8 border border-slate-700/50 overflow-hidden"
+          className="relative h-[60vh] min-h-[500px] bg-slate-800/50 backdrop-blur-sm rounded-2xl p-4 md:p-8 border border-slate-700/50 overflow-hidden"
         >
           <APIProvider apiKey={apiKey}>
             <Map
@@ -67,7 +71,33 @@ export function MapSection() {
               disableDefaultUI={true}
               mapId="t-and-e-map"
             >
-              <AdvancedMarker position={position} />
+              <AdvancedMarker position={position}>
+                <motion.div
+                  initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <Card className="w-80 border-slate-700 bg-slate-900/80 backdrop-blur-md shadow-2xl">
+                    <CardHeader>
+                      <Logo />
+                    </CardHeader>
+                    <CardContent className="space-y-3 text-sm">
+                       <div className="flex items-start gap-3">
+                          <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <span className="text-gray-300">{companyData.address}</span>
+                        </div>
+                       <div className="flex items-start gap-3">
+                          <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                           <a href={companyData.phone.href} className="text-gray-300 hover:text-primary transition-colors">{companyData.phone.number}</a>
+                        </div>
+                       <div className="flex items-start gap-3">
+                          <Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          <a href={`mailto:${companyData.email}`} className="text-gray-300 hover:text-primary transition-colors">{companyData.email}</a>
+                        </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </AdvancedMarker>
             </Map>
           </APIProvider>
         </motion.div>
