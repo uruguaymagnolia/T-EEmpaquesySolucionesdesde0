@@ -6,6 +6,7 @@ import { ScrollReveal } from '@/components/animations/scroll-animations';
 import { MapSection } from '@/components/landing/map-section';
 import ProductCarouselSection from '@/components/sections/product-carousel-section';
 import TestimonialsSection from '@/components/sections/testimonials-section';
+import { StatsSection } from '@/components/sections/stats-section';
 
 export default function HomePage() {
   return (
@@ -19,6 +20,9 @@ export default function HomePage() {
       </ScrollReveal>
       <ScrollReveal>
         <CtaSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <StatsSection />
       </ScrollReveal>
       <ScrollReveal>
         <FeaturedProjectsSection id="proyectos" />
