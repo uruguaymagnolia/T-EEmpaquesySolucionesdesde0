@@ -1,9 +1,8 @@
-// eslint.config.mjs
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginReactConfig from "eslint-plugin-react/configs/recommended.js";
-import eslintPluginReactCompiler from "eslint-plugin-react-compiler";
+import nextPlugin from "@next/eslint-plugin-next";
 
 export default [
   {
@@ -12,37 +11,40 @@ export default [
         "**/*.config.mjs", 
         "public/sw.js", 
         "node_modules/", 
-        ".next/",
-        "postcss.config.mjs",
-        "tailwind.config.ts"
+        ".next/"
     ]
-  },
-  {
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    files: ["**/*.{ts,tsx}"],
     ...pluginReactConfig,
-    settings: {
+     settings: {
       react: {
-        version: "detect",
-      },
+        version: "detect"
+      }
     },
+    rules: {
+      ...pluginReactConfig.rules,
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off"
+    }
   },
   {
     plugins: {
-      "react-compiler": eslintPluginReactCompiler,
+      "@next": nextPlugin
     },
     rules: {
-      "react-compiler/react-compiler": "error",
-      "@typescript-eslint/no-unused-vars": "warn",
-      "@typescript-eslint/no-explicit-any": "warn",
-    },
+       ...nextPlugin.configs.recommended.rules,
+       ...nextPlugin.configs['core-web-vitals'].rules,
+    }
+  },
+  {
+    languageOptions: { 
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      }
+    }
   },
 ];
