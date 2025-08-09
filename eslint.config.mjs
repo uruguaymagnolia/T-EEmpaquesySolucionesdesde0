@@ -17,8 +17,7 @@ export default tseslint.config(
       '**/*.config.mjs',
       'prisma/seed.ts',
       'prisma/subir.ts',
-      'prisma/bajar.ts',
-      'public/sw.js'
+      'prisma/bajar.ts'
     ],
   },
   {
@@ -28,6 +27,7 @@ export default tseslint.config(
       '@next/next': nextPlugin,
       'react': reactPlugin,
       'react-compiler': compilerPlugin,
+      '@typescript-eslint': tseslint.plugin,
     },
     languageOptions: {
       parser: tseslint.parser,
@@ -43,11 +43,8 @@ export default tseslint.config(
       // Reglas recomendadas de plugins
       ...eslint.configs.recommended.rules,
       ...tseslint.configs.recommended.rules,
-      // @ts-ignore
       ...reactPlugin.configs.recommended.rules,
-      // @ts-ignore
       ...nextPlugin.configs.recommended.rules,
-      // @ts-ignore
       ...nextPlugin.configs['core-web-vitals'].rules,
 
       // Regla del nuevo compilador de React
