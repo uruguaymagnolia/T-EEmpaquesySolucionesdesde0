@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { CaseStudy } from '@prisma/client';

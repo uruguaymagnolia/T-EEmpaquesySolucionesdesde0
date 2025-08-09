@@ -1,3 +1,4 @@
+
 'use server';
 import type { CaseStudy } from '@prisma/client';
 import { CaseStudyCard } from '@/components/landing/CaseStudyCard';

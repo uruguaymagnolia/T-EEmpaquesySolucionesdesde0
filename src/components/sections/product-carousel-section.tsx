@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useCallback, useEffect, useState } from 'react';
@@ -57,11 +58,6 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
     return null;
   }
 
-  const slideVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
-  };
-
   return (
     <ScrollReveal>
       <section className="bg-slate-900 py-20 sm:py-24">
@@ -72,15 +68,14 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
           <div className="relative mt-12">
             <div className="overflow-hidden" ref={emblaRef}>
               <div className="flex -ml-4">
-                {products.map((product, index) => (
+                {products.map((product) => (
                   <motion.div
                     className="min-w-0 flex-shrink-0 flex-grow-0 basis-full pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
                     key={product.id}
-                    variants={slideVariants}
-                    initial="hidden"
-                    animate={emblaApi?.selectedScrollSnap() === index ? 'visible' : 'hidden'}
-                    whileInView="visible"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.5 }}
+                    transition={{ duration: 0.5 }}
                   >
                     <ProductCard product={product} />
                   </motion.div>
