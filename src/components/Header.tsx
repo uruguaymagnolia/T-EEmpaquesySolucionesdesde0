@@ -78,22 +78,16 @@ export function Header() {
     closed: { opacity: 0, pointerEvents: 'none' as const },
   };
 
-  const navLinkVariants: Variants = {
+  const iconVariants: Variants = {
     rest: {
+      rotate: 0,
       scale: 1,
+      transition: { duration: 0.2, ease: 'easeOut' },
     },
     hover: {
-      scale: 1.05,
-    },
-  };
-
-  const navLinkUnderlineVariants: Variants = {
-    rest: {
-      width: 0,
-    },
-    hover: {
-      width: '100%',
-      transition: { duration: 0.3, ease: 'easeOut' },
+      rotate: -15,
+      scale: 1.2,
+      transition: { duration: 0.2, ease: 'easeOut' },
     },
   };
 
@@ -114,33 +108,26 @@ export function Header() {
         <nav className="hidden md:flex">
           <StaggerContainer
             as="ul"
-            className="flex items-center space-x-6"
+            className="flex items-center space-x-2"
             staggerChildren={0.1}
           >
             {navLinks.map((link) => {
                const Icon = link.icon;
                return (
                 <StaggerItem as="li" key={link.href}>
-                  <motion.div
-                    variants={navLinkVariants}
-                    initial="rest"
-                    whileHover="hover"
-                    animate="rest"
-                  >
+                  <motion.div initial="rest" whileHover="hover" animate="rest">
                     <Link
                       href={link.href}
-                      className="relative text-muted-foreground hover:text-foreground transition-colors py-2 flex items-center"
+                      className="relative text-muted-foreground hover:text-white transition-colors duration-300 py-2 px-3 rounded-md hover:bg-white/10 flex items-center gap-2"
                     >
-                      <Icon
-                        className={`flex-shrink-0 size-4 transition-all duration-300 ease-in-out ${
-                          scrolled ? 'w-0' : 'w-4 mr-2'
-                        }`}
-                      />
+                      <motion.span variants={iconVariants}>
+                        <Icon
+                          className={`flex-shrink-0 size-4 transition-all duration-300 ease-in-out ${
+                            scrolled ? 'w-0' : 'w-4'
+                          }`}
+                        />
+                      </motion.span>
                       <span>{link.label}</span>
-                      <motion.div
-                        className="absolute bottom-0 left-0 h-[2px] bg-primary"
-                        variants={navLinkUnderlineVariants}
-                      />
                     </Link>
                   </motion.div>
                 </StaggerItem>
