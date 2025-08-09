@@ -2,14 +2,8 @@
 
 import { ScrollReveal } from '@/components/animations/scroll-animations';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
 export default function TerminosDeServicioPage() {
-  const [currentDate, setCurrentDate] = useState('');
-
-  useEffect(() => {
-    setCurrentDate(new Date().toLocaleDateString('es-ES'));
-  }, []);
 
   return (
     <div className="bg-slate-900 text-gray-300">
@@ -29,7 +23,7 @@ export default function TerminosDeServicioPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto"
           >
-            Última actualización: {currentDate}
+             Última actualización: 24 de Julio, 2024
           </motion.p>
         </div>
       </header>
