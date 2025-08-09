@@ -16,6 +16,7 @@ export function Logo() {
           width={120}
           height={40}
           className="h-10 sm:h-12 w-auto shrink-0"
+          sizes="120px"
           priority
         />
         <div className="flex flex-col">

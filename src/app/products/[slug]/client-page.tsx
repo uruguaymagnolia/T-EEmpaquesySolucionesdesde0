@@ -57,6 +57,7 @@ export function ProductDetailsClientPage({
                 alt={product.imageAlt}
                 width={800}
                 height={600}
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="h-auto w-full object-cover"
                 data-ai-hint={product.dataAiHint ?? 'product image'}
               />

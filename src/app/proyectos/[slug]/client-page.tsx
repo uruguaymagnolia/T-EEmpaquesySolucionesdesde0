@@ -35,6 +35,7 @@ export function ProjectDetailsClientPage({
             alt={caseStudy.imageAlt}
             fill
             className="object-cover opacity-30"
+            sizes="100vw"
             priority
             data-ai-hint={caseStudy.dataAiHint ?? 'project image'}
           />
