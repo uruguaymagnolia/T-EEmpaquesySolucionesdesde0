@@ -17,12 +17,10 @@ export function Logo({ scrolled = false }: LogoProps) {
         <Image
           src="/Logo_TyE.svg"
           alt="T & E Tecnología y Empaque Logo"
-          width={120}
-          height={40}
-          className={`w-auto shrink-0 transition-all duration-300 ease-in-out ${
-            scrolled ? 'h-10' : 'h-10 sm:h-12'
-          }`}
-          sizes="120px"
+          width={48}
+          height={48}
+          className="shrink-0"
+          sizes="48px"
           priority
         />
         <div
