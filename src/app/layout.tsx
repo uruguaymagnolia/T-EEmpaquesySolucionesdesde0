@@ -17,6 +17,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'T & E Empaques y Soluciones',
   description: 'Soluciones de empaque innovadoras y personalizadas.',
+  manifest: '/manifest.json',
 };
 
 export default function RootLayout({
@@ -26,6 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${inter.variable}`}>
+       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#1a2435" />
+      </head>
       <body className="font-sans antialiased relative overflow-x-hidden bg-background-dark">
         <ScrollProgress />
         <CustomParticles />
