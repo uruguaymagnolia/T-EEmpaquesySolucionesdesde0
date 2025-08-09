@@ -7,6 +7,7 @@ import { Footer } from '@/components/footer';
 import { ScrollProgress } from '@/components/animations/scroll-animations';
 import { CustomParticles } from '@/components/background/custom-particles';
 import { BackToTopButton } from '@/components/common/BackToTopButton';
+import PwaInstaller from '@/components/PwaInstaller';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -28,10 +29,10 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable}`}>
        <head>
-        <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#1a2435" />
       </head>
       <body className="font-sans antialiased relative overflow-x-hidden bg-background-dark">
+        <PwaInstaller />
         <ScrollProgress />
         <CustomParticles />
         <div className="flex flex-col min-h-screen relative z-10">
