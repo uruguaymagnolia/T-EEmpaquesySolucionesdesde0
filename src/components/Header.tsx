@@ -203,7 +203,7 @@ export function Header() {
                       >
                         <Link
                           href={link.href}
-                          className="flex items-center gap-3 w-full p-3 text-lg text-muted-foreground hover:text-primary hover:bg-accent/50 rounded-md transition-colors"
+                          className="flex items-center gap-3 w-full p-3 text-lg text-gray-300 hover:text-primary hover:bg-slate-700/50 rounded-md transition-colors"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           <Icon className="size-5" />
