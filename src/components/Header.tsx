@@ -91,6 +91,11 @@ export function Header() {
     },
   };
 
+  const mainNavLinks = navLinks.filter((link) => link.label !== 'Contacto');
+  const contactLink = navLinks.find((link) => link.label === 'Contacto');
+  const ContactIcon = contactLink?.icon ?? Mail;
+
+
   return (
     <header
       className={`text-white sticky top-0 z-50 transition-all duration-300 ease-in-out ${
@@ -105,13 +110,13 @@ export function Header() {
         }`}
       >
         <Logo />
-        <nav className="hidden md:flex">
+        <nav className="hidden md:flex items-center">
           <StaggerContainer
             as="ul"
             className="flex items-center space-x-2"
             staggerChildren={0.1}
           >
-            {navLinks.map((link) => {
+            {mainNavLinks.map((link) => {
                const Icon = link.icon;
                return (
                 <StaggerItem as="li" key={link.href}>
@@ -134,6 +139,25 @@ export function Header() {
                )
             })}
           </StaggerContainer>
+          {contactLink && (
+            <motion.div
+              className="ml-4"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link
+                href={contactLink.href}
+                className="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-full transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
+              >
+                <ContactIcon
+                  className={`flex-shrink-0 size-4 transition-all duration-300 ease-in-out ${
+                    scrolled ? 'w-0' : 'w-4'
+                  }`}
+                />
+                <span>{contactLink.label}</span>
+              </Link>
+            </motion.div>
+          )}
         </nav>
         <div className="md:hidden">
           <Button
