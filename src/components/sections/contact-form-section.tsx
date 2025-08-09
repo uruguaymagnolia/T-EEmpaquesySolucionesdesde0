@@ -49,7 +49,7 @@ function SubmitButton() {
     <Button
       type="submit"
       disabled={pending}
-      className="w-full bg-green-500 text-white hover:bg-green-600 transition-colors"
+      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
       size="lg"
     >
       {pending ? (
@@ -96,13 +96,13 @@ const ContactFormSection: React.FC = () => {
 
   return (
     <ScrollReveal>
-      <section className="bg-slate-900 py-20 sm:py-24">
+      <section className="bg-background-light py-20 sm:py-24">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">
               Contáctanos
             </h2>
-            <p className="mt-4 text-lg text-gray-400">
+            <p className="mt-4 text-lg text-muted-foreground">
               ¿Tienes alguna pregunta o quieres empezar un proyecto? Envíanos un
               mensaje.
             </p>
@@ -114,11 +114,11 @@ const ContactFormSection: React.FC = () => {
           >
             <motion.div
               whileHover={{
-                boxShadow: '0 0 25px rgba(16, 185, 129, 0.3)',
+                boxShadow: '0 0 25px hsla(var(--primary), 0.3)',
                 y: -5,
               }}
               transition={{ type: 'spring', stiffness: 300 }}
-              className="rounded-xl border border-slate-700/50 bg-slate-800/50 p-6 sm:p-8 backdrop-blur-sm"
+              className="rounded-xl border border-border/50 bg-background-light/50 p-6 sm:p-8 backdrop-blur-sm"
             >
               <Form {...form}>
                 <form
@@ -136,12 +136,12 @@ const ContactFormSection: React.FC = () => {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Nombre</FormLabel>
+                          <FormLabel className="text-foreground">Nombre</FormLabel>
                           <FormControl>
                             <Input
                               placeholder="Tu nombre completo"
                               {...field}
-                              className="bg-slate-900/50 border-slate-700 text-white"
+                              className="bg-background-dark/50 border-border text-foreground"
                             />
                           </FormControl>
                           <FormMessage />
@@ -155,14 +155,14 @@ const ContactFormSection: React.FC = () => {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">
+                          <FormLabel className="text-foreground">
                             Correo Electrónico
                           </FormLabel>
                           <FormControl>
                             <Input
                               placeholder="tu@email.com"
                               {...field}
-                              className="bg-slate-900/50 border-slate-700 text-white"
+                              className="bg-background-dark/50 border-border text-foreground"
                             />
                           </FormControl>
                           <FormMessage />
@@ -176,13 +176,13 @@ const ContactFormSection: React.FC = () => {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Mensaje</FormLabel>
+                          <FormLabel className="text-foreground">Mensaje</FormLabel>
                           <FormControl>
                             <Textarea
                               placeholder="¿En qué podemos ayudarte?"
                               rows={5}
                               {...field}
-                              className="resize-none bg-slate-900/50 border-slate-700 text-white"
+                              className="resize-none bg-background-dark/50 border-border text-foreground"
                             />
                           </FormControl>
                           <FormMessage />
