@@ -23,11 +23,9 @@
     idx = {
       # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
       extensions = [
-    "dbaeumer.vscode-eslint" 
-      "esbenp.prettier-vscode"  
-      "bradlc.vscode-tailwindcss" 
-      "ms-python.debugpy"
-      "ms-python.python"
+        # "vscodevim.vim"
+        "ms-python.debugpy"
+        "ms-python.python"
       ];
       workspace = {
         onCreate = {
