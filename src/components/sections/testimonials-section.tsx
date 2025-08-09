@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Quote, Star } from 'lucide-react';
 import {
@@ -10,7 +9,14 @@ import {
   ScrollReveal,
 } from '@/components/animations/scroll-animations';
 import { Card, CardContent } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
 
 const testimonials = [
   {
@@ -41,7 +47,7 @@ const testimonials = [
     company: 'Fundador, Juguetes Creativos',
     rating: 5,
   },
-   {
+  {
     quote:
       'La atención al detalle y la disposición para encontrar soluciones creativas es lo que distingue a T&E. Estamos muy satisfechos con el resultado final de nuestro empaque.',
     name: 'Roberto Ponce',
@@ -50,42 +56,10 @@ const testimonials = [
   },
 ];
 
-const DotButton = ({ selected, onClick, index }: {selected: boolean, onClick: () => void, index: number}) => (
-  <button
-    aria-label={`Ir al testimonio ${index + 1}`}
-    className={cn(
-      'h-3 w-3 rounded-full mx-1 transition-all duration-300',
-      selected ? 'bg-primary scale-125' : 'bg-slate-700'
-    )}
-    type="button"
-    onClick={onClick}
-  />
-);
-
-
 const TestimonialsSection: React.FC = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'center' });
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
-
-  const scrollTo = useCallback((index: number) => emblaApi && emblaApi.scrollTo(index), [
-    emblaApi,
-  ]);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi, setSelectedIndex]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    setScrollSnaps(emblaApi.scrollSnapList());
-    emblaApi.on('select', onSelect);
-    emblaApi.on('reInit', onSelect);
-  }, [emblaApi, setScrollSnaps, onSelect]);
-
-
+   const plugin = React.useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: true })
+  );
   return (
     <ScrollReveal>
       <section className="relative overflow-hidden bg-slate-900 py-20 sm:py-24">
@@ -110,19 +84,23 @@ const TestimonialsSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="mt-12 overflow-hidden" ref={emblaRef}>
-            <div className="flex">
+          <Carousel
+            plugins={[plugin.current]}
+            className="w-full max-w-6xl mx-auto mt-12"
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
+             opts={{
+              align: "start",
+              loop: true,
+            }}
+          >
+            <CarouselContent>
               {testimonials.map((testimonial, index) => (
-                <div 
-                  key={index} 
-                  className="min-w-0 flex-shrink-0 flex-grow-0 basis-full md:basis-1/2 lg:basis-1/3 px-4"
-                >
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div className="p-4">
                   <motion.div
-                    animate={{ 
-                      scale: index === selectedIndex ? 1 : 0.85,
-                      opacity: index === selectedIndex ? 1 : 0.5,
-                    }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     className="h-full"
                   >
                     <Card className="h-full border-slate-700/50 bg-slate-800/50 p-6 backdrop-blur-sm">
@@ -158,20 +136,13 @@ const TestimonialsSection: React.FC = () => {
                       </CardContent>
                     </Card>
                   </motion.div>
-                </div>
+                  </div>
+                </CarouselItem>
               ))}
-            </div>
-          </div>
-           <div className="flex justify-center mt-6">
-            {scrollSnaps.map((_, index) => (
-              <DotButton
-                key={index}
-                index={index}
-                selected={index === selectedIndex}
-                onClick={() => scrollTo(index)}
-              />
-            ))}
-          </div>
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 hidden sm:flex" />
+            <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 hidden sm:flex" />
+          </Carousel>
         </div>
       </section>
     </ScrollReveal>

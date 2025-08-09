@@ -56,6 +56,30 @@ const ContactFormSection = dynamic(
   }
 );
 
+const LazyCtaSection = dynamic(
+  () => import('@/components/landing/CtaSection').then((mod) => mod.CtaSection),
+  {
+    loading: () => <Skeleton className="h-[250px] w-full" />,
+  }
+);
+
+const LazyStatsSection = dynamic(
+  () =>
+    import('@/components/sections/stats-section').then(
+      (mod) => mod.StatsSection
+    ),
+  {
+    loading: () => <Skeleton className="h-[400px] w-full" />,
+  }
+);
+
+const LazyFeaturedProjectsSection = dynamic(
+  () => import('@/components/landing/FeaturedProjectsSection'),
+  {
+    loading: () => <Skeleton className="h-[600px] w-full" />,
+  }
+);
+
 type ClientSectionsWrapperProps = {
   products: Product[];
   caseStudies: CaseStudy[];
@@ -74,16 +98,10 @@ export default function ClientSectionsWrapper({
         <ServicesSection id="soluciones" solutions={solutions} />
       </ScrollReveal>
       <ProductCarouselSection products={products} />
-      <ScrollReveal>
-        <CtaSection />
-      </ScrollReveal>
-      <ScrollReveal>
-        <StatsSection />
-      </ScrollReveal>
-      <ScrollReveal>
-        <FeaturedProjectsSection id="proyectos" caseStudies={caseStudies} />
-      </ScrollReveal>
       
+      <LazyCtaSection />
+      <LazyStatsSection />
+      <LazyFeaturedProjectsSection id="proyectos" caseStudies={caseStudies} />
       <TestimonialsSection />
       <FAQSection />
       <ContactFormSection />
