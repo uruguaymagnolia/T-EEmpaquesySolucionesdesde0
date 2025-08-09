@@ -7,6 +7,8 @@ import { StaggerContainer, StaggerItem } from '../animations/motion-wrapper';
 import { FloatingElement } from '../animations/scroll-animations';
 import { Star } from 'lucide-react';
 import React, { useEffect, useRef } from 'react';
+import { IsometricBox } from '../icons/IsometricBox';
+import { PackageFold } from '../icons/PackageFold';
 
 function GridPattern(props: React.ComponentProps<typeof motion.div>) {
   return (
@@ -107,11 +109,11 @@ export function HeroSection() {
   return (
     <section ref={ref} className="relative bg-gradient-to-r from-primary-foreground to-primary-dark text-white py-20 md:py-32 overflow-hidden">
       <GridPattern style={{ x: gridX, y: gridY }} />
-      <FloatingElement style={{ x: float1X, y: float1Y }} className="absolute top-20 -left-20 w-64 h-64 bg-primary/10 rounded-full opacity-50 blur-3xl" >
-        <div/>
+      <FloatingElement style={{ x: float1X, y: float1Y }} className="absolute top-20 -left-20 opacity-50" >
+        <IsometricBox className="w-64 h-64 text-primary/10 stroke-[0.5]" />
       </FloatingElement>
-      <FloatingElement style={{ x: float2X, y: float2Y }} className="absolute bottom-10 -right-20 w-72 h-72 bg-slate-500/10 rounded-full opacity-50 blur-3xl">
-        <div/>
+      <FloatingElement style={{ x: float2X, y: float2Y }} className="absolute bottom-10 -right-20 opacity-50">
+        <PackageFold className="w-72 h-72 text-slate-500/10 stroke-[0.5]" />
       </FloatingElement>
 
       <div
