@@ -34,7 +34,7 @@ const stats = [
 export function StatsSection() {
   return (
     <ScrollReveal>
-      <section className="bg-background-alt py-20 sm:py-24">
+      <section className="relative bg-background-alt py-20 sm:py-24">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">

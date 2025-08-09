@@ -84,12 +84,17 @@ const AnimatedTitle = ({ children }: { children: React.ReactNode }) => (
 );
 
 export function Footer() {
-  const year = new Date().getFullYear();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${companyData.location.lat},${companyData.location.lng}`;
 
   return (
     <ScrollReveal>
-      <footer className="bg-background-dark text-white border-t border-border/50">
+      <footer className="relative bg-background-dark text-white border-t border-border/50">
         <div className="container mx-auto px-4 py-12">
           <ScrollStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Columna 1: Logo y Redes Sociales */}
@@ -210,7 +215,7 @@ export function Footer() {
 
           <div className="border-t border-border mt-8 pt-6 text-center text-sm text-muted-foreground">
             <p>
-              &copy; {year} T & E Empaques y Soluciones.
+              &copy; {isClient ? new Date().getFullYear() : '2024'} T & E Empaques y Soluciones.
               Todos los derechos reservados.
             </p>
           </div>

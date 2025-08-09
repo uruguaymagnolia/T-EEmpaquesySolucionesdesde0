@@ -35,7 +35,7 @@ export default function PoliticaDePrivacidadPage() {
         </div>
       </header>
 
-      <main className="py-16 md:py-24">
+      <main className="relative py-16 md:py-24">
         <ScrollReveal className="container mx-auto px-4 max-w-4xl space-y-8">
           <section>
             <h2 className="text-2xl font-semibold text-white mb-4">

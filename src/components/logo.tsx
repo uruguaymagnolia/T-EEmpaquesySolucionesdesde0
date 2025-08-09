@@ -18,6 +18,7 @@ export function Logo() {
           className="h-10 sm:h-12 w-auto shrink-0"
           sizes="120px"
           priority
+          style={{ height: 'auto' }}
         />
         <div className="flex flex-col">
           <h1 className="text-base sm:text-xl font-bold text-primary leading-tight">

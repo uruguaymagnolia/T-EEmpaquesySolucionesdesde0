@@ -72,7 +72,7 @@ export function SolutionClientPage({
         </div>
       </header>
 
-      <main className="container mx-auto max-w-6xl px-4 py-16 md:py-24">
+      <main className="relative container mx-auto max-w-6xl px-4 py-16 md:py-24">
         <div className="mb-8">
           <Link href="/soluciones">
             <Button variant="outline">

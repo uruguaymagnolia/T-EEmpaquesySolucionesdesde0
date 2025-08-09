@@ -32,7 +32,7 @@ export function ProjectsPageContent({
         </motion.div>
       </header>
 
-      <main className="container mx-auto px-4 py-16 md:py-24">
+      <main className="relative container mx-auto px-4 py-16 md:py-24">
         <ScrollReveal>
           {caseStudies.length > 0 ? (
             <ScrollStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
