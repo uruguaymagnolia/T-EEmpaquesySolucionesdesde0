@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import type { ElementType, ReactNode } from 'react';
 
