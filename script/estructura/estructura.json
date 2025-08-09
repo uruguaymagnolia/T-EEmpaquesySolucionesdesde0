@@ -99,6 +99,10 @@
               "type": "directory",
               "children": [
                 {
+                  "name": "client-page.tsx",
+                  "type": "file"
+                },
+                {
                   "name": "page.tsx",
                   "type": "file"
                 }
@@ -122,6 +126,10 @@
               "name": "[slug]",
               "type": "directory",
               "children": [
+                {
+                  "name": "client-page.tsx",
+                  "type": "file"
+                },
                 {
                   "name": "page.tsx",
                   "type": "file"
@@ -147,10 +155,18 @@
               "type": "directory",
               "children": [
                 {
+                  "name": "client-page.tsx",
+                  "type": "file"
+                },
+                {
                   "name": "page.tsx",
                   "type": "file"
                 }
               ]
+            },
+            {
+              "name": "content.tsx",
+              "type": "file"
             },
             {
               "name": "page.tsx",
@@ -176,6 +192,10 @@
       "children": [
         {
           "name": "Header.tsx",
+          "type": "file"
+        },
+        {
+          "name": "PwaInstaller.tsx",
           "type": "file"
         },
         {
@@ -220,6 +240,10 @@
             },
             {
               "name": "ClientSectionsWrapper.tsx",
+              "type": "file"
+            },
+            {
+              "name": "LazyMapWrapper.tsx",
               "type": "file"
             }
           ]
@@ -487,22 +511,6 @@
           "type": "file"
         },
         {
-          "name": "mock-case-studies.ts",
-          "type": "file"
-        },
-        {
-          "name": "mock-products.ts",
-          "type": "file"
-        },
-        {
-          "name": "mock-projects.ts",
-          "type": "file"
-        },
-        {
-          "name": "mock-solutions.ts",
-          "type": "file"
-        },
-        {
           "name": "prisma.ts",
           "type": "file"
         },
@@ -511,6 +519,10 @@
           "type": "file"
         }
       ]
+    },
+    {
+      "name": "middleware.ts",
+      "type": "file"
     }
   ]
 }

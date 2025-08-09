@@ -1,50 +1,11 @@
+import js from "@eslint/js";
 import globals from "globals";
-import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
-import pluginReactConfig from "eslint-plugin-react/configs/recommended.js";
-import nextPlugin from "@next/eslint-plugin-next";
+import pluginReact from "eslint-plugin-react";
+import { defineConfig } from "eslint/config";
 
-export default [
-  {
-    ignores: [
-        "**/*.config.js", 
-        "**/*.config.mjs", 
-        "public/sw.js", 
-        "node_modules/", 
-        ".next/"
-    ]
-  },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  {
-    files: ["**/*.{ts,tsx}"],
-    ...pluginReactConfig,
-     settings: {
-      react: {
-        version: "detect"
-      }
-    },
-    rules: {
-      ...pluginReactConfig.rules,
-      "react/react-in-jsx-scope": "off",
-      "react/prop-types": "off"
-    }
-  },
-  {
-    plugins: {
-      "@next": nextPlugin
-    },
-    rules: {
-       ...nextPlugin.configs.recommended.rules,
-       ...nextPlugin.configs['core-web-vitals'].rules,
-    }
-  },
-  {
-    languageOptions: { 
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      }
-    }
-  },
-];
+export default defineConfig([
+  { files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: {...globals.browser, ...globals.node} } },
+  tseslint.configs.recommended,
+  pluginReact.configs.flat.recommended,
+]);

@@ -7,6 +7,40 @@
       "type": "file"
     },
     {
+      "name": "favicon",
+      "type": "directory",
+      "children": [
+        {
+          "name": "apple-icon.png",
+          "type": "file"
+        },
+        {
+          "name": "favicon.ico",
+          "type": "file"
+        },
+        {
+          "name": "icon.png",
+          "type": "file"
+        },
+        {
+          "name": "icon.svg",
+          "type": "file"
+        },
+        {
+          "name": "manifest.json",
+          "type": "file"
+        },
+        {
+          "name": "web-app-manifest-192x192.png",
+          "type": "file"
+        },
+        {
+          "name": "web-app-manifest-512x512.png",
+          "type": "file"
+        }
+      ]
+    },
+    {
       "name": "iconos",
       "type": "directory",
       "children": [
@@ -24,6 +58,14 @@
         },
         {
           "name": "caja-abierta.svg",
+          "type": "file"
+        },
+        {
+          "name": "icon-192x192.svg",
+          "type": "file"
+        },
+        {
+          "name": "icon-512x512.svg",
           "type": "file"
         },
         {
@@ -249,6 +291,10 @@
       ]
     },
     {
+      "name": "manifest.json",
+      "type": "file"
+    },
+    {
       "name": "placeholder.svg",
       "type": "file"
     },
@@ -293,6 +339,10 @@
           "type": "file"
         }
       ]
+    },
+    {
+      "name": "sw.js",
+      "type": "file"
     }
   ]
 }

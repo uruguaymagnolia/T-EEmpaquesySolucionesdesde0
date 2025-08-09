@@ -11,7 +11,6 @@ def get_config_structure_and_content():
         'package.json',
         'postcss.config.mjs',
         'tailwind.config.ts',
-        '.eslintrc.json',
         'components.json',
         'tsconfig.json',
         'next.config.ts',
