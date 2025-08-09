@@ -13,6 +13,9 @@ import {
   Briefcase,
   HelpCircle,
   Mail,
+  Shield,
+  TestTube,
+  DraftingCompass,
 } from 'lucide-react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import {
@@ -20,6 +23,7 @@ import {
   StaggerItem,
 } from '@/components/animations/motion-wrapper';
 import type { LucideIcon } from 'lucide-react';
+import { MegaMenu } from './MegaMenu';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,6 +66,35 @@ export function Header() {
     { href: '/contacto', label: 'Contacto', icon: Mail },
   ];
 
+  const solucionesSubMenu = [
+    {
+      category: 'Empaque Primario',
+      links: [
+        {
+          href: '/soluciones/empaque-flexible',
+          label: 'Empaque Flexible',
+          icon: Package,
+        },
+        { href: '/soluciones/blisters', label: 'Blisters', icon: Shield },
+      ],
+    },
+    {
+      category: 'Soluciones a Medida',
+      links: [
+        {
+          href: '/soluciones/prototipado',
+          label: 'Prototipado Rápido',
+          icon: TestTube,
+        },
+        {
+          href: '/soluciones/diseno-estructural',
+          label: 'Diseño Estructural',
+          icon: DraftingCompass,
+        },
+      ],
+    },
+  ];
+
   const mobileMenuVariants: Variants = {
     open: {
       x: 0,
@@ -91,8 +124,8 @@ export function Header() {
     },
   };
 
-  const mainNavLinks = navLinks.filter((link) => link.label !== 'Contacto');
   const contactLink = navLinks.find((link) => link.label === 'Contacto');
+  const mainNavLinks = navLinks.filter((link) => link.label !== 'Contacto');
   const ContactIcon = contactLink?.icon ?? Mail;
 
 
@@ -109,7 +142,7 @@ export function Header() {
           scrolled ? 'h-14' : 'h-16'
         }`}
       >
-        <Logo />
+        <Logo scrolled={scrolled} />
         <nav className="hidden md:flex items-center">
           <StaggerContainer
             as="ul"
@@ -117,6 +150,18 @@ export function Header() {
             staggerChildren={0.1}
           >
             {mainNavLinks.map((link) => {
+              if (link.label === 'Soluciones') {
+                return (
+                  <StaggerItem as="li" key={link.href}>
+                    <MegaMenu
+                      triggerLabel={link.label}
+                      triggerIcon={link.icon}
+                      subMenuData={solucionesSubMenu}
+                      scrolled={scrolled}
+                    />
+                  </StaggerItem>
+                );
+              }
                const Icon = link.icon;
                return (
                 <StaggerItem as="li" key={link.href}>
