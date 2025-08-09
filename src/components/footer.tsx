@@ -22,6 +22,7 @@ import {
   ScrollStaggerItem,
 } from './animations/scroll-animations';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const footerLinks = [
   { href: '/', label: 'Inicio', icon: Home },
@@ -65,6 +66,12 @@ const socialLinks = [
 const MotionLink = motion(Link);
 
 export function Footer() {
+  const [year, setYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${companyData.location.lat},${companyData.location.lng}`;
   return (
     <ScrollReveal>
@@ -96,9 +103,9 @@ export function Footer() {
 
             {/* Columna 2: Navegación */}
             <ScrollStaggerItem>
-              <h3 className="font-semibold text-white text-lg mb-4">
+              <h2 className="font-semibold text-white text-lg mb-4">
                 Navegación
-              </h3>
+              </h2>
               <ul className="space-y-2">
                 {footerLinks.map((link) => (
                   <li key={link.href}>
@@ -118,7 +125,7 @@ export function Footer() {
 
             {/* Columna 3: Legal */}
             <ScrollStaggerItem>
-              <h3 className="font-semibold text-white text-lg mb-4">Legal</h3>
+              <h2 className="font-semibold text-white text-lg mb-4">Legal</h2>
               <ul className="space-y-2">
                 {legalLinks.map((link) => (
                   <li key={link.href}>
@@ -138,9 +145,9 @@ export function Footer() {
 
             {/* Columna 4: Contacto */}
             <ScrollStaggerItem>
-              <h3 className="font-semibold text-white text-lg mb-4">
+              <h2 className="font-semibold text-white text-lg mb-4">
                 Ponerse en contacto
-              </h3>
+              </h2>
               <ul className="space-y-3 text-gray-300 text-sm">
                 <li className="flex items-start gap-3">
                   <MapPin size={16} className="mt-0.5 shrink-0 text-gray-400" />
@@ -180,8 +187,8 @@ export function Footer() {
           </ScrollStaggerContainer>
 
           <div className="border-t border-slate-700 mt-8 pt-6 text-center text-sm text-gray-500">
-            <p suppressHydrationWarning>
-              &copy; {new Date().getFullYear()} T & E Empaques y Soluciones.
+            <p>
+              &copy; {year} T & E Empaques y Soluciones.
               Todos los derechos reservados.
             </p>
           </div>
