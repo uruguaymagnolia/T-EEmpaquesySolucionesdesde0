@@ -103,9 +103,22 @@ export function Footer() {
 
             {/* Columna 2: Navegación */}
             <ScrollStaggerItem>
-              <h2 className="font-semibold text-white text-lg mb-4">
+              <motion.h2
+                className="font-semibold text-primary text-lg md:text-xl mb-4 relative inline-block"
+                initial="rest"
+                whileHover="hover"
+                animate="rest"
+              >
                 Navegación
-              </h2>
+                <motion.div
+                  className="absolute bottom-0 left-0 h-[2px] bg-primary"
+                  variants={{
+                    rest: { width: 0 },
+                    hover: { width: '100%' },
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.h2>
               <ul className="space-y-2">
                 {footerLinks.map((link) => (
                   <li key={link.href}>
@@ -125,7 +138,22 @@ export function Footer() {
 
             {/* Columna 3: Legal */}
             <ScrollStaggerItem>
-              <h2 className="font-semibold text-white text-lg mb-4">Legal</h2>
+               <motion.h2
+                className="font-semibold text-primary text-lg md:text-xl mb-4 relative inline-block"
+                initial="rest"
+                whileHover="hover"
+                animate="rest"
+              >
+                Legal
+                <motion.div
+                  className="absolute bottom-0 left-0 h-[2px] bg-primary"
+                  variants={{
+                    rest: { width: 0 },
+                    hover: { width: '100%' },
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.h2>
               <ul className="space-y-2">
                 {legalLinks.map((link) => (
                   <li key={link.href}>
@@ -145,9 +173,22 @@ export function Footer() {
 
             {/* Columna 4: Contacto */}
             <ScrollStaggerItem>
-              <h2 className="font-semibold text-white text-lg mb-4">
+               <motion.h2
+                className="font-semibold text-primary text-lg md:text-xl mb-4 relative inline-block"
+                initial="rest"
+                whileHover="hover"
+                animate="rest"
+              >
                 Ponerse en contacto
-              </h2>
+                <motion.div
+                  className="absolute bottom-0 left-0 h-[2px] bg-primary"
+                  variants={{
+                    rest: { width: 0 },
+                    hover: { width: '100%' },
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.h2>
               <ul className="space-y-3 text-gray-300 text-sm">
                 <li className="flex items-start gap-3">
                   <MapPin size={16} className="mt-0.5 shrink-0 text-gray-400" />
