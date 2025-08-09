@@ -26,6 +26,9 @@
         # "vscodevim.vim"
         "ms-python.debugpy"
         "ms-python.python"
+        "bradlc.vscode-tailwindcss"
+        "dbaeumer.vscode-eslint"
+        "esbenp.prettier-vscode"
       ];
       workspace = {
         onCreate = {
