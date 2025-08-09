@@ -23,6 +23,20 @@ import type { LucideIcon } from 'lucide-react';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check on mount
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -84,8 +98,18 @@ export function Header() {
   };
 
   return (
-    <header className="bg-primary-foreground text-white sticky top-0 z-50 shadow-md">
-      <div className="container mx-auto px-4 flex justify-between items-center h-16">
+    <header
+      className={`text-white sticky top-0 z-50 transition-all duration-300 ease-in-out ${
+        scrolled
+          ? 'bg-[#1a2435] shadow-lg'
+          : 'bg-primary-foreground shadow-md'
+      }`}
+    >
+      <div
+        className={`container mx-auto px-4 flex justify-between items-center transition-all duration-300 ease-in-out ${
+          scrolled ? 'h-14' : 'h-16'
+        }`}
+      >
         <Logo />
         <nav className="hidden md:flex">
           <StaggerContainer
@@ -105,9 +129,13 @@ export function Header() {
                   >
                     <Link
                       href={link.href}
-                      className="relative text-muted-foreground hover:text-foreground transition-colors py-2 flex items-center gap-2"
+                      className="relative text-muted-foreground hover:text-foreground transition-colors py-2 flex items-center"
                     >
-                      <Icon className="size-4" />
+                      <Icon
+                        className={`flex-shrink-0 size-4 transition-all duration-300 ease-in-out ${
+                          scrolled ? 'w-0' : 'w-4 mr-2'
+                        }`}
+                      />
                       <span>{link.label}</span>
                       <motion.div
                         className="absolute bottom-0 left-0 h-[2px] bg-primary"
