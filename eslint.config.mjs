@@ -17,17 +17,31 @@ export default tseslint.config(
       '**/*.config.mjs',
       'prisma/seed.ts',
       'prisma/subir.ts',
-      'prisma/bajar.ts'
+      'prisma/bajar.ts',
     ],
+  },
+  {
+    // Configuración específica para archivos TS en la raíz (configs)
+    files: ['*.ts'],
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
+    },
+    languageOptions: {
+      parser: tseslint.parser,
+    },
+    rules: {
+      ...eslint.configs.recommended.rules,
+      ...tseslint.configs.recommended.rules,
+    },
   },
   {
     // Configuraciones para archivos de código fuente (TS/TSX)
     files: ['src/**/*.{ts,tsx}'],
     plugins: {
-      '@next/next': nextPlugin,
-      'react': reactPlugin,
-      'react-compiler': compilerPlugin,
       '@typescript-eslint': tseslint.plugin,
+      '@next/next': nextPlugin,
+      react: reactPlugin,
+      'react-compiler': compilerPlugin,
     },
     languageOptions: {
       parser: tseslint.parser,
