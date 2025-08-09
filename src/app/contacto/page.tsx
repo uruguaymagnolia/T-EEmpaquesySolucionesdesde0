@@ -8,19 +8,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import ContactoHero from '@/components/heroes/ContactoHero';
 
 export default function ContactoPage() {
   return (
     <div className="bg-background-dark">
-      <header className="bg-gradient-to-r from-[#1a2435] to-[#0e413b] text-white py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold">Contáctenos</h1>
-          <p className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">
-            Estamos aquí para ayudarle. Envíenos un mensaje o visítenos.
-          </p>
-        </div>
-      </header>
-
+      <ContactoHero />
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
