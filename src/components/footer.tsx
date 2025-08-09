@@ -22,6 +22,7 @@ import {
   ScrollStaggerItem,
 } from './animations/scroll-animations';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const footerLinks = [
   { href: '/', label: 'Inicio', icon: Home },
@@ -65,6 +66,13 @@ const socialLinks = [
 const MotionLink = motion(Link);
 
 export function Footer() {
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
+
   const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${companyData.location.lat},${companyData.location.lng}`;
   return (
     <ScrollReveal>
@@ -180,8 +188,8 @@ export function Footer() {
           </ScrollStaggerContainer>
 
           <div className="border-t border-slate-700 mt-8 pt-6 text-center text-sm text-gray-500">
-            <p suppressHydrationWarning>
-              &copy; {new Date().getFullYear()} T & E Empaques y Soluciones.
+            <p>
+              &copy; {currentYear} T & E Empaques y Soluciones.
               Todos los derechos reservados.
             </p>
           </div>
