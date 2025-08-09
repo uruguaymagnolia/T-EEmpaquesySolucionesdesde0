@@ -84,6 +84,8 @@
     "@prisma/engines",
     "esbuild",
     "prisma",
-    "protobufjs"
+    "protobufjs",
+    "sharp",
+    "unrs-resolver"
   ]
 }
