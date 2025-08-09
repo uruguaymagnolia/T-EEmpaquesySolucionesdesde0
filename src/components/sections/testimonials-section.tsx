@@ -63,23 +63,23 @@ const TestimonialsSection: React.FC = () => {
   );
   return (
     <ScrollReveal>
-      <section className="relative overflow-hidden bg-slate-900 py-20 sm:py-24">
-        <FloatingElement className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-green-500/10 blur-3xl">
+      <section className="relative overflow-hidden bg-background-light py-20 sm:py-24">
+        <FloatingElement className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-primary/10 blur-3xl">
           <div />
         </FloatingElement>
         <FloatingElement className="absolute -bottom-48 -right-48 h-96 w-96 rounded-full bg-slate-500/10 blur-3xl">
           <div />
         </FloatingElement>
         <ParallaxText speed={0.3}>
-          <Quote className="absolute right-1/2 top-1/2 h-96 w-96 -translate-y-1/2 translate-x-1/2 text-green-500/5" />
+          <Quote className="absolute right-1/2 top-1/2 h-96 w-96 -translate-y-1/2 translate-x-1/2 text-primary/5" />
         </ParallaxText>
 
         <div className="container relative mx-auto px-4">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">
               Lo que dicen nuestros clientes
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
               La satisfacción de nuestros clientes es nuestra mejor carta de
               presentación.
             </p>
@@ -104,7 +104,7 @@ const TestimonialsSection: React.FC = () => {
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     className="h-full"
                   >
-                    <Card className="h-full border-slate-700/50 bg-slate-800/50 p-6 backdrop-blur-sm">
+                    <Card className="h-full border-border/50 bg-background-light/50 p-6 backdrop-blur-sm">
                       <CardContent className="p-0">
                         <div className="flex items-center">
                           {[...Array(5)].map((_, i) => (
@@ -113,7 +113,7 @@ const TestimonialsSection: React.FC = () => {
                               className={`h-5 w-5 ${
                                 i < testimonial.rating
                                   ? 'text-yellow-400'
-                                  : 'text-gray-600'
+                                  : 'text-muted'
                               }`}
                               fill={
                                 i < testimonial.rating
@@ -123,14 +123,14 @@ const TestimonialsSection: React.FC = () => {
                             />
                           ))}
                         </div>
-                        <blockquote className="mt-4 text-lg text-gray-300">
+                        <blockquote className="mt-4 text-lg text-muted-foreground">
                           &quot;{testimonial.quote}&quot;
                         </blockquote>
                         <div className="mt-6">
-                          <p className="font-bold text-white">
+                          <p className="font-bold text-foreground">
                             {testimonial.name}
                           </p>
-                          <p className="text-sm text-gray-400">
+                          <p className="text-sm text-muted-foreground">
                             {testimonial.company}
                           </p>
                         </div>

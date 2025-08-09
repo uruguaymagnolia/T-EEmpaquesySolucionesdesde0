@@ -26,12 +26,12 @@ export function Header() {
 
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.classList.add('no-scroll');
+      document.body.classList.add('overflow-hidden');
     } else {
-      document.body.classList.remove('no-scroll');
+      document.body.classList.remove('overflow-hidden');
     }
     return () => {
-      document.body.classList.remove('no-scroll');
+      document.body.classList.remove('overflow-hidden');
     };
   }, [isMenuOpen]);
 
@@ -64,8 +64,27 @@ export function Header() {
     closed: { opacity: 0, pointerEvents: 'none' as const },
   };
 
+  const navLinkVariants: Variants = {
+    rest: {
+      scale: 1,
+    },
+    hover: {
+      scale: 1.05,
+    },
+  };
+
+  const navLinkUnderlineVariants: Variants = {
+    rest: {
+      width: 0,
+    },
+    hover: {
+      width: '100%',
+      transition: { duration: 0.3, ease: 'easeOut' },
+    },
+  };
+
   return (
-    <header className="bg-[#1a2435] text-white sticky top-0 z-50 shadow-md">
+    <header className="bg-primary-foreground text-white sticky top-0 z-50 shadow-md">
       <div className="container mx-auto px-4 flex justify-between items-center h-16">
         <Logo />
         <nav className="hidden md:flex">
@@ -78,19 +97,24 @@ export function Header() {
                const Icon = link.icon;
                return (
                 <StaggerItem as="li" key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="relative text-gray-300 hover:text-white transition-colors py-2 flex items-center gap-2"
+                  <motion.div
+                    variants={navLinkVariants}
+                    initial="rest"
+                    whileHover="hover"
+                    animate="rest"
                   >
-                    <Icon className="size-4" />
-                    <span>{link.label}</span>
-                    <motion.div
-                      className="absolute bottom-0 left-0 h-[2px] bg-primary"
-                      initial={{ width: 0 }}
-                      whileHover={{ width: '100%' }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </Link>
+                    <Link
+                      href={link.href}
+                      className="relative text-muted-foreground hover:text-foreground transition-colors py-2 flex items-center gap-2"
+                    >
+                      <Icon className="size-4" />
+                      <span>{link.label}</span>
+                      <motion.div
+                        className="absolute bottom-0 left-0 h-[2px] bg-primary"
+                        variants={navLinkUnderlineVariants}
+                      />
+                    </Link>
+                  </motion.div>
                 </StaggerItem>
                )
             })}
@@ -134,10 +158,10 @@ export function Header() {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-[#1a2435] shadow-2xl z-50 md:hidden"
+              className="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-primary-foreground shadow-2xl z-50 md:hidden"
             >
               <nav className="h-full flex flex-col">
-                <div className="flex justify-between items-center p-4 border-b border-slate-700">
+                <div className="flex justify-between items-center p-4 border-b border-border">
                     <Logo />
                     <Button
                         variant="ghost"
@@ -164,7 +188,7 @@ export function Header() {
                       >
                         <Link
                           href={link.href}
-                          className="flex items-center gap-3 w-full p-3 text-lg text-gray-300 hover:text-primary hover:bg-slate-700/50 rounded-md transition-colors"
+                          className="flex items-center gap-3 w-full p-3 text-lg text-muted-foreground hover:text-primary hover:bg-accent/50 rounded-md transition-colors"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           <Icon className="size-5" />

@@ -40,9 +40,25 @@ function GridPattern() {
 }
 
 
+const heroTitleVariants = {
+  hidden: { opacity: 0, y: -20, filter: 'blur(5px)' },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { delay: 0.4, duration: 0.5, type: 'spring' } },
+};
+
+const buttonStaggerItemVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 15 } },
+};
+
+const starStaggerItemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 },
+};
+
+
 export function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-r from-[#1a2435] to-[#0e413b] text-white py-20 md:py-32 overflow-hidden">
+    <section className="relative bg-gradient-to-r from-primary-foreground to-primary-dark text-white py-20 md:py-32 overflow-hidden">
       <GridPattern />
       <FloatingElement className="absolute top-20 -left-20 w-64 h-64 bg-primary/10 rounded-full opacity-50 blur-3xl" >
         <div/>
@@ -57,17 +73,16 @@ export function HeroSection() {
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
           Soluciones de empaque{' '}
           <motion.span
-            className="text-primary inline-block"
-            initial={{ opacity: 0, y: -20, filter: 'blur(5px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ delay: 0.4, duration: 0.5, type: 'spring' }}
-            style={{ textShadow: '0 0 15px hsla(var(--primary), 0.5)' }}
+            className="text-primary inline-block text-shadow-primary"
+            variants={heroTitleVariants}
+            initial="hidden"
+            animate="visible"
           >
             personalizadas
           </motion.span>
         </h1>
         
-        <p className="max-w-3xl mx-auto mb-8 text-lg text-gray-300">
+        <p className="max-w-3xl mx-auto mb-8 text-lg text-muted-foreground">
           Proveemos productos y soluciones de empaque personalizadas para
           artículos escolares, papelería, accesorios eléctricos, cosméticos,
           didácticos, mercería y más.
@@ -79,9 +94,10 @@ export function HeroSection() {
           staggerChildren={0.15}
           delayChildren={0.7}
         >
-          <StaggerItem variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 15 } } }}>
+          <StaggerItem variants={buttonStaggerItemVariants}>
             <motion.div
-              whileHover={{ scale: 1.05, boxShadow: '0 0 20px hsla(var(--primary), 0.4)' }}
+              className="hover:shadow-primary transition-shadow duration-300 rounded-md"
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Button
@@ -92,9 +108,10 @@ export function HeroSection() {
               </Button>
             </motion.div>
           </StaggerItem>
-          <StaggerItem variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 15 } } }}>
+          <StaggerItem variants={buttonStaggerItemVariants}>
             <motion.div
-              whileHover={{ scale: 1.05, boxShadow: '0 0 20px hsla(var(--primary), 0.2)' }}
+              className="hover:shadow-primary-muted transition-shadow duration-300 rounded-md"
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Button
@@ -113,12 +130,12 @@ export function HeroSection() {
           delayChildren={1.2}
         >
             {Array.from({ length: 5 }).map((_, i) => (
-              <StaggerItem key={i} variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 }}}>
+              <StaggerItem key={i} variants={starStaggerItemVariants}>
                 <Star className="w-5 h-5 text-yellow-400" fill="currentColor"/>
               </StaggerItem>
             ))}
-             <StaggerItem variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 }}}>
-              <p className="text-sm text-gray-400 ml-2">Calificado 4.9/5 por más de 500 clientes</p>
+             <StaggerItem variants={starStaggerItemVariants}>
+              <p className="text-sm text-muted-foreground ml-2">Calificado 4.9/5 por más de 500 clientes</p>
             </StaggerItem>
         </StaggerContainer>
       </div>
