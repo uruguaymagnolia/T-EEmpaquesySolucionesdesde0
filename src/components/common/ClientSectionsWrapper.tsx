@@ -1,13 +1,10 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { CtaSection } from '@/components/landing/CtaSection';
-import FeaturedProjectsSection from '@/components/landing/FeaturedProjectsSection';
 import { HeroSection } from '@/components/landing/HeroSection';
 import { ServicesSection } from '@/components/landing/ServicesSection';
 import { ScrollReveal } from '@/components/animations/scroll-animations';
 import ProductCarouselSection from '@/components/sections/product-carousel-section';
-import { StatsSection } from '@/components/sections/stats-section';
 import type { Product, CaseStudy, Solution } from '@prisma/client';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -98,7 +95,6 @@ export default function ClientSectionsWrapper({
         <ServicesSection id="soluciones" solutions={solutions} />
       </ScrollReveal>
       <ProductCarouselSection products={products} />
-      
       <LazyCtaSection />
       <LazyStatsSection />
       <LazyFeaturedProjectsSection id="proyectos" caseStudies={caseStudies} />
