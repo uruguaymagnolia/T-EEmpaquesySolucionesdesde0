@@ -8,14 +8,16 @@
   "theme_color": "#1a2435",
   "icons": [
     {
-      "src": "/iconos/icon-192x192.svg",
+      "src": "/favicon/web-app-manifest-192x192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml"
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
-      "src": "/iconos/icon-512x512.svg",
+      "src": "/favicon/web-app-manifest-512x512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml"
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
