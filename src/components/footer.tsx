@@ -23,6 +23,7 @@ import {
   ScrollStaggerItem,
 } from './animations/scroll-animations';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const footerLinks = [
   { href: '/', label: 'Inicio', icon: Home },
@@ -63,9 +64,14 @@ const socialLinks = [
   },
 ];
 
-const MotionLink = motion(Link);
-
 export function Footer() {
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    setYear(new Date().getFullYear());
+  }, []);
 
   const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${companyData.location.lat},${companyData.location.lng}`;
   return (
@@ -82,7 +88,7 @@ export function Footer() {
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social) => (
-                  <MotionLink
+                  <motion.a
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
@@ -91,7 +97,7 @@ export function Footer() {
                     whileTap={{ scale: 0.9 }}
                   >
                     <social.icon size={20} />
-                  </MotionLink>
+                  </motion.a>
                 ))}
               </div>
             </ScrollStaggerItem>
@@ -117,15 +123,18 @@ export function Footer() {
               <ul className="space-y-2">
                 {footerLinks.map((link) => (
                   <li key={link.href}>
-                    <MotionLink
-                      href={link.href}
-                      className="flex items-center gap-2 text-gray-300 hover:text-primary transition-colors"
+                    <motion.div
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <link.icon size={16} />
-                      <span>{link.label}</span>
-                    </MotionLink>
+                      <Link
+                        href={link.href}
+                        className="flex items-center gap-2 text-gray-300 hover:text-primary transition-colors"
+                      >
+                        <link.icon size={16} />
+                        <span>{link.label}</span>
+                      </Link>
+                    </motion.div>
                   </li>
                 ))}
               </ul>
@@ -152,15 +161,18 @@ export function Footer() {
               <ul className="space-y-2">
                 {legalLinks.map((link) => (
                   <li key={link.href}>
-                    <MotionLink
-                      href={link.href}
-                      className="flex items-center gap-2 text-gray-300 hover:text-primary transition-colors"
+                    <motion.div
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <link.icon size={16} />
-                      <span>{link.label}</span>
-                    </MotionLink>
+                      <Link
+                        href={link.href}
+                        className="flex items-center gap-2 text-gray-300 hover:text-primary transition-colors"
+                      >
+                        <link.icon size={16} />
+                        <span>{link.label}</span>
+                      </Link>
+                    </motion.div>
                   </li>
                 ))}
               </ul>
@@ -198,33 +210,39 @@ export function Footer() {
                 </li>
                 <li className="flex items-start gap-3">
                   <Mail size={16} className="mt-0.5 shrink-0 text-gray-400" />
-                  <MotionLink
-                    href={`mailto:${companyData.email}`}
-                    className="hover:text-primary transition-colors"
+                  <motion.div
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    {companyData.email}
-                  </MotionLink>
+                    <a
+                      href={`mailto:${companyData.email}`}
+                      className="hover:text-primary transition-colors"
+                    >
+                      {companyData.email}
+                    </a>
+                  </motion.div>
                 </li>
                 <li className="flex items-start gap-3">
                   <Phone size={16} className="mt-0.5 shrink-0 text-gray-400" />
-                  <MotionLink
-                    href={companyData.phone.href}
-                    className="hover:text-primary transition-colors"
+                  <motion.div
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    {companyData.phone.number}
-                  </MotionLink>
+                    <a
+                      href={companyData.phone.href}
+                      className="hover:text-primary transition-colors"
+                    >
+                      {companyData.phone.number}
+                    </a>
+                  </motion.div>
                 </li>
               </ul>
             </ScrollStaggerItem>
           </ScrollStaggerContainer>
 
           <div className="border-t border-slate-700 mt-8 pt-6 text-center text-sm text-gray-500">
-            <p suppressHydrationWarning>
-              &copy; {new Date().getFullYear()} T & E Empaques y Soluciones.
+            <p>
+              &copy; {isClient ? year : new Date().getFullYear()} T & E Empaques y Soluciones.
               Todos los derechos reservados.
             </p>
           </div>
