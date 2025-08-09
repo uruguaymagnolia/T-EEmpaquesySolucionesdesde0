@@ -9,6 +9,9 @@ import { Star } from 'lucide-react';
 import React, { useEffect, useRef } from 'react';
 import { IsometricBox } from '../icons/IsometricBox';
 import { PackageFold } from '../icons/PackageFold';
+import dynamic from 'next/dynamic';
+
+const Scene3D = dynamic(() => import('./Scene3D'), { ssr: false });
 
 function GridPattern(props: React.ComponentProps<typeof motion.div>) {
   return (
@@ -111,6 +114,7 @@ export function HeroSection() {
 
   return (
     <section ref={ref} className="relative bg-gradient-to-r from-primary-foreground to-primary-dark text-white py-20 md:py-32 overflow-hidden">
+      <Scene3D />
       <GridPattern style={{ x: gridX, y: gridY }} />
       <FloatingElement style={{ x: float1X, y: float1Y }} className="absolute top-20 -left-20 opacity-50" >
         <IsometricBox className="w-64 h-64 text-primary/10 stroke-[0.5]" />
