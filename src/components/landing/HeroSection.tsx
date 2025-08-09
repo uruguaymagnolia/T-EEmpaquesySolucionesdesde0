@@ -2,14 +2,16 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { motion } from 'framer-motion';
+import { motion, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { StaggerContainer, StaggerItem } from '../animations/motion-wrapper';
 import { FloatingElement } from '../animations/scroll-animations';
 import { Star } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
 
-function GridPattern() {
+function GridPattern(props: React.ComponentProps<typeof motion.div>) {
   return (
     <motion.div
+      {...props}
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 -z-10"
       initial={{ opacity: 0 }}
@@ -57,13 +59,58 @@ const starStaggerItemVariants = {
 
 
 export function HeroSection() {
+  const ref = useRef<HTMLElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const springConfig = { stiffness: 150, damping: 20, mass: 1 };
+  const springX = useSpring(x, springConfig);
+  const springY = useSpring(y, springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect();
+        const mouseX = event.clientX - rect.left - rect.width / 2;
+        const mouseY = event.clientY - rect.top - rect.height / 2;
+        x.set(mouseX);
+        y.set(mouseY);
+      }
+    };
+
+    const handleMouseLeave = () => {
+      x.set(0);
+      y.set(0);
+    };
+
+    const currentRef = ref.current;
+    if (currentRef) {
+      currentRef.addEventListener('mousemove', handleMouseMove);
+      currentRef.addEventListener('mouseleave', handleMouseLeave);
+    }
+
+    return () => {
+      if (currentRef) {
+        currentRef.removeEventListener('mousemove', handleMouseMove);
+        currentRef.removeEventListener('mouseleave',handleMouseLeave);
+      }
+    };
+  }, [x, y]);
+
+  const gridX = useTransform(springX, (v) => v / -5);
+  const gridY = useTransform(springY, (v) => v / -5);
+  const float1X = useTransform(springX, (v) => v / -10);
+  const float1Y = useTransform(springY, (v) => v / -10);
+  const float2X = useTransform(springX, (v) => v / 20);
+  const float2Y = useTransform(springY, (v) => v / 20);
+
   return (
-    <section className="relative bg-gradient-to-r from-primary-foreground to-primary-dark text-white py-20 md:py-32 overflow-hidden">
-      <GridPattern />
-      <FloatingElement className="absolute top-20 -left-20 w-64 h-64 bg-primary/10 rounded-full opacity-50 blur-3xl" >
+    <section ref={ref} className="relative bg-gradient-to-r from-primary-foreground to-primary-dark text-white py-20 md:py-32 overflow-hidden">
+      <GridPattern style={{ x: gridX, y: gridY }} />
+      <FloatingElement style={{ x: float1X, y: float1Y }} className="absolute top-20 -left-20 w-64 h-64 bg-primary/10 rounded-full opacity-50 blur-3xl" >
         <div/>
       </FloatingElement>
-      <FloatingElement className="absolute bottom-10 -right-20 w-72 h-72 bg-slate-500/10 rounded-full opacity-50 blur-3xl">
+      <FloatingElement style={{ x: float2X, y: float2Y }} className="absolute bottom-10 -right-20 w-72 h-72 bg-slate-500/10 rounded-full opacity-50 blur-3xl">
         <div/>
       </FloatingElement>
 

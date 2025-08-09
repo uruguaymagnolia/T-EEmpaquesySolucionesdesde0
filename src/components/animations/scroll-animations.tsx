@@ -126,9 +126,11 @@ export const ScrollStaggerItem = ({
 export const FloatingElement = ({
   children,
   className,
+  ...props
 }: {
   children: React.ReactNode;
   className?: string;
+  [key: string]: unknown;
 }) => {
   const [duration, setDuration] = useState(20);
 
@@ -149,6 +151,7 @@ export const FloatingElement = ({
         repeatType: 'mirror',
       }}
       className={className}
+      {...props}
     >
       {children}
     </motion.div>
