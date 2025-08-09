@@ -1,8 +1,10 @@
-# To learn more about how to use Nix to configure your environment
-# see: https://firebase.google.com/docs/studio/customize-workspace
 { pkgs }: {
+  # To learn more about how to use Nix to configure your environment
+  # see: https://firebase.google.com/docs/studio/customize-workspace
+
   # Which nixpkgs channel to use.
   channel = "stable-25.05"; # or "unstable"
+
   # Use https://search.nixos.org/packages to find packages
   packages = [
     pkgs.nodejs
@@ -11,39 +13,44 @@
     pkgs.python313
     pkgs.netlify-cli
   ];
+
   # Sets environment variables in the workspace
-  env = {
+  env = {};
+
+  idx = {
+    # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
+    extensions = [
+      "ms-python.debugpy",
+      "ms-python.python"
+    ];
+
+    workspace = {
+      # Runs when a workspace is created
+      onCreate = {
+        default.openFiles = [
+          "src/app/page.tsx"
+        ];
       };
-    # This adds a file watcher to startup the firebase emulators. The emulators will only start if
-    # a firebase.json file is written into the user's directory
-    services.firebase.emulators = {
-      detect = true;
-      projectId = "demo-app";
-      services = [ "auth" "firestore" ];
     };
-    idx = {
-      # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
-      extensions = [
-        # "vscodevim.vim"
-        "ms-python.debugpy"
-        "ms-python.python"
-      ];
-      workspace = {
-        onCreate = {
-          default.openFiles = [
-            "src/app/page.tsx"
-          ];
-        };
-      };
-      # Enable previews and customize configuration
+
+    # Enable previews and customize configuration
+    previews = {
+      enable = true;
       previews = {
-        enable = true;
-        previews = {
-          web = {
-            command = [ "bun" "run" "dev" "--" "--port" "$PORT" "--hostname" "0.0.0.0" ];
-            manager = "web";
-          };
+        web = {
+          command = [ "bun" "run" "dev" "--" "--port" "$PORT" "--hostname" "0.0.0.0" ];
+          manager = "web";
         };
       };
     };
-  }
+  };
+
+  # The following services are commented out as they are not used in the current project.
+  # This will speed up workspace startup time.
+  # If you decide to use Firebase Emulators, you can uncomment this section.
+  # services.firebase.emulators = {
+  #   detect = true;
+  #   projectId = "demo-app";
+  #   services = [ "auth", "firestore" ];
+  # };
+}
