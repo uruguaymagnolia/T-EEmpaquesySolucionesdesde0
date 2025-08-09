@@ -46,13 +46,13 @@ const faqData = [
 const FAQSection: React.FC = () => {
   return (
     <ScrollReveal>
-      <section className="bg-zinc-900 py-20 sm:py-24">
+      <section className="relative bg-background-alt py-20 sm:py-24">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">
               Preguntas Frecuentes
             </h2>
-            <p className="mt-4 text-lg text-gray-300">
+            <p className="mt-4 text-lg text-muted-foreground">
               Aquí encontrará respuestas a las dudas más comunes sobre nuestros
               servicios y productos. Si no encuentra lo que busca, no dude en
               contactarnos.
@@ -72,12 +72,12 @@ const FAQSection: React.FC = () => {
                   >
                     <AccordionItem
                       value={`item-${index}`}
-                      className="overflow-hidden rounded-lg border border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900"
+                      className="overflow-hidden rounded-lg border border-border bg-gradient-to-br from-background-light to-background-dark"
                     >
-                      <AccordionTrigger className="p-5 text-left font-semibold text-white hover:no-underline">
+                      <AccordionTrigger className="p-5 text-left font-semibold text-foreground hover:no-underline">
                         {faq.question}
                       </AccordionTrigger>
-                      <AccordionContent className="px-5 pb-5 text-base text-gray-400">
+                      <AccordionContent className="px-5 pb-5 text-base text-muted-foreground">
                         {faq.answer}
                       </AccordionContent>
                     </AccordionItem>

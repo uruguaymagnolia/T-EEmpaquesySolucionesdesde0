@@ -64,25 +64,43 @@ const socialLinks = [
   },
 ];
 
+const AnimatedTitle = ({ children }: { children: React.ReactNode }) => (
+  <motion.h2
+    className="font-semibold text-primary text-lg md:text-xl mb-4 relative inline-block"
+    initial="rest"
+    whileHover="hover"
+    animate="rest"
+  >
+    {children}
+    <motion.div
+      className="absolute bottom-0 left-0 h-[2px] bg-primary"
+      variants={{
+        rest: { width: 0 },
+        hover: { width: '100%' },
+      }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+    />
+  </motion.h2>
+);
+
 export function Footer() {
-  const [year, setYear] = useState(new Date().getFullYear());
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
-    setYear(new Date().getFullYear());
   }, []);
 
   const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${companyData.location.lat},${companyData.location.lng}`;
+
   return (
     <ScrollReveal>
-      <footer className="bg-slate-950 text-white border-t border-slate-700/50">
+      <footer className="relative bg-background-dark text-white border-t border-border/50">
         <div className="container mx-auto px-4 py-12">
           <ScrollStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Columna 1: Logo y Redes Sociales */}
             <ScrollStaggerItem className="space-y-4">
               <Logo />
-              <p className="text-gray-400 text-sm">
+              <p className="text-muted-foreground text-sm">
                 Soluciones de empaque innovadoras y personalizadas para potenciar
                 su marca y proteger su producto.
               </p>
@@ -92,7 +110,7 @@ export function Footer() {
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
-                    className="text-gray-400 hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors"
                     whileHover={{ scale: 1.2, rotate: -10 }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -104,22 +122,7 @@ export function Footer() {
 
             {/* Columna 2: Navegación */}
             <ScrollStaggerItem>
-              <motion.h2
-                className="font-semibold text-primary text-lg md:text-xl mb-4 relative inline-block"
-                initial="rest"
-                whileHover="hover"
-                animate="rest"
-              >
-                Navegación
-                <motion.div
-                  className="absolute bottom-0 left-0 h-[2px] bg-primary"
-                  variants={{
-                    rest: { width: 0 },
-                    hover: { width: '100%' },
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.h2>
+              <AnimatedTitle>Navegación</AnimatedTitle>
               <ul className="space-y-2">
                 {footerLinks.map((link) => (
                   <li key={link.href}>
@@ -129,7 +132,7 @@ export function Footer() {
                     >
                       <Link
                         href={link.href}
-                        className="flex items-center gap-2 text-gray-300 hover:text-primary transition-colors"
+                        className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                       >
                         <link.icon size={16} />
                         <span>{link.label}</span>
@@ -142,22 +145,7 @@ export function Footer() {
 
             {/* Columna 3: Legal */}
             <ScrollStaggerItem>
-               <motion.h2
-                className="font-semibold text-primary text-lg md:text-xl mb-4 relative inline-block"
-                initial="rest"
-                whileHover="hover"
-                animate="rest"
-              >
-                Legal
-                <motion.div
-                  className="absolute bottom-0 left-0 h-[2px] bg-primary"
-                  variants={{
-                    rest: { width: 0 },
-                    hover: { width: '100%' },
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.h2>
+               <AnimatedTitle>Legal</AnimatedTitle>
               <ul className="space-y-2">
                 {legalLinks.map((link) => (
                   <li key={link.href}>
@@ -167,7 +155,7 @@ export function Footer() {
                     >
                       <Link
                         href={link.href}
-                        className="flex items-center gap-2 text-gray-300 hover:text-primary transition-colors"
+                        className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
                       >
                         <link.icon size={16} />
                         <span>{link.label}</span>
@@ -180,25 +168,10 @@ export function Footer() {
 
             {/* Columna 4: Contacto */}
             <ScrollStaggerItem>
-               <motion.h2
-                className="font-semibold text-primary text-lg md:text-xl mb-4 relative inline-block"
-                initial="rest"
-                whileHover="hover"
-                animate="rest"
-              >
-                Ponerse en contacto
-                <motion.div
-                  className="absolute bottom-0 left-0 h-[2px] bg-primary"
-                  variants={{
-                    rest: { width: 0 },
-                    hover: { width: '100%' },
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.h2>
-              <ul className="space-y-3 text-gray-300 text-sm">
+               <AnimatedTitle>Ponerse en contacto</AnimatedTitle>
+              <ul className="space-y-3 text-muted-foreground text-sm">
                 <li className="flex items-start gap-3">
-                  <MapPin size={16} className="mt-0.5 shrink-0 text-gray-400" />
+                  <MapPin size={16} className="mt-0.5 shrink-0 text-muted-foreground" />
                    <a
                     href={googleMapsLink}
                     target="_blank"
@@ -209,7 +182,7 @@ export function Footer() {
                   </a>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Mail size={16} className="mt-0.5 shrink-0 text-gray-400" />
+                  <Mail size={16} className="mt-0.5 shrink-0 text-muted-foreground" />
                   <motion.div
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
@@ -223,7 +196,7 @@ export function Footer() {
                   </motion.div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Phone size={16} className="mt-0.5 shrink-0 text-gray-400" />
+                  <Phone size={16} className="mt-0.5 shrink-0 text-muted-foreground" />
                   <motion.div
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
@@ -240,9 +213,9 @@ export function Footer() {
             </ScrollStaggerItem>
           </ScrollStaggerContainer>
 
-          <div className="border-t border-slate-700 mt-8 pt-6 text-center text-sm text-gray-500">
+          <div className="border-t border-border mt-8 pt-6 text-center text-sm text-muted-foreground">
             <p>
-              &copy; {isClient ? year : new Date().getFullYear()} T & E Empaques y Soluciones.
+              &copy; {isClient ? new Date().getFullYear() : '2024'} T & E Empaques y Soluciones.
               Todos los derechos reservados.
             </p>
           </div>

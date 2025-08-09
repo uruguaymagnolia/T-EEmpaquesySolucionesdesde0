@@ -33,7 +33,7 @@ export default function RootLayout({
        <head>
         <meta name="theme-color" content="#1a2435" />
       </head>
-      <body className="font-sans relative overflow-x-hidden bg-background-dark">
+      <body>
         <ClientBody>
           <PwaInstaller />
           <ScrollProgress />

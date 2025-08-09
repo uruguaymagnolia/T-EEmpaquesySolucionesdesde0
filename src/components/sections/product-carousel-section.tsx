@@ -60,9 +60,9 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
 
   return (
     <ScrollReveal>
-      <section className="bg-slate-900 py-20 sm:py-24">
+      <section className="relative bg-background-light py-20 sm:py-24">
         <div className="container mx-auto px-4">
-          <h2 className="text-center text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+          <h2 className="text-center text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">
             Nuestros Productos Destacados
           </h2>
           <div className="relative mt-12">
@@ -109,7 +109,7 @@ const ProductCarouselSection: React.FC<ProductCarouselSectionProps> = ({
                   onClick={() => scrollTo(index)}
                   className={cn(
                     'h-2 w-8 rounded-full transition-colors duration-300',
-                    index === selectedIndex ? 'bg-primary' : 'bg-slate-700'
+                    index === selectedIndex ? 'bg-primary' : 'bg-border'
                   )}
                   aria-label={`Ir a la diapositiva ${index + 1}`}
                   whileHover={{ scale: 1.2 }}

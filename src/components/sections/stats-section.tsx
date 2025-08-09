@@ -34,13 +34,13 @@ const stats = [
 export function StatsSection() {
   return (
     <ScrollReveal>
-      <section className="bg-neutral-900 py-20 sm:py-24">
+      <section className="relative bg-background-alt py-20 sm:py-24">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">
               Nuestros números nos respaldan
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
               Décadas de experiencia y cientos de clientes felices son nuestra
               mejor garantía de calidad y compromiso.
             </p>
@@ -52,12 +52,12 @@ export function StatsSection() {
           >
             {stats.map((stat, index) => (
               <ScrollStaggerItem key={index}>
-                <div className="rounded-xl border border-slate-700/30 bg-slate-800/30 p-8 backdrop-blur-sm">
-                  <div className="text-5xl font-extrabold text-green-400">
+                <div className="rounded-xl border border-border/30 bg-background-light/30 p-8 backdrop-blur-sm">
+                  <div className="text-5xl font-extrabold text-primary">
                     <AnimatedCounter value={stat.value} />
                     <span>{stat.suffix}</span>
                   </div>
-                  <p className="mt-2 text-lg text-gray-300">{stat.label}</p>
+                  <p className="mt-2 text-lg text-muted-foreground">{stat.label}</p>
                 </div>
               </ScrollStaggerItem>
             ))}

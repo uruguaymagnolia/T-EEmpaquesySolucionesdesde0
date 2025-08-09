@@ -65,15 +65,13 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
   body {
     @apply bg-background text-foreground;
   }
 }
 
-.no-scroll {
-  overflow: hidden;
+@layer utilities {
+  .text-shadow-primary {
+    text-shadow: 0 0 15px hsla(var(--primary), 0.5);
+  }
 }

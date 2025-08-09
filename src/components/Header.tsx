@@ -13,6 +13,9 @@ import {
   Briefcase,
   HelpCircle,
   Mail,
+  Shield,
+  TestTube,
+  DraftingCompass,
 } from 'lucide-react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import {
@@ -20,18 +23,33 @@ import {
   StaggerItem,
 } from '@/components/animations/motion-wrapper';
 import type { LucideIcon } from 'lucide-react';
+import { MegaMenu } from './MegaMenu';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check on mount
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.classList.add('no-scroll');
+      document.body.classList.add('overflow-hidden');
     } else {
-      document.body.classList.remove('no-scroll');
+      document.body.classList.remove('overflow-hidden');
     }
     return () => {
-      document.body.classList.remove('no-scroll');
+      document.body.classList.remove('overflow-hidden');
     };
   }, [isMenuOpen]);
 
@@ -46,6 +64,35 @@ export function Header() {
       icon: HelpCircle,
     },
     { href: '/contacto', label: 'Contacto', icon: Mail },
+  ];
+
+  const solucionesSubMenu = [
+    {
+      category: 'Empaque Primario',
+      links: [
+        {
+          href: '/soluciones/empaque-flexible',
+          label: 'Empaque Flexible',
+          icon: Package,
+        },
+        { href: '/soluciones/blisters', label: 'Blisters', icon: Shield },
+      ],
+    },
+    {
+      category: 'Soluciones a Medida',
+      links: [
+        {
+          href: '/soluciones/prototipado',
+          label: 'Prototipado Rápido',
+          icon: TestTube,
+        },
+        {
+          href: '/soluciones/diseno-estructural',
+          label: 'Diseño Estructural',
+          icon: DraftingCompass,
+        },
+      ],
+    },
   ];
 
   const mobileMenuVariants: Variants = {
@@ -64,37 +111,98 @@ export function Header() {
     closed: { opacity: 0, pointerEvents: 'none' as const },
   };
 
+  const iconVariants: Variants = {
+    rest: {
+      rotate: 0,
+      scale: 1,
+      transition: { duration: 0.2, ease: 'easeOut' },
+    },
+    hover: {
+      rotate: -15,
+      scale: 1.2,
+      transition: { duration: 0.2, ease: 'easeOut' },
+    },
+  };
+
+  const contactLink = navLinks.find((link) => link.label === 'Contacto');
+  const mainNavLinks = navLinks.filter((link) => link.label !== 'Contacto');
+  const ContactIcon = contactLink?.icon ?? Mail;
+
+
   return (
-    <header className="bg-[#1a2435] text-white sticky top-0 z-50 shadow-md">
-      <div className="container mx-auto px-4 flex justify-between items-center h-16">
-        <Logo />
-        <nav className="hidden md:flex">
+    <header
+      className={`text-white sticky top-0 z-50 transition-all duration-300 ease-in-out ${
+        scrolled
+          ? 'bg-[#1a2435] shadow-lg'
+          : 'bg-primary-foreground shadow-md'
+      }`}
+    >
+      <div
+        className={`container mx-auto px-4 flex justify-between items-center transition-all duration-300 ease-in-out ${
+          scrolled ? 'h-14' : 'h-16'
+        }`}
+      >
+        <Logo scrolled={scrolled} />
+        <nav className="hidden md:flex items-center">
           <StaggerContainer
             as="ul"
-            className="flex items-center space-x-6"
+            className="flex items-center space-x-2"
             staggerChildren={0.1}
           >
-            {navLinks.map((link) => {
+            {mainNavLinks.map((link) => {
+              if (link.label === 'Soluciones') {
+                return (
+                  <StaggerItem as="li" key={link.href}>
+                    <MegaMenu
+                      triggerLabel={link.label}
+                      triggerIcon={link.icon}
+                      subMenuData={solucionesSubMenu}
+                      scrolled={scrolled}
+                    />
+                  </StaggerItem>
+                );
+              }
                const Icon = link.icon;
                return (
                 <StaggerItem as="li" key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="relative text-gray-300 hover:text-white transition-colors py-2 flex items-center gap-2"
-                  >
-                    <Icon className="size-4" />
-                    <span>{link.label}</span>
-                    <motion.div
-                      className="absolute bottom-0 left-0 h-[2px] bg-primary"
-                      initial={{ width: 0 }}
-                      whileHover={{ width: '100%' }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </Link>
+                  <motion.div initial="rest" whileHover="hover" animate="rest">
+                    <Link
+                      href={link.href}
+                      className="relative text-muted-foreground hover:text-white transition-colors duration-300 py-2 px-3 rounded-md hover:bg-white/10 flex items-center gap-2"
+                    >
+                      <motion.span variants={iconVariants}>
+                        <Icon
+                          className={`flex-shrink-0 size-4 transition-all duration-300 ease-in-out ${
+                            scrolled ? 'w-0' : 'w-4'
+                          }`}
+                        />
+                      </motion.span>
+                      <span>{link.label}</span>
+                    </Link>
+                  </motion.div>
                 </StaggerItem>
                )
             })}
           </StaggerContainer>
+          {contactLink && (
+            <motion.div
+              className="ml-4"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link
+                href={contactLink.href}
+                className="flex items-center gap-2 px-4 py-2 border border-primary text-primary rounded-full transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
+              >
+                <ContactIcon
+                  className={`flex-shrink-0 size-4 transition-all duration-300 ease-in-out ${
+                    scrolled ? 'w-0' : 'w-4'
+                  }`}
+                />
+                <span>{contactLink.label}</span>
+              </Link>
+            </motion.div>
+          )}
         </nav>
         <div className="md:hidden">
           <Button
@@ -134,10 +242,10 @@ export function Header() {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-[#1a2435] shadow-2xl z-50 md:hidden"
+              className="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-primary-foreground shadow-2xl z-50 md:hidden"
             >
               <nav className="h-full flex flex-col">
-                <div className="flex justify-between items-center p-4 border-b border-slate-700">
+                <div className="flex justify-between items-center p-4 border-b border-border">
                     <Logo />
                     <Button
                         variant="ghost"

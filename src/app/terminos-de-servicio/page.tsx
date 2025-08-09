@@ -30,12 +30,12 @@ export default function TerminosDeServicioPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto"
           >
-             Última actualización: {isClient ? new Date().toLocaleDateString('es-ES') : '24 de Julio, 2024'}
+            Última actualización: {isClient ? new Date().toLocaleDateString('es-ES') : '24 de Julio, 2024'}
           </motion.p>
         </div>
       </header>
 
-      <main className="py-16 md:py-24">
+      <main className="relative py-16 md:py-24">
         <ScrollReveal className="container mx-auto px-4 max-w-4xl space-y-8">
           <section>
             <h2 className="text-2xl font-semibold text-white mb-4">

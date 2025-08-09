@@ -35,13 +35,13 @@ export default function FeaturedProjectsSection({
   };
 
   return (
-    <section id={id} className="py-16 md:py-24 bg-slate-900">
+    <section id={id} className="relative py-16 md:py-24 bg-background-light">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-3xl text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
             Casos de Éxito
           </h2>
-          <p className="text-lg text-gray-300 mt-4">
+          <p className="text-lg text-muted-foreground mt-4">
             Estamos orgullosos del impacto que hemos generado para nuestros
             clientes.
           </p>

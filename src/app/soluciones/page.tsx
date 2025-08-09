@@ -3,6 +3,7 @@
 import prisma from '@/lib/prisma';
 import type { Solution } from '@prisma/client';
 import { SolucionesPageContent } from './content';
+import SolucionesHero from '@/components/heroes/SolucionesHero';
 
 export default async function SolucionesPage() {
   const solutions: Solution[] = await prisma.solution.findMany({
@@ -11,5 +12,10 @@ export default async function SolucionesPage() {
     },
   });
 
-  return <SolucionesPageContent solutions={solutions} />;
+  return (
+    <>
+      <SolucionesHero />
+      <SolucionesPageContent solutions={solutions} />
+    </>
+  );
 }

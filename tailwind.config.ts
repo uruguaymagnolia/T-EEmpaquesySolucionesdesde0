@@ -58,6 +58,14 @@ const config: Config = {
         "background-light": "hsl(var(--background-light))",
         "background-dark": "hsl(var(--background-dark))",
         "background-alt": "hsl(var(--background-alt))",
+        "primary-dark": "#0e413b",
+        yellow: {
+          400: "#fbbf24",
+        },
+      },
+      boxShadow: {
+        'primary': '0 0 20px hsla(var(--primary), 0.4)',
+        'primary-muted': '0 0 20px hsla(var(--primary), 0.2)',
       },
       borderRadius: {
         lg: "var(--radius)",

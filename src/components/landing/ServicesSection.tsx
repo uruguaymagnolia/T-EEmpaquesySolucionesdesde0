@@ -34,12 +34,12 @@ export function ServicesSection({
   solutions: Solution[];
 }) {
   return (
-    <section id={id} className="py-16 md:py-24 bg-slate-950">
+    <section id={id} className="relative py-16 md:py-24 bg-background-dark">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
           Nuestros Servicios de Empaque
         </h2>
-        <p className="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-12">
+        <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-12">
           Ofrecemos una amplia gama de soluciones de empaque y embalaje
           diseñadas para satisfacer las necesidades específicas de su negocio.
         </p>
@@ -54,14 +54,14 @@ export function ServicesSection({
                 <motion.div
                   whileHover={{ scale: 1.03, y: -5 }}
                   transition={{ type: 'spring', stiffness: 300 }}
-                  className="text-left p-6 border border-slate-700/50 rounded-lg shadow-sm h-full bg-slate-900 flex flex-col group"
+                  className="text-left p-4 md:p-6 border border-border/50 rounded-lg shadow-sm h-full bg-background-light flex flex-col group"
                 >
                   <div className="flex-shrink-0">
-                    <Icon className="h-12 w-12 text-[#9ada34] mb-4" />
-                    <h3 className="text-xl font-semibold mb-2 text-white">
+                    <Icon className="h-12 w-12 text-primary mb-4" />
+                    <h3 className="text-xl font-semibold mb-2 text-foreground">
                       {solution.title}
                     </h3>
-                    <p className="text-gray-300 text-sm">
+                    <p className="text-muted-foreground text-sm">
                       {solution.description}
                     </p>
                   </div>
