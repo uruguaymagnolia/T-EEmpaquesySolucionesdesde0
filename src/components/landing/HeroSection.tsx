@@ -2,7 +2,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { motion, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useTransform, useMotionValue, useSpring, type Variants } from 'framer-motion';
 import { StaggerContainer, StaggerItem } from '../animations/motion-wrapper';
 import { FloatingElement } from '../animations/scroll-animations';
 import { Star } from 'lucide-react';
@@ -44,9 +44,12 @@ function GridPattern(props: React.ComponentProps<typeof motion.div>) {
 }
 
 
-const heroTitleVariants = {
-  hidden: { opacity: 0, y: -20, filter: 'blur(5px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { delay: 0.4, duration: 0.5, type: 'spring' } },
+const revealAnimation: Variants = {
+  hidden: { y: "110%" },
+  visible: {
+    y: "0%",
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 
 const buttonStaggerItemVariants = {
@@ -119,17 +122,26 @@ export function HeroSection() {
       <div
         className="container mx-auto px-4 text-center relative z-10"
       >
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          Soluciones de empaque{' '}
-          <motion.span
-            className="text-primary inline-block text-shadow-primary"
-            variants={heroTitleVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            personalizadas
-          </motion.span>
-        </h1>
+        <motion.h1
+          className="text-4xl md:text-6xl font-bold mb-4"
+          variants={{
+            visible: { transition: { staggerChildren: 0.2, delayChildren: 0.4 } }
+          }}
+          initial="hidden"
+          animate="visible"
+        >
+          <div className="overflow-hidden py-2">
+            <motion.div variants={revealAnimation}>Soluciones de empaque</motion.div>
+          </div>
+          <div className="overflow-hidden py-2">
+            <motion.div
+              className="text-primary inline-block text-shadow-primary"
+              variants={revealAnimation}
+            >
+              personalizadas
+            </motion.div>
+          </div>
+        </motion.h1>
         
         <p className="max-w-3xl mx-auto mb-8 text-lg text-muted-foreground">
           Proveemos productos y soluciones de empaque personalizadas para
