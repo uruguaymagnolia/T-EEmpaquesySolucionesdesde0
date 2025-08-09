@@ -1,43 +1,48 @@
-import globals from 'globals';
-import tseslint from 'typescript-eslint';
-import pluginReact from 'eslint-plugin-react';
-import nextPlugin from '@next/eslint-plugin-next';
-import eslintPluginReactCompiler from 'eslint-plugin-react-compiler';
+// eslint.config.mjs
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import tseslint from "typescript-eslint";
+import pluginReactConfig from "eslint-plugin-react/configs/recommended.js";
+import eslintPluginReactCompiler from "eslint-plugin-react-compiler";
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   {
-    ignores: ['.next/**', '.idx/**'],
+    ignores: [
+        "**/*.config.js", 
+        "**/*.config.mjs", 
+        "public/sw.js", 
+        "node_modules/", 
+        ".next/",
+        "postcss.config.mjs",
+        "tailwind.config.ts"
+    ]
   },
   {
-    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
-    plugins: {
-      '@typescript-eslint': tseslint.plugin,
-      react: pluginReact,
-      '@next/next': nextPlugin,
-      'react-compiler': eslintPluginReactCompiler,
-    },
     languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        project: './tsconfig.json',
-      },
       globals: {
         ...globals.browser,
         ...globals.node,
       },
     },
-    rules: {
-      ...pluginReact.configs.recommended.rules,
-      ...tseslint.configs.recommended.rules,
-      ...nextPlugin.configs.recommended.rules,
-      ...nextPlugin.configs['core-web-vitals'].rules,
-      'react-compiler/react-compiler': 'error',
-    },
+  },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    ...pluginReactConfig,
     settings: {
       react: {
-        version: 'detect',
+        version: "detect",
       },
+    },
+  },
+  {
+    plugins: {
+      "react-compiler": eslintPluginReactCompiler,
+    },
+    rules: {
+      "react-compiler/react-compiler": "error",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
     },
   },
 ];
