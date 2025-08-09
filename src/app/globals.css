@@ -6,15 +6,20 @@
   html {
     scroll-behavior: smooth;
   }
+
   :root {
-    --background: 222 84% 5%; /* slate-950 */
-    --foreground: 210 40% 98%; /* slate-50 */
+    --background: 222 84% 5%;
+    /* slate-950 */
+    --foreground: 210 40% 98%;
+    /* slate-50 */
     --card: 222 84% 5%;
     --card-foreground: 210 40% 98%;
     --popover: 222 84% 5%;
     --popover-foreground: 210 40% 98%;
-    --primary: 80 68% 53%; /* #9ada34 */
-    --primary-foreground: 212 29% 19%; /* #1a2435 */
+    --primary: 80 68% 53%;
+    /* #9ada34 */
+    --primary-foreground: 212 29% 19%;
+    /* #1a2435 */
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
@@ -28,9 +33,12 @@
     --ring: 80 68% 53%;
     --radius: 0.5rem;
 
-    --background-light: 222 47% 11%; /* slate-900 */
-    --background-dark: 222 84% 5%; /* slate-950 */
-    --background-alt: 240 5% 10%; /* zinc-900 */
+    --background-light: 222 47% 11%;
+    /* slate-900 */
+    --background-dark: 222 84% 5%;
+    /* slate-950 */
+    --background-alt: 240 5% 10%;
+    /* zinc-900 */
   }
 
   .dark {
@@ -60,6 +68,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

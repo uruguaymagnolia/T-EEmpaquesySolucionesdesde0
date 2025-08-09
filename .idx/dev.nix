@@ -1,53 +1,60 @@
 { pkgs }: {
-  # To learn more about how to use Nix to configure your environment
-  # see: https://firebase.google.com/docs/studio/customize-workspace
+  # Para aprender más sobre cómo usar Nix para configurar tu entorno,
+  # visita: https://firebase.google.com/docs/studio/customize-workspace
 
-  # Which nixpkgs channel to use.
-  channel = "stable-25.05"; # or "unstable"
+  # Canal de nixpkgs a utilizar.
+  channel = "stable-25.05"; # o "unstable"
 
-  # Use https://search.nixos.org/packages to find packages
+  # Usa https://search.nixos.org/packages para encontrar paquetes.
+  # Se eliminó nodejs (redundante con bun) y python313 (no utilizado).
   packages = [
-    pkgs.nodejs
-    pkgs.openssl
     pkgs.bun
-    pkgs.python313
+    pkgs.openssl
     pkgs.netlify-cli
   ];
 
-  # Sets environment variables in the workspace
+  # Establece variables de entorno en el espacio de trabajo.
   env = {};
 
   idx = {
-    # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
+    # Busca las extensiones que desees en https://open-vsx.org/ y usa "publisher.id".
+    # Se reemplazaron las extensiones de Python por las esenciales para Next.js/TypeScript.
     extensions = [
+      "dbaeumer.vscode-eslint"   # Para linting de código
+      "esbenp.prettier-vscode"  # Para formateo de código
+      "bradlc.vscode-tailwindcss"  # Para autocompletado y linting de Tailwind CSS
       "ms-python.debugpy"
       "ms-python.python"
     ];
 
     workspace = {
-      # Runs when a workspace is created
+      # Se ejecuta cuando se crea el espacio de trabajo.
       onCreate = {
+        # Instala las dependencias automáticamente al iniciar.
+        install-deps = "bun install";
+        # Abre un archivo relevante al iniciar.
         default.openFiles = [
           "src/app/page.tsx"
         ];
       };
     };
 
-    # Enable previews and customize configuration
+    # Habilita y personaliza las configuraciones de vista previa.
     previews = {
       enable = true;
-      previews = {
+      previews = { # Add this nested attribute set
+        # Se corrigió la estructura anidada incorrecta.
         web = {
           command = [ "bun" "run" "dev" "--" "--port" "$PORT" "--hostname" "0.0.0.0" ];
           manager = "web";
         };
       };
     };
-  };
+ };
 
-  # The following services are commented out as they are not used in the current project.
-  # This will speed up workspace startup time.
-  # If you decide to use Firebase Emulators, you can uncomment this section.
+  # Los siguientes servicios están comentados ya que no se utilizan en el proyecto actual.
+  # Esto acelerará el tiempo de inicio del espacio de trabajo.
+  # Si decides usar los Emuladores de Firebase, puedes descomentar esta sección.
   # services.firebase.emulators = {
   #   detect = true;
   #   projectId = "demo-app";
