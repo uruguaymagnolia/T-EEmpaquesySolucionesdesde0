@@ -18,6 +18,12 @@ import {
 } from 'lucide-react';
 import { companyData } from '@/lib/data';
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import {
   ScrollReveal,
   ScrollStaggerContainer,
   ScrollStaggerItem,
@@ -159,20 +165,28 @@ export function Footer() {
                 {/* Separador */}
                 <div className="hidden md:block h-6 w-px bg-border"></div>
                 {/* Redes Sociales */}
-                <div className="flex space-x-4">
-                  {socialLinks.map((social) => (
-                    <motion.a
-                      key={social.label}
-                      href={social.href}
-                      aria-label={social.label}
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                      whileHover={{ scale: 1.2, rotate: -10 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <social.icon size={20} />
-                    </motion.a>
-                  ))}
-                </div>
+                <TooltipProvider delayDuration={100}>
+                  <div className="flex space-x-4">
+                    {socialLinks.map((social) => (
+                      <Tooltip key={social.label}>
+                        <TooltipTrigger asChild>
+                          <motion.a
+                            href={social.href}
+                            aria-label={social.label}
+                            className="text-muted-foreground hover:text-primary transition-colors"
+                            whileHover={{ scale: 1.2, rotate: -10 }}
+                            whileTap={{ scale: 0.9 }}
+                          >
+                            <social.icon size={20} />
+                          </motion.a>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>{social.label}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                  </div>
+                </TooltipProvider>
               </div>
             </ScrollStaggerItem>
 
