@@ -9,6 +9,7 @@ import { Star } from 'lucide-react';
 import React, { useEffect, useRef } from 'react';
 import { IsometricBox } from '../icons/IsometricBox';
 import { PackageFold } from '../icons/PackageFold';
+import { Scene3D } from '../icons/Scene3D';
 
 function GridPattern(props: React.ComponentProps<typeof motion.div>) {
   return (
