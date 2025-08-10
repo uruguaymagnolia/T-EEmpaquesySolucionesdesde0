@@ -11,6 +11,8 @@ import { BackToTopButton } from '@/components/common/BackToTopButton';
 import PwaInstaller from '@/components/PwaInstaller';
 import ClientBody from './ClientBody';
 import { TooltipProvider } from '@/components/ui/tooltip';
+
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
