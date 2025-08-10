@@ -9,7 +9,7 @@ import { Star } from 'lucide-react';
 import React, { useEffect, useRef } from 'react';
 import { IsometricBox } from '../icons/IsometricBox';
 import { PackageFold } from '../icons/PackageFold';
-import { Scene3D } from '../icons/Scene3D';
+
 
 function GridPattern(props: React.ComponentProps<typeof motion.div>) {
   return (
@@ -53,12 +53,12 @@ const revealAnimation: Variants = {
   },
 };
 
-const buttonStaggerItemVariants = {
+const buttonStaggerItemVariants: Variants = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: { opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 15 } },
 };
 
-const starStaggerItemVariants = {
+const starStaggerItemVariants: Variants = {
   hidden: { opacity: 0, y: 10 },
   visible: { opacity: 1, y: 0 },
 };
@@ -126,7 +126,6 @@ export function HeroSection() {
 
   return (
     <section ref={ref} className="relative bg-gradient-to-r from-primary-foreground to-primary-dark text-white py-20 md:py-32 overflow-hidden">
-      <Scene3D />
       <GridPattern style={{ x: gridX, y: gridY }} />
       <FloatingElement style={{ x: float1X, y: float1Y }} className="absolute top-20 -left-20 opacity-50" >
         <IsometricBox className="w-64 h-64 text-primary/10 stroke-[0.5]" />
@@ -135,7 +134,8 @@ export function HeroSection() {
         <PackageFold className="w-72 h-72 text-slate-500/10 stroke-[0.5]" />
       </FloatingElement>
 
-        <div
+        <motion.div
+            style={{ clipPath }}
           className="container mx-auto px-4 text-center relative z-10"
         >
           <motion.h1
@@ -215,8 +215,7 @@ export function HeroSection() {
                 <p className="text-sm text-muted-foreground ml-2">Calificado 4.9/5 por más de 500 clientes</p>
               </StaggerItem>
           </StaggerContainer>
-        </div>
-      </motion.div>
+        </motion.div>
     </section>
   );
 }
