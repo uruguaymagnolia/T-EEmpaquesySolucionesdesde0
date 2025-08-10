@@ -15,10 +15,4 @@ function BoxModel(props: any) {
       ref.current.rotation.y += 0.005;
     }
   });
-
-export default function Scene3D() {
-  return (
-    <div>
-      <Canvas>
-    </div>
-
+}
