@@ -2,7 +2,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { motion, useTransform, useMotionValue, useSpring, type Variants } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue, useSpring, type Variants } from 'framer-motion';
 import { StaggerContainer, StaggerItem } from '../animations/motion-wrapper';
 import { FloatingElement } from '../animations/scroll-animations';
 import { Star } from 'lucide-react';
@@ -72,6 +72,11 @@ export function HeroSection() {
   const springX = useSpring(x, springConfig);
   const springY = useSpring(y, springConfig);
 
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"]
+  });
+
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       if (ref.current) {
@@ -91,7 +96,7 @@ export function HeroSection() {
     const currentRef = ref.current;
     if (currentRef) {
       currentRef.addEventListener('mousemove', handleMouseMove);
-      currentRef.addEventListener('mouseleave', handleMouseLeave);
+      currentRef.addEventListener('mouseleave',handleMouseLeave);
     }
 
     return () => {
@@ -108,9 +113,19 @@ export function HeroSection() {
   const float1Y = useTransform(springY, (v) => v / -10);
   const float2X = useTransform(springX, (v) => v / 20);
   const float2Y = useTransform(springY, (v) => v / 20);
+  const clipPath = useTransform(
+    scrollYProgress,
+    [0, 0.8, 1],
+    [
+      "inset(0% 0% 0% 0%)",
+      "inset(0% 0% 0% 0%)",
+      "inset(50% 50% 50% 50%)"
+    ]
+  );
 
   return (
     <section ref={ref} className="relative bg-gradient-to-r from-primary-foreground to-primary-dark text-white py-20 md:py-32 overflow-hidden">
+      <Scene3D />
       <GridPattern style={{ x: gridX, y: gridY }} />
       <FloatingElement style={{ x: float1X, y: float1Y }} className="absolute top-20 -left-20 opacity-50" >
         <IsometricBox className="w-64 h-64 text-primary/10 stroke-[0.5]" />
@@ -119,87 +134,88 @@ export function HeroSection() {
         <PackageFold className="w-72 h-72 text-slate-500/10 stroke-[0.5]" />
       </FloatingElement>
 
-      <div
-        className="container mx-auto px-4 text-center relative z-10"
-      >
-        <motion.h1
-          className="text-4xl md:text-6xl font-bold mb-4"
-          variants={{
-            visible: { transition: { staggerChildren: 0.2, delayChildren: 0.4 } }
-          }}
-          initial="hidden"
-          animate="visible"
+        <div
+          className="container mx-auto px-4 text-center relative z-10"
         >
-          <div className="overflow-hidden py-2">
-            <motion.div variants={revealAnimation}>Soluciones de empaque</motion.div>
-          </div>
-          <div className="overflow-hidden py-2">
-            <motion.div
-              className="text-primary inline-block text-shadow-primary"
-              variants={revealAnimation}
-            >
-              personalizadas
-            </motion.div>
-          </div>
-        </motion.h1>
-        
-        <p className="max-w-3xl mx-auto mb-8 text-lg text-muted-foreground">
-          Proveemos productos y soluciones de empaque personalizadas para
-          artículos escolares, papelería, accesorios eléctricos, cosméticos,
-          didácticos, mercería y más.
-        </p>
-        
-        <StaggerContainer
-          as="div"
-          className="flex justify-center items-center flex-col sm:flex-row gap-4 mb-8"
-          staggerChildren={0.15}
-          delayChildren={0.7}
-        >
-          <StaggerItem variants={buttonStaggerItemVariants}>
-            <motion.div
-              className="hover:shadow-primary transition-shadow duration-300 rounded-md"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg border border-primary/50"
+          <motion.h1
+            className="text-4xl md:text-6xl font-bold mb-4"
+            variants={{
+              visible: { transition: { staggerChildren: 0.2, delayChildren: 0.4 } }
+            }}
+            initial="hidden"
+            animate="visible"
+          >
+            <div className="overflow-hidden py-2">
+              <motion.div variants={revealAnimation}>Soluciones de empaque</motion.div>
+            </div>
+            <div className="overflow-hidden py-2">
+              <motion.div
+                className="text-primary inline-block text-shadow-primary"
+                variants={revealAnimation}
               >
-                Solicitar cotización
-              </Button>
-            </motion.div>
-          </StaggerItem>
-          <StaggerItem variants={buttonStaggerItemVariants}>
-            <motion.div
-              className="hover:shadow-primary-muted transition-shadow duration-300 rounded-md"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                personalizadas
+              </motion.div>
+            </div>
+          </motion.h1>
+
+          <p className="max-w-3xl mx-auto mb-8 text-lg text-muted-foreground">
+            Proveemos productos y soluciones de empaque personalizadas para
+            artículos escolares, papelería, accesorios eléctricos, cosméticos,
+            didácticos, mercería y más.
+          </p>
+
+          <StaggerContainer
+            as="div"
+            className="flex justify-center items-center flex-col sm:flex-row gap-4 mb-8"
+            staggerChildren={0.15}
+            delayChildren={0.7}
+          >
+            <StaggerItem variants={buttonStaggerItemVariants}>
+              <motion.div
+                className="hover:shadow-primary transition-shadow duration-300 rounded-md"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Ver nuestros productos
-              </Button>
-            </motion.div>
-          </StaggerItem>
-        </StaggerContainer>
-        <StaggerContainer
-          className="flex items-center justify-center space-x-2"
-          staggerChildren={0.1}
-          delayChildren={1.2}
-        >
-            {Array.from({ length: 5 }).map((_, i) => (
-              <StaggerItem key={i} variants={starStaggerItemVariants}>
-                <Star className="w-5 h-5 text-yellow-400" fill="currentColor"/>
-              </StaggerItem>
-            ))}
-             <StaggerItem variants={starStaggerItemVariants}>
-              <p className="text-sm text-muted-foreground ml-2">Calificado 4.9/5 por más de 500 clientes</p>
+                <Button
+                  size="lg"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg border border-primary/50"
+                >
+                  Solicitar cotización
+                </Button>
+              </motion.div>
             </StaggerItem>
-        </StaggerContainer>
-      </div>
+            <StaggerItem variants={buttonStaggerItemVariants}>
+              <motion.div
+                className="hover:shadow-primary-muted transition-shadow duration-300 rounded-md"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                >
+                  Ver nuestros productos
+                </Button>
+              </motion.div>
+            </StaggerItem>
+          </StaggerContainer>
+          <StaggerContainer
+            className="flex items-center justify-center space-x-2"
+            staggerChildren={0.1}
+            delayChildren={1.2}
+          >
+              {Array.from({ length: 5 }).map((_, i) => (
+                <StaggerItem key={i} variants={starStaggerItemVariants}>
+                  <Star className="w-5 h-5 text-yellow-400" fill="currentColor"/>
+                </StaggerItem>
+              ))}
+               <StaggerItem variants={starStaggerItemVariants}>
+                <p className="text-sm text-muted-foreground ml-2">Calificado 4.9/5 por más de 500 clientes</p>
+              </StaggerItem>
+          </StaggerContainer>
+        </div>
+      </motion.div>
     </section>
   );
 }
