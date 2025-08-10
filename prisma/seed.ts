@@ -27,6 +27,13 @@ type CaseStudyData = {
   dataAiHint?: string;
 };
 
+type User = {
+  id: string;
+  username: string;
+  password?: string;
+  avatarUrl: string;
+};
+
 
 function slugify(text: string): string {
   return text
@@ -50,6 +57,9 @@ async function main() {
   const caseStudies: CaseStudyData[] = JSON.parse(
     fs.readFileSync(path.join(__dirname, 'data', 'caseStudies.json'), 'utf-8')
   );
+  const users: User[] = JSON.parse(
+    fs.readFileSync(path.join(__dirname, 'data', 'users.json'), 'utf-8')
+  );
 
   // Limpiar datos existentes
   await prisma.product.deleteMany();
@@ -57,6 +67,9 @@ async function main() {
 
   await prisma.caseStudy.deleteMany();
   console.log('Deleted records in case study table');
+
+  await prisma.user.deleteMany();
+  console.log('Deleted records in user table');
 
   // Seed Products
   const productsToCreate = products.map((productData) => ({
@@ -79,6 +92,12 @@ async function main() {
     data: caseStudiesToCreate,
   });
   console.log(`Seeded ${caseStudies.length} case studies`);
+
+  // Seed Users
+  await prisma.user.createMany({
+    data: users,
+  });
+  console.log(`Seeded ${users.length} users`);
 
   console.log(`Seeding finished.`);
 }

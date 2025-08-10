@@ -18,6 +18,12 @@ import {
 } from 'lucide-react';
 import { companyData } from '@/lib/data';
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import {
   ScrollReveal,
   ScrollStaggerContainer,
   ScrollStaggerItem,
@@ -96,34 +102,19 @@ export function Footer() {
     <ScrollReveal>
       <footer className="relative bg-background-dark text-white border-t border-border/50">
         <div className="container mx-auto px-4 py-12">
-          <ScrollStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Columna 1: Logo y Redes Sociales */}
-            <ScrollStaggerItem className="space-y-4">
+          <div className="flex flex-col items-center text-center">
+            {/* Nivel 1: Marca */}
+            <ScrollStaggerItem className="mb-8">
               <Logo />
-              <p className="text-muted-foreground text-sm">
+              <p className="text-muted-foreground text-sm mt-4 max-w-md">
                 Soluciones de empaque innovadoras y personalizadas para potenciar
                 su marca y proteger su producto.
               </p>
-              <div className="flex space-x-4">
-                {socialLinks.map((social) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                    whileHover={{ scale: 1.2, rotate: -10 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <social.icon size={20} />
-                  </motion.a>
-                ))}
-              </div>
             </ScrollStaggerItem>
 
-            {/* Columna 2: Navegación */}
-            <ScrollStaggerItem>
-              <AnimatedTitle>Navegación</AnimatedTitle>
-              <ul className="space-y-2">
+            {/* Nivel 2: Navegación Principal */}
+            <ScrollStaggerItem className="mb-8">
+              <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2">
                 {footerLinks.map((link) => (
                   <li key={link.href}>
                     <motion.div
@@ -132,10 +123,9 @@ export function Footer() {
                     >
                       <Link
                         href={link.href}
-                        className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                        className="text-lg text-muted-foreground hover:text-primary transition-colors"
                       >
-                        <link.icon size={16} />
-                        <span>{link.label}</span>
+                        {link.label}
                       </Link>
                     </motion.div>
                   </li>
@@ -143,81 +133,82 @@ export function Footer() {
               </ul>
             </ScrollStaggerItem>
 
-            {/* Columna 3: Legal */}
-            <ScrollStaggerItem>
-               <AnimatedTitle>Legal</AnimatedTitle>
-              <ul className="space-y-2">
-                {legalLinks.map((link) => (
-                  <li key={link.href}>
-                    <motion.div
-                      whileHover={{ y: -2 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Link
-                        href={link.href}
-                        className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        <link.icon size={16} />
-                        <span>{link.label}</span>
-                      </Link>
-                    </motion.div>
-                  </li>
-                ))}
-              </ul>
-            </ScrollStaggerItem>
-
-            {/* Columna 4: Contacto */}
-            <ScrollStaggerItem>
-               <AnimatedTitle>Ponerse en contacto</AnimatedTitle>
-              <ul className="space-y-3 text-muted-foreground text-sm">
-                <li className="flex items-start gap-3">
-                  <MapPin size={16} className="mt-0.5 shrink-0 text-muted-foreground" />
-                   <a
+            {/* Nivel 3: Contacto y Redes Sociales */}
+            <ScrollStaggerItem className="mb-8">
+              <div className="flex flex-col md:flex-row items-center gap-6 text-sm text-muted-foreground">
+                {/* Contacto */}
+                <div className="flex flex-col md:flex-row items-center gap-6">
+                  <a
                     href={googleMapsLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-primary transition-colors"
+                    className="flex items-center gap-2 hover:text-primary transition-colors"
                   >
-                    {companyData.address}
+                    <MapPin size={16} />
+                    <span>{companyData.address}</span>
                   </a>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Mail size={16} className="mt-0.5 shrink-0 text-muted-foreground" />
-                  <motion.div
-                    whileHover={{ y: -2 }}
-                    whileTap={{ scale: 0.98 }}
+                  <a
+                    href={`mailto:${companyData.email}`}
+                    className="flex items-center gap-2 hover:text-primary transition-colors"
                   >
-                    <a
-                      href={`mailto:${companyData.email}`}
-                      className="hover:text-primary transition-colors"
-                    >
-                      {companyData.email}
-                    </a>
-                  </motion.div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Phone size={16} className="mt-0.5 shrink-0 text-muted-foreground" />
-                  <motion.div
-                    whileHover={{ y: -2 }}
-                    whileTap={{ scale: 0.98 }}
+                    <Mail size={16} />
+                    <span>{companyData.email}</span>
+                  </a>
+                  <a
+                    href={companyData.phone.href}
+                    className="flex items-center gap-2 hover:text-primary transition-colors"
                   >
-                    <a
-                      href={companyData.phone.href}
-                      className="hover:text-primary transition-colors"
-                    >
-                      {companyData.phone.number}
-                    </a>
-                  </motion.div>
-                </li>
-              </ul>
+                    <Phone size={16} />
+                    <span>{companyData.phone.number}</span>
+                  </a>
+                </div>
+                {/* Separador */}
+                <div className="hidden md:block h-6 w-px bg-border"></div>
+                {/* Redes Sociales */}
+                <TooltipProvider delayDuration={100}>
+                  <div className="flex space-x-4">
+                    {socialLinks.map((social) => (
+                      <Tooltip key={social.label}>
+                        <TooltipTrigger asChild>
+                          <motion.a
+                            href={social.href}
+                            aria-label={social.label}
+                            className="text-muted-foreground hover:text-primary transition-colors"
+                            whileHover={{ scale: 1.2, rotate: -10 }}
+                            whileTap={{ scale: 0.9 }}
+                          >
+                            <social.icon size={20} />
+                          </motion.a>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>{social.label}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                  </div>
+                </TooltipProvider>
+              </div>
             </ScrollStaggerItem>
-          </ScrollStaggerContainer>
 
-          <div className="border-t border-border mt-8 pt-6 text-center text-sm text-muted-foreground">
-            <p>
-              &copy; {isClient ? new Date().getFullYear() : '2024'} T & E Empaques y Soluciones.
-              Todos los derechos reservados.
-            </p>
+            {/* Nivel 4: Legal y Copyright */}
+            <div className="w-full border-t border-border mt-8 pt-6 text-center text-sm text-muted-foreground">
+              <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 mb-4 text-xs">
+                {legalLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <p>
+                &copy; {isClient ? new Date().getFullYear() : '2024'} T & E Empaques y Soluciones.
+                Todos los derechos reservados.
+              </p>
+            </div>
           </div>
         </div>
       </footer>

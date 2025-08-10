@@ -10,6 +10,7 @@ import { CustomParticles } from '@/components/background/custom-particles';
 import { BackToTopButton } from '@/components/common/BackToTopButton';
 import PwaInstaller from '@/components/PwaInstaller';
 import ClientBody from './ClientBody';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -34,18 +35,20 @@ export default function RootLayout({
         <meta name="theme-color" content="#1a2435" />
       </head>
       <body>
-        <ClientBody>
-          <PwaInstaller />
-          <ScrollProgress />
-          <CustomParticles />
-          <div className="flex flex-col min-h-screen relative z-10">
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </div>
-          <Toaster />
-          <BackToTopButton />
-        </ClientBody>
+        <TooltipProvider>
+          <ClientBody>
+            <PwaInstaller />
+            <ScrollProgress />
+            <CustomParticles />
+            <div className="flex flex-col min-h-screen relative z-10">
+              <Header />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </div>
+            <Toaster />
+            <BackToTopButton />
+          </ClientBody>
+        </TooltipProvider>
       </body>
     </html>
   );

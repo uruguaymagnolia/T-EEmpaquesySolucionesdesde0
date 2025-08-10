@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "username": "bomberox",
+    "password": "123456789",
+    "avatarUrl": "/img/bomberox.png"
+  },
+  {
+    "id": "2",
+    "username": "pruebas",
+    "password": "123456789",
+    "avatarUrl": "/nuevas/edificionuevo2.jpg"
+  }
+]
